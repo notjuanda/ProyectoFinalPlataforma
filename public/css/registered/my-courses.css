@@ -19,7 +19,7 @@
 .courses-grid {
     display: grid;
     gap: 20px;
-    justify-items: start; /* Alinea los cursos a la izquierda */
+    justify-items: center; /* Alinea los cursos a la izquierda */
 }
 
 .course {
@@ -74,6 +74,7 @@
 
 @media (min-width: 768px) {
     .courses-grid {
+        justify-items: start;
         grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
     }
 }

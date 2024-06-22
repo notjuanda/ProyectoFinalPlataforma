@@ -43,6 +43,10 @@
     margin-bottom: 10px;
 }
 
+.profile-details span{
+    font-size: 18px;
+}
+
 .logout-button {
     padding: 10px 20px;
     background-color: #1A237E;

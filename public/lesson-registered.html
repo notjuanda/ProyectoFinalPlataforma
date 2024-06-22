@@ -3,79 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de Lección</title>
+    <title>Lección</title>
     <link rel="stylesheet" href="css/global-styles/normalize.css">
     <link rel="stylesheet" href="css/global-styles/fonts.css">
     <link rel="stylesheet" href="css/global-styles/style.css">
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
     <link rel="stylesheet" href="css/lessons/lessons.css">
-
-    <script type="module" src="js/loadLessons.js"></script>
     <script type="module" src="js/logout.js"></script>
+    <script type="module" src="js/loadLessons.js"></script>
 </head>
 <body>
-    <main>
-        <header>
-            <div class="header-container">
-                <div class="header-inner">
-                    <a href="index.html" class="logo">
-                        <img src="image/logo.png" alt="Logo" class="logo-image">
-                        CourseMania
-                    </a>
-                    <input type="checkbox" id="menu-toggle">
-                    <label for="menu-toggle" class="menu-toggle">
-                        <img src="image/icons/menu_icon.png" class="menu-icon" alt="Menu Icon">
-                    </label>
-                    <nav class="navbar">
-                        <ul class="navbar-list">
-                            <li class="navbar-item">
-                                <a href="index.html" class="navbar-link" id="init">INICIO</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="courses.html" class="navbar-link">MIS CURSOS</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="progress.html" class="navbar-link">PROGRESO</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="support.html" class="navbar-link">SOPORTE</a>
-                            </li>
-                            <li class="navbar-item profile-item">
-                                <a href="my-profile.html" class="navbar-link profile-link">
-                                    <img src="image/icons/person-white.png" class="profile-icon" alt="Profile Icon">
-                                    <span class="profile-text">PERFIL</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><button id="logoutButton">Cerrar Sesión</button></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+    <header>
+        <div class="header-container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <img src="image/logo.png" alt="Logo" class="logo-image">
+                    CourseMania
+                </a>
+                <input type="checkbox" id="menu-toggle">
+                <label for="menu-toggle" class="menu-toggle">
+                    <img src="image/icons/menu_icon.png" class="menu-icon" alt="Menu Icon">
+                </label>
+                <nav class="navbar">
+                    <ul class="navbar-list">
+                        <li class="navbar-item">
+                            <a href="index.html" class="navbar-link" id="init">INICIO</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="my-courses.html" class="navbar-link">MIS CURSOS</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="my-progress.html" class="navbar-link">PROGRESO</a>
+                        </li>
+                        <li class="navbar-item">
+                            <a href="support.html" class="navbar-link">SOPORTE</a>
+                        </li>
+                        <li class="navbar-item profile-item">
+                            <a href="my-profile.html" class="navbar-link profile-link">
+                                <img src="image/icons/person-white.png" class="profile-icon" alt="Profile Icon">
+                                <span class="profile-text">PERFIL</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><button id="logoutButton">Cerrar Sesión</button></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-        </header>
+        </div>
+    </header>
+    <main>
         <section class="lesson-detail">
             <div class="lesson-header">
                 <h1 id="lesson-title">Nombre de la Lección</h1>
                 <p id="lesson-description">Descripción de la lección.</p>
-            </div>
-            <div class="lesson-content">
-                <iframe id="lesson-content" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+                <iframe src="" id="lesson-content" width="560" height="315" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
+
         <section class="next-lessons">
-            <h2>Siguientes Lecciones</h2>
-            <div class="next-lessons-list" id="next-lessons-list">
-                <!-- Las lecciones se cargarán dinámicamente aquí -->
+            <h2>Próximas Lecciones</h2>
+            <div id="next-lessons">
+                <!-- Las lecciones siguientes se cargarán dinámicamente aquí -->
             </div>
         </section>
-        <footer class="footer">
-            <div class="footer-content">
-                <h2>Encuéntranos en nuestras redes</h2>
-                <p>¡Una mejor vida estudiando lo que más te gusta!</p>
-            </div>
-        </footer>
     </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <h2>Encuéntranos en nuestras redes</h2>
+            <p>¡Una mejor vida estudiando lo que más te gusta!</p>
+        </div>
+    </footer>
 </body>
 </html>

@@ -44,6 +44,10 @@
     border-radius: 10px;
 }
 
+.next-lessons a{
+    text-decoration: none;
+}
+
 .next-lessons h2 {
     font-size: 28px;
     color: #1A237E;

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
     <link rel="stylesheet" href="css/my-profile/my-profile.css">
-    
+
     <script type="module" src="js/logout.js"></script>
     <script type="module" src="js/loadProfile.js"></script>
 </head>
@@ -41,7 +41,7 @@
                             <a href="support.html" class="navbar-link">SOPORTE</a>
                         </li>
                         <li class="navbar-item profile-item">
-                            <a href="profile.html" class="navbar-link profile-link">
+                            <a href="my-profile.html" class="navbar-link profile-link">
                                 <img src="image/icons/person-white.png" class="profile-icon" alt="Profile Icon">
                                 <span class="profile-text">PERFIL</span>
                             </a>
@@ -59,12 +59,11 @@
             <div class="profile-container">
                 <h1>Mi Perfil</h1>
                 <div class="profile-info">
-                    <img src="image/icons/default-profile.png" alt="Foto de Perfil" id="profile-image">
                     <div class="profile-details">
                         <p><strong>Nombre:</strong> <span id="profile-name"></span></p>
+                        <p><strong>Apellido:</strong> <span id="profile-lastname"></span></p>
                         <p><strong>Email:</strong> <span id="profile-email"></span></p>
-                        <p><strong>Fecha de Registro:</strong> <span id="profile-date"></span></p>
-                        <!-- Añade más detalles aquí según sea necesario -->
+                        <p><strong>Tipo de Usuario:</strong> <span id="profile-type"></span></p>
                     </div>
                 </div>
                 <button id="logoutButton" class="logout-button">Cerrar Sesión</button>

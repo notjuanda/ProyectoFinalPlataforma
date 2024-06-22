@@ -84,11 +84,8 @@ const getProgressByCourse = async (usuarioId, cursoId) => {
     return { cursoId, progreso };
 };
 
-const updateProgresoStatus = async (usuario_id, leccion_id) => {
-    const res = await pool.query(
-        'UPDATE Progresion SET estado = $1 WHERE usuario_id = $2 AND leccion_id = $3 RETURNING *',
-        ['Visto', usuario_id, leccion_id]
-    );
+const getProgresoByUserAndLeccion = async (usuario_id, leccion_id) => {
+    const res = await pool.query('SELECT * FROM Progresion WHERE usuario_id = $1 AND leccion_id = $2', [usuario_id, leccion_id]);
     return res.rows[0];
 };
 
@@ -100,6 +97,6 @@ module.exports = {
     deleteProgreso,
     getProgressByUserId,
     getProgressByCourse,
-    updateProgresoStatus,
+    getProgresoByUserAndLeccion
 };
 

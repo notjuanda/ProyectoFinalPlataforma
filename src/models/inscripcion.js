@@ -1,4 +1,5 @@
 const pool = require('../data/db');
+const { get } = require('../routes/progresoRoute');
 
 const getAllInscripciones = async () => {
     const res = await pool.query('SELECT * FROM Inscripcion');
@@ -52,6 +53,14 @@ const getInscripcionByEstudianteAndCurso = async (idEstudiante, curso_id) => {
     return res.rows[0];
 };
 
+const getEstudiantesByCursoId = async (cursoId) => {
+    const res = await pool.query(
+        'SELECT idEstudiante FROM Inscripcion WHERE curso_id = $1',
+        [cursoId]
+    );
+    return res.rows;
+};
+
 module.exports = {
     getAllInscripciones,
     getInscripcionById,
@@ -59,5 +68,6 @@ module.exports = {
     updateInscripcion,
     deleteInscripcion,
     getCursosByEstudianteId,
-    getInscripcionByEstudianteAndCurso
+    getInscripcionByEstudianteAndCurso, 
+    getEstudiantesByCursoId
 };

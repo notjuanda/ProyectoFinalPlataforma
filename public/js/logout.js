@@ -4,12 +4,13 @@ document.getElementById('logoutButton').addEventListener('click', async function
     try {
         const response = await fetch('http://localhost:3001/api/usuarios/logout', {
             method: 'POST',
-            credentials: 'include' // Asegura que las cookies se incluyan en la solicitud
+            credentials: 'include'
         });
 
         if (response.ok) {
             console.log('Cierre de sesión exitoso');
-            Cookies.remove('userRegistered'); // Eliminar la cookie en el lado del cliente
+            Cookies.remove('userRegistered');
+            Cookies.remove('userId');
             window.location.href = 'index.html';
         } else {
             const errorData = await response.json();

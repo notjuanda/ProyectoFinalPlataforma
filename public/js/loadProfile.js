@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     function updateProfileInfo(user) {
         document.getElementById('profile-name').textContent = user.nombre;
-        document.getElementById('profile-email').textContent = user.email;
-        document.getElementById('profile-date').textContent = new Date(user.fecha_registro).toLocaleDateString();
-        // Actualiza más campos según sea necesario
+        document.getElementById('profile-lastname').textContent = user.apellido;
+        document.getElementById('profile-email').textContent = user.correo;
+        document.getElementById('profile-type').textContent = user.tipousuario;
     }
 });
