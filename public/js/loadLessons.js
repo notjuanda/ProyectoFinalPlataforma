@@ -2,14 +2,10 @@ import Cookies from 'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie
 
 document.addEventListener('DOMContentLoaded', async function() {
     const lessonId = new URLSearchParams(window.location.search).get('lesson');
-    const userRegistered = Cookies.get('userRegistered');
     const userId = Cookies.get('userId');
-    const lessonTitle = document.getElementById('lesson-title');
-    const lessonDescription = document.getElementById('lesson-description');
-    const lessonContent = document.getElementById('lesson-content');
-    const nextLessonsList = document.getElementById('next-lessons-list');
-
-    if (!lessonId) {
+    const userRegistered = Cookies.get('userRegistered');
+    
+    if (!lessonId || !userId || userRegistered !== 'true') {
         displayLessonNotFoundMessage();
         return;
     }
@@ -18,74 +14,71 @@ document.addEventListener('DOMContentLoaded', async function() {
         const lesson = await fetchLessonDetails(lessonId);
         if (lesson) {
             updateLessonInfo(lesson);
-        } else {
-            displayLessonNotFoundMessage();
-            return;
-        }
-
-        const nextLessons = await fetchNextLessons(lesson.curso_id, lessonId);
-        if (nextLessons.length > 0) {
+            await markLessonAsViewed(userId, lessonId); // Marcar como visto
+            const nextLessons = await fetchNextLessons(lessonId);
             updateNextLessonsList(nextLessons);
         } else {
-            displayNoMoreLessonsMessage();
+            displayLessonNotFoundMessage();
         }
     } catch (error) {
         console.error('Error fetching lesson details:', error);
         displayLessonNotFoundMessage();
     }
 
-    function createNextLessonElement(leccion) {
-        const lessonElement = document.createElement('div');
-        lessonElement.classList.add('next-lesson');
-
-        const lessonLink = document.createElement('a');
-        lessonLink.href = userRegistered ? `lesson-registered.html?lesson=${leccion.id}` : `lesson.html?lesson=${leccion.id}`;
-        lessonLink.textContent = leccion.nombre;
-
-        lessonElement.appendChild(lessonLink);
-        return lessonElement;
-    }
-
-    function displayLessonNotFoundMessage() {
-        lessonTitle.textContent = 'Lección no encontrada';
-        lessonDescription.textContent = '';
-        lessonContent.innerHTML = '<p>La lección solicitada no existe o no se pudo cargar.</p>';
-    }
-
-    function updateLessonInfo(leccion) {
-        lessonTitle.textContent = leccion.nombre;
-        lessonDescription.textContent = leccion.descripcion;
-        lessonContent.src = leccion.contenido.replace('watch?v=', 'embed/');
-    }
-
-    function updateNextLessonsList(lecciones) {
-        lecciones.forEach(leccion => {
-            const lessonElement = createNextLessonElement(leccion);
-            nextLessonsList.appendChild(lessonElement);
+    async function markLessonAsViewed(userId, lessonId) {
+        const response = await fetch(`http://localhost:3001/api/progresos/visto/${userId}/leccion/${lessonId}`, {
+            method: 'PUT'
         });
+        if (!response.ok) {
+            throw new Error('Error updating lesson status');
+        }
+        return response.json();
     }
-
-    function displayNoMoreLessonsMessage() {
-        const noLessonsMessage = document.createElement('p');
-        noLessonsMessage.textContent = 'Ups! Ya no hay más lecciones.';
-        nextLessonsList.appendChild(noLessonsMessage);
-    }
-
+    
     async function fetchLessonDetails(lessonId) {
         const response = await fetch(`http://localhost:3001/api/lecciones/${lessonId}`);
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('Error fetching lesson details');
         }
         return response.json();
     }
 
-    async function fetchNextLessons(courseId, currentLessonId) {
-        const response = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
+    function updateLessonInfo(lesson) {
+        document.getElementById('lesson-title').textContent = lesson.nombre;
+        document.getElementById('lesson-description').textContent = lesson.descripcion;
+        document.getElementById('lesson-video').src = `https://www.youtube.com/embed/${lesson.contenido.split('v=')[1]}`;
+    }
+
+    async function fetchNextLessons(lessonId) {
+        const response = await fetch(`http://localhost:3001/api/lecciones/${lessonId}/next`);
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error('Error fetching next lessons');
         }
-        const allLessons = await response.json();
-        const currentIndex = allLessons.lecciones.findIndex(leccion => leccion.id === parseInt(currentLessonId));
-        return allLessons.lecciones.slice(currentIndex + 1);
+        return response.json();
+    }
+
+    function updateNextLessonsList(lessons) {
+        const lessonsList = document.getElementById('next-lessons-list');
+        lessonsList.innerHTML = '';
+
+        if (lessons.length > 0) {
+            lessons.forEach(lesson => {
+                const lessonItem = document.createElement('li');
+                const lessonLink = document.createElement('a');
+                lessonLink.href = `lesson-registered.html?lesson=${lesson.id}`;
+                lessonLink.textContent = lesson.nombre;
+                lessonItem.appendChild(lessonLink);
+                lessonsList.appendChild(lessonItem);
+            });
+        } else {
+            const noLessonsMessage = document.createElement('p');
+            noLessonsMessage.textContent = 'Ups! Ya no hay más lecciones';
+            lessonsList.appendChild(noLessonsMessage);
+        }
+    }
+
+    function displayLessonNotFoundMessage() {
+        document.getElementById('lesson-title').textContent = 'Lección no encontrada';
+        document.getElementById('lesson-description').textContent = 'La lección solicitada no existe o no se pudo cargar.';
     }
 });
