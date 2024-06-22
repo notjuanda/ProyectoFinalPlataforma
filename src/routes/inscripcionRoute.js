@@ -9,5 +9,6 @@ router.post('/', inscripcionController.createInscripcion);
 router.put('/:id', inscripcionController.updateInscripcion);
 router.delete('/:id', inscripcionController.deleteInscripcion);
 router.get('/estudiante/:idEstudiante', inscripcionController.getCursosByEstudiante);
+router.get('/check-enrollment/:userId/:courseId', inscripcionController.checkEnrollment);
 
 module.exports = router;

@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles del Curso</title>
-
+    <title>Detalle de Lección</title>
     <link rel="stylesheet" href="css/global-styles/normalize.css">
     <link rel="stylesheet" href="css/global-styles/fonts.css">
     <link rel="stylesheet" href="css/global-styles/style.css">
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
-    <link rel="stylesheet" href="css/info-course/course-details.css">
-    <link rel="stylesheet" href="css/info-course/lessons.css">
+    <link rel="stylesheet" href="css/lessons/lessons.css">
 
-    <script type="module" src="js/course-detail.js"></script>
+    <script type="module" src="js/loadLessons.js"></script>
+    <script type="module" src="js/logout.js"></script>
 </head>
 <body>
     <main>
@@ -34,43 +33,47 @@
                                 <a href="index.html" class="navbar-link" id="init">INICIO</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="about.html" class="navbar-link">¿QUIENES SOMOS?</a>
+                                <a href="courses.html" class="navbar-link">MIS CURSOS</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="login.html" class="navbar-link">INICIAR SESION</a>
+                                <a href="progress.html" class="navbar-link">PROGRESO</a>
                             </li>
-                            <li class="navbar-item" id="button_join">
-                                <a class="navbar-link" href="register.html">ÚNETE</a>
+                            <li class="navbar-item">
+                                <a href="support.html" class="navbar-link">SOPORTE</a>
+                            </li>
+                            <li class="navbar-item profile-item">
+                                <a href="profile.html" class="navbar-link profile-link">
+                                    <img src="image/icons/person-white.png" class="profile-icon" alt="Profile Icon">
+                                    <span class="profile-text">PERFIL</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><button id="logoutButton">Cerrar Sesión</button></li>
+                                </ul>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
-
-        <section class="course-detail">
-            <div class="course-header">
-                <img src="" alt="Imagen del Curso" class="course-image" id="course-image">
-                <div class="course-info">
-                    <h1 id="course-title">Nombre del Curso</h1>
-                    <p id="course-description">Descripción del curso.</p>
-                    <a href="register.html" class="enroll-button">Inscribirse</a>
-                </div>
+        <section class="lesson-detail">
+            <div class="lesson-header">
+                <h1 id="lesson-title">Nombre de la Lección</h1>
+                <p id="lesson-description">Descripción de la lección.</p>
+            </div>
+            <div class="lesson-content">
+                <iframe id="lesson-content" width="560" height="315" frameborder="0" allowfullscreen></iframe>
             </div>
         </section>
-
-        <section class="lessons">
-            <h2>Lecciones</h2>
-            <div class="lessons-list" id="lessons-list">
+        <section class="next-lessons">
+            <h2>Siguientes Lecciones</h2>
+            <div class="next-lessons-list" id="next-lessons-list">
                 <!-- Las lecciones se cargarán dinámicamente aquí -->
             </div>
         </section>
-
         <footer class="footer">
             <div class="footer-content">
-                <h2>Tu educación ya está aquí, no esperes más y únete</h2>
+                <h2>Encuéntranos en nuestras redes</h2>
                 <p>¡Una mejor vida estudiando lo que más te gusta!</p>
-                <a href="register.html" class="join-button">ÚNETE A NUESTRA COMUNIDAD</a>
             </div>
         </footer>
     </main>

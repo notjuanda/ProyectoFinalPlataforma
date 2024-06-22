@@ -24,7 +24,14 @@ const getInscripcion = async (req, res) => {
 
 const createInscripcion = async (req, res) => {
     try {
-        const newInscripcion = await inscripcionModel.createInscripcion(req.body);
+        const { idEstudiante, curso_id } = req.body;
+        // Verificar si el usuario ya está inscrito en el curso
+        const existingInscripcion = await inscripcionModel.getInscripcionByEstudianteAndCurso(idEstudiante, curso_id);
+        if (existingInscripcion) {
+            return res.status(400).json({ message: 'Ya estás inscrito en este curso.' });
+        }
+
+        const newInscripcion = await inscripcionModel.createInscripcion({ idEstudiante, curso_id });
         res.status(201).json(newInscripcion);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -62,11 +69,30 @@ const getCursosByEstudiante = async (req, res) => {
     }
 };
 
+const checkEnrollment = async (req, res) => {
+    try {
+        const { userId, courseId } = req.params;
+        console.log(`Checking enrollment for user ${userId} and course ${courseId}`);
+        
+        const inscripciones = await inscripcionModel.getCursosByEstudianteId(userId);
+        console.log('Inscripciones obtenidas:', inscripciones);
+        
+        const isEnrolled = inscripciones.some(inscripcion => inscripcion.id == courseId);
+        console.log('¿Está inscrito?', isEnrolled);
+        
+        res.json({ isEnrolled });
+    } catch (error) {
+        console.error('Error checking enrollment:', error);
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     getInscripciones,
     getInscripcion,
     createInscripcion,
     updateInscripcion,
     deleteInscripcion,
-    getCursosByEstudiante
+    getCursosByEstudiante,
+    checkEnrollment
 };

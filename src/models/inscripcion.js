@@ -35,12 +35,21 @@ const deleteInscripcion = async (id) => {
 
 const getCursosByEstudianteId = async (idEstudiante) => {
     const res = await pool.query(
-        `SELECT c.* FROM Curso c
-        INNER JOIN Inscripcion i ON c.id = i.curso_id
-        WHERE i.idEstudiante = $1`,
+        `SELECT c.id, c.nombreCurso, c.descripcion, c.imagenCurso 
+         FROM Inscripcion i
+         JOIN Curso c ON i.curso_id = c.id
+         WHERE i.idEstudiante = $1`,
         [idEstudiante]
     );
     return res.rows;
+};
+
+const getInscripcionByEstudianteAndCurso = async (idEstudiante, curso_id) => {
+    const res = await pool.query(
+        'SELECT * FROM Inscripcion WHERE idEstudiante = $1 AND curso_id = $2',
+        [idEstudiante, curso_id]
+    );
+    return res.rows[0];
 };
 
 module.exports = {
@@ -49,5 +58,6 @@ module.exports = {
     createInscripcion,
     updateInscripcion,
     deleteInscripcion,
-    getCursosByEstudianteId
+    getCursosByEstudianteId,
+    getInscripcionByEstudianteAndCurso
 };
