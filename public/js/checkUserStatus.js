@@ -21,4 +21,14 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = 'index.html';
         }
     }
+
+    // Función para redirigir a la página de detalles del curso adecuada
+    window.redirectToCourseDetail = function(courseId) {
+        if (userRegistered === 'true') {
+            window.location.href = `course-detail-registered.html?course=${courseId}`;
+        } else {
+            window.location.href = `course-detail.html?course=${courseId}`;
+        }
+    }
 });
+

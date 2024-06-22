@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 categorias.forEach(categoria => {
                     const categoryElement = document.createElement('article');
                     categoryElement.classList.add('category');
-                    
+
                     const categoryLink = document.createElement('a');
                     const userRegistered = Cookies.get('userRegistered');
                     if (userRegistered === 'true') {

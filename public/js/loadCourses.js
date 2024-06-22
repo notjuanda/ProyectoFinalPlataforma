@@ -1,3 +1,5 @@
+import Cookies from 'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.mjs';
+
 document.addEventListener('DOMContentLoaded', function() {
     const recommendedContainer = document.getElementById('recommended');
     const allClassesContainer = document.getElementById('all-classes');
@@ -39,9 +41,14 @@ document.addEventListener('DOMContentLoaded', function() {
     function createCourseElement(curso) {
         const courseElement = document.createElement('article');
         courseElement.classList.add('course');
-        
+
         const courseLink = document.createElement('a');
-        courseLink.href = `course-detail.html?course=${curso.id}`;
+        const userRegistered = Cookies.get('userRegistered');
+        if (userRegistered === 'true') {
+            courseLink.href = `course-detail-registered.html?course=${curso.id}`;
+        } else {
+            courseLink.href = `course-detail.html?course=${curso.id}`;
+        }
 
         const courseTitle = document.createElement('h3');
         courseTitle.textContent = curso.nombreCurso;

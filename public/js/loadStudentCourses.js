@@ -1,8 +1,12 @@
+// Incluir js-cookie
 import Cookies from 'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.mjs';
 
 document.addEventListener('DOMContentLoaded', async function() {
     const userId = Cookies.get('userId');
-    const isUserRegistered = Cookies.get('userRegistered') === 'true';
+    if (!userId) {
+        console.error('No user ID found');
+        return;
+    }
 
     try {
         const response = await fetch(`http://localhost:3001/api/usuarios/${userId}/cursos`);
@@ -13,9 +17,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.log('Cursos del usuario:', cursos);
 
         const coursesGrid = document.querySelector('.my-courses .courses-grid');
+        // Limpia el contenedor antes de agregar nuevos elementos
+        coursesGrid.innerHTML = '';
+
         if (cursos.length > 0) {
             cursos.forEach(curso => {
-                const courseElement = createCourseElement(curso, isUserRegistered);
+                const courseElement = createCourseElement(curso);
                 coursesGrid.appendChild(courseElement);
             });
         } else {
@@ -26,14 +33,13 @@ document.addEventListener('DOMContentLoaded', async function() {
         displayNoCoursesMessage(coursesGrid);
     }
 
-    function createCourseElement(curso, isUserRegistered) {
+    function createCourseElement(curso) {
         const courseElement = document.createElement('article');
         courseElement.classList.add('course');
-        
+
         const courseLink = document.createElement('a');
-        courseLink.href = isUserRegistered 
-            ? `course-detail-registered.html?course=${curso.id}` 
-            : `course-detail.html?course=${curso.id}`;
+        courseLink.href = 'javascript:void(0)';
+        courseLink.onclick = () => redirectToCourseDetail(curso.id);
 
         const courseTitle = document.createElement('h3');
         courseTitle.textContent = curso.nombrecurso;
@@ -53,5 +59,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         messageElement.classList.add('no-courses-message');
         messageElement.textContent = 'No hay cursos disponibles en este momento.';
         container.appendChild(messageElement);
+    }
+
+    function redirectToCourseDetail(courseId) {
+        const userRegistered = Cookies.get('userRegistered');
+        if (userRegistered) {
+            window.location.href = `course-detail-registered.html?course=${courseId}`;
+        } else {
+            window.location.href = `course-detail.html?course=${courseId}`;
+        }
     }
 });

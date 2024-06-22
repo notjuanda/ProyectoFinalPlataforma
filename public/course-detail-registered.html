@@ -8,12 +8,14 @@
     <link rel="stylesheet" href="css/global-styles/normalize.css">
     <link rel="stylesheet" href="css/global-styles/fonts.css">
     <link rel="stylesheet" href="css/global-styles/style.css">
-    
-    <script defer src="js/loadCategories.js" type="module"></script>
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
-    <link rel="stylesheet" href="css/courses/courses.css">
-    <link rel="stylesheet" href="css/courses/join-us.css">
+    <link rel="stylesheet" href="css/info-course/course-details.css">
+    <link rel="stylesheet" href="css/info-course/lessons.css">
+
+    <script type="module" src="js/course-detail.js"></script>
+    <script type="module" src="js/logout.js"></script>
+
 
 </head>
 <body>
@@ -49,8 +51,7 @@
                                     <span class="profile-text">PERFIL</span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="settings.html">Configuración</a></li>
-                                    <li><a href="logout.html">Cerrar Sesión</a></li>
+                                    <li><button id="logoutButton">Cerrar Sesión</button></li>
                                 </ul>
                             </li>
                         </ul>
@@ -58,59 +59,25 @@
                 </div>
             </div>
         </header>
-        <section class="courses">
-            <h2>Nuestros Recomendados</h2>
-            <div class="recommended">
-                <a href="course-web-registered.html">
-                    <article class="course">
-                        <h3>Historia de la Ingeniería Web</h3>
-                        <p>Este curso explora los orígenes y la evolución del desarrollo web, desde las primeras páginas estáticas hasta las modernas aplicaciones web dinámicas.</p>
-                    </article>
-                </a>
-                <article class="course">
-                    <h3>Las etiquetas básicas</h3>
-                    <p>Aprende las etiquetas HTML fundamentales que constituyen la estructura de cualquier página web, incluyendo ejemplos y mejores prácticas.</p>
-                </article>
-                <article class="course">
-                    <h3>Sintaxis de etiquetas</h3>
-                    <p>Domina la sintaxis correcta del HTML para asegurarte de que tus documentos web sean válidos y accesibles.</p>
-                </article>
+        <section class="course-detail">
+            <div class="course-header">
+                <img src="" alt="Imagen del Curso" class="course-image" id="course-image">
+                <div class="course-info">
+                    <h1 id="course-title">Nombre del Curso</h1>
+                    <p id="course-description">Descripción del curso.</p>
+                    <a href="register.html" class="enroll-button">Inscribirse</a>
+                </div>
             </div>
+            <div class="course-content">
+                <h2>Descripción del Curso</h2>
+                <p id="course-full-description">Detalles del curso.</p>
+            </div>
+        </section>
 
-            <h2>Todos los Cursos</h2>
-            <div class="all-classes">
-                <article class="course">
-                    <h3>Historia de la Ingeniería Web</h3>
-                    <p>Este curso explora los orígenes y la evolución del desarrollo web, desde las primeras páginas estáticas hasta las modernas aplicaciones web dinámicas.</p>
-                </article>
-                <article class="course">
-                    <h3>Las etiquetas básicas</h3>
-                    <p>Aprende las etiquetas HTML fundamentales que constituyen la estructura de cualquier página web, incluyendo ejemplos y mejores prácticas.</p>
-                </article>
-                <article class="course">
-                    <h3>Sintaxis de etiquetas</h3>
-                    <p>Domina la sintaxis correcta del HTML para asegurarte de que tus documentos web sean válidos y accesibles.</p>
-                </article>
-                <article class="course">
-                    <h3>Introducción a CSS</h3>
-                    <p>Este curso te introduce al uso de CSS para diseñar y estilar páginas web, cubriendo desde los fundamentos hasta técnicas avanzadas de diseño.</p>
-                </article>
-                <article class="course">
-                    <h3>Flexbox y Grid Layout</h3>
-                    <p>Aprende a utilizar las poderosas herramientas de CSS Flexbox y Grid Layout para crear diseños web complejos y adaptables.</p>
-                </article>
-                <article class="course">
-                    <h3>Fundamentos de JavaScript</h3>
-                    <p>Comprende los conceptos básicos de JavaScript, el lenguaje de programación que da vida a las páginas web, con ejemplos prácticos y ejercicios.</p>
-                </article>
-                <article class="course">
-                    <h3>Programación Asíncrona en JavaScript</h3>
-                    <p>Descubre cómo manejar operaciones asíncronas en JavaScript usando promesas, async/await y otros patrones importantes.</p>
-                </article>
-                <article class="course">
-                    <h3>APIs y AJAX</h3>
-                    <p>Aprende a interactuar con APIs web y a utilizar AJAX para crear experiencias de usuario dinámicas y sin interrupciones.</p>
-                </article>
+        <section class="lessons">
+            <h2>Lecciones</h2>
+            <div class="lessons-list" id="lessons-list">
+                <!-- Las lecciones se cargarán dinámicamente aquí -->
             </div>
         </section>
         <footer class="footer">
