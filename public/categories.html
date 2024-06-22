@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de Lección</title>
+    <title>Categorías</title>
     <link rel="stylesheet" href="css/global-styles/normalize.css">
     <link rel="stylesheet" href="css/global-styles/fonts.css">
     <link rel="stylesheet" href="css/global-styles/style.css">
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
-    <link rel="stylesheet" href="css/lessons/lessons.css">
+    <link rel="stylesheet" href="css/global-styles/join-us.css">
+    <link rel="stylesheet" href="css/categories-alone/categories-alone.css">
 
-    <script type="module" src="js/loadLessons.js"></script>
+    <script type="module" src="js/loadCategories.js"></script>
     <script type="module" src="js/logout.js"></script>
 </head>
 <body>
@@ -33,47 +34,35 @@
                                 <a href="index.html" class="navbar-link" id="init">INICIO</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="courses.html" class="navbar-link">MIS CURSOS</a>
+                                <a href="about.html" class="navbar-link">¿QUIENES SOMOS?</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="progress.html" class="navbar-link">PROGRESO</a>
+                                <a href="login.html" class="navbar-link">INICIAR SESION</a>
                             </li>
-                            <li class="navbar-item">
-                                <a href="support.html" class="navbar-link">SOPORTE</a>
-                            </li>
-                            <li class="navbar-item profile-item">
-                                <a href="my-profile.html" class="navbar-link profile-link">
-                                    <img src="image/icons/person-white.png" class="profile-icon" alt="Profile Icon">
-                                    <span class="profile-text">PERFIL</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><button id="logoutButton">Cerrar Sesión</button></li>
-                                </ul>
+                            <li class="navbar-item" id="button_join">
+                                <a class="navbar-link" href="register.html">ÚNETE</a>
                             </li>
                         </ul>
                     </nav>
                 </div>
             </div>
         </header>
-        <section class="lesson-detail">
-            <div class="lesson-header">
-                <h1 id="lesson-title">Nombre de la Lección</h1>
-                <p id="lesson-description">Descripción de la lección.</p>
-            </div>
-            <div class="lesson-content">
-                <iframe id="lesson-content" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+        <section class="categories-section">
+            <h1>Categorías</h1>
+            <div class="categories-grid" id="categories-grid">
+                <!-- Las categorías se cargarán dinámicamente aquí -->
             </div>
         </section>
-        <section class="next-lessons">
-            <h2>Siguientes Lecciones</h2>
-            <div class="next-lessons-list" id="next-lessons-list">
-                <!-- Las lecciones se cargarán dinámicamente aquí -->
-            </div>
+        <section class="join-us">
+            <h2>Únete a Nosotros</h2>
+            <p>En CourseMania, creemos en el poder de la educación continua. Únete a nuestra comunidad y accede a recursos exclusivos, tutoriales avanzados y el apoyo de expertos en el campo del desarrollo web. ¡No pierdas la oportunidad de mejorar tus habilidades y llevar tu carrera al siguiente nivel con nosotros!</p>
+            <a href="register.html" class="join-button">Regístrate Ahora</a>
         </section>
         <footer class="footer">
             <div class="footer-content">
-                <h2>Encuéntranos en nuestras redes</h2>
+                <h2>Tu educación ya está aquí, no esperes más y únete</h2>
                 <p>¡Una mejor vida estudiando lo que más te gusta!</p>
+                <a href="register.html" class="join-button">ÚNETE A NUESTRA COMUNIDAD</a>
             </div>
         </footer>
     </main>
