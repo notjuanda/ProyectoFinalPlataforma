@@ -33,10 +33,16 @@ const deleteLeccion = async (id) => {
     return { message: 'Lección eliminada' };
 };
 
+const getLeccionesByCursoId = async (cursoId) => {
+    const res = await pool.query('SELECT * FROM Leccion WHERE curso_id = $1', [cursoId]);
+    return res.rows;
+};
+
 module.exports = {
     getAllLecciones,
     getLeccionById,
     createLeccion,
     updateLeccion,
     deleteLeccion,
+    getLeccionesByCursoId
 };

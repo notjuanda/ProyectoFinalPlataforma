@@ -55,7 +55,10 @@ const getInscripcionByEstudianteAndCurso = async (idEstudiante, curso_id) => {
 
 const getEstudiantesByCursoId = async (cursoId) => {
     const res = await pool.query(
-        'SELECT idEstudiante FROM Inscripcion WHERE curso_id = $1',
+        `SELECT Usuario.id AS idestudiante 
+         FROM Inscripcion 
+         JOIN Usuario ON Inscripcion.idEstudiante = Usuario.id 
+         WHERE Inscripcion.curso_id = $1`,
         [cursoId]
     );
     return res.rows;

@@ -1,4 +1,6 @@
 const inscripcionModel = require('../models/inscripcion');
+const progresoModel = require('../models/progreso');
+const leccionModel = require('../models/leccion');
 
 const getInscripciones = async (req, res) => {
     try {
@@ -23,15 +25,25 @@ const getInscripcion = async (req, res) => {
 };
 
 const createInscripcion = async (req, res) => {
+    const { idEstudiante, curso_id } = req.body;
     try {
-        const { idEstudiante, curso_id } = req.body;
-        // Verificar si el usuario ya está inscrito en el curso
-        const existingInscripcion = await inscripcionModel.getInscripcionByEstudianteAndCurso(idEstudiante, curso_id);
-        if (existingInscripcion) {
-            return res.status(400).json({ message: 'Ya estás inscrito en este curso.' });
+        const newInscripcion = await inscripcionModel.createInscripcion({ idEstudiante, curso_id });
+
+        // Obtener todas las lecciones del curso
+        const lecciones = await leccionModel.getLeccionesByCursoId(curso_id);
+
+        // Crear progresión para cada lección en el curso
+        for (const leccion of lecciones) {
+            const existingProgreso = await progresoModel.getProgresoByUserAndLeccion(idEstudiante, leccion.id);
+            if (!existingProgreso) {
+                await progresoModel.createProgreso({
+                    usuario_id: idEstudiante,
+                    leccion_id: leccion.id,
+                    estado: 'Marcado_Visto' // Estado inicial de no visto
+                });
+            }
         }
 
-        const newInscripcion = await inscripcionModel.createInscripcion({ idEstudiante, curso_id });
         res.status(201).json(newInscripcion);
     } catch (error) {
         res.status(500).json({ error: error.message });

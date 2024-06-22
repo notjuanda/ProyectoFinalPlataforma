@@ -79,6 +79,10 @@ const getProgressByCourse = async (usuarioId, cursoId) => {
     const totalLecciones = totalLeccionesRes.rows[0].total;
     const leccionesVistas = leccionesVistasRes.rows[0].vistas;
 
+    if (totalLecciones === 0) {
+        return { cursoId, progreso: 0 };
+    }
+
     const progreso = (leccionesVistas / totalLecciones) * 100;
 
     return { cursoId, progreso };

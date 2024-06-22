@@ -136,6 +136,33 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
+    
+        // Crear progresos para todas las lecciones del curso
+        const leccionesResponse = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
+        if (!leccionesResponse.ok) {
+            throw new Error('Network response was not ok');
+        }
+    
+        const leccionesData = await leccionesResponse.json();
+        console.log('Lecciones Data:', leccionesData);
+    
+        if (!Array.isArray(leccionesData.lecciones)) {
+            throw new Error('Lecciones no es un array');
+        }
+    
+        const lecciones = leccionesData.lecciones;
+    
+        for (const leccion of lecciones) {
+            await fetch('http://localhost:3001/api/progresos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ usuario_id: userId, leccion_id: leccion.id, estado: 'Marcado_Visto' })
+            });
+        }
+    
         return response.json();
-    }
+    }    
+    
 });
