@@ -12,6 +12,10 @@
     margin-bottom: 15px;
 }
 
+.my-courses a{
+    text-decoration: none;
+}
+
 .courses-grid {
     display: grid;
     gap: 20px;

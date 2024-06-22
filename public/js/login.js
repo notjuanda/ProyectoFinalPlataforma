@@ -13,8 +13,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ correo, contrasena }),
-            credentials: 'include' // Incluir las cookies en la solicitud
+            body: JSON.stringify({ correo, contrasena })
         });
 
         if (response.ok) {
@@ -22,7 +21,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             console.log('Inicio de sesión exitoso:', result);
 
             // Establecer la cookie para indicar que el usuario está registrado
-            Cookies.set('userRegistered', 'true', { expires: 1, secure: true, sameSite: 'None' });
+            Cookies.set('userRegistered', 'true');
+            Cookies.set('userId', result.usuario.id); // Almacenar el ID del usuario
 
             // Mostrar mensaje de éxito
             errorMessage.style.display = "none";

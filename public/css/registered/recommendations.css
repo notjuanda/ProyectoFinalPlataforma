@@ -30,7 +30,7 @@
     text-align: left;
     transition: transform 0.2s, box-shadow 0.2s;
     width: 260px; /* Ancho fijo */
-    height: 260px; /* Altura fija para hacerlos cuadrados */
+    height: 350px; /* Altura fija para hacerlos cuadrados */
 }
 
 .course:hover {

@@ -53,10 +53,31 @@ const deleteProgreso = async (req, res) => {
     }
 };
 
+const getProgressByUser = async (req, res) => {
+    try {
+        const progress = await progresoModel.getProgressByUserId(req.params.id);
+        res.json(progress);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
+const getProgressByCourse = async (req, res) => {
+    try {
+        const { usuarioId, cursoId } = req.params;
+        const progress = await progresoModel.getProgressByCourse(usuarioId, cursoId);
+        res.json(progress);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     getProgresos,
     getProgreso,
     createProgreso,
     updateProgreso,
     deleteProgreso,
+    getProgressByUser,
+    getProgressByCourse
 };

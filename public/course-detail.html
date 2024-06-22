@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coursemania</title>
+    <title>Detalles del Curso</title>
 
     <link rel="stylesheet" href="css/global-styles/normalize.css">
     <link rel="stylesheet" href="css/global-styles/fonts.css">
     <link rel="stylesheet" href="css/global-styles/style.css">
-    <link rel="stylesheet" href="css/global-styles/join-us.css">
-    
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
-    <link rel="stylesheet" href="css/courses/courses.css">
+    <link rel="stylesheet" href="css/info-course/course-details.css">
+    <link rel="stylesheet" href="css/info-course/lessons.css">
+    
+    <script defer src="js/loadCategories.js" type="module"></script>
 
-    <script type="module" src="js/checkUserStatus.js"></script>
-    <script defer src="js/loadCourses.js"></script>
+    <script defer src="js/course-detail.js"></script>
 </head>
 <body>
     <main>
@@ -49,30 +49,36 @@
                 </div>
             </div>
         </header>
-        <section class="courses">
-            <h2>Nuestros Recomendados</h2>
-            <div class="recommended" id="recommended">
-                <!-- Cursos recomendados se cargarán aquí dinámicamente -->
-            </div>
 
-            <h2>Todos los Cursos</h2>
-            <div class="all-classes" id="all-classes">
-                <!-- Todos los cursos se cargarán aquí dinámicamente -->
+        <section class="course-detail">
+            <div class="course-header">
+                <img src="" alt="Imagen del Curso" class="course-image" id="course-image">
+                <div class="course-info">
+                    <h1 id="course-title">Nombre del Curso</h1>
+                    <p id="course-description">Descripción del curso.</p>
+                    <a href="register.html" class="enroll-button">Inscribirse</a>
+                </div>
+            </div>
+            <div class="course-content">
+                <h2>Descripción del Curso</h2>
+                <p id="course-full-description">Detalles del curso.</p>
             </div>
         </section>
 
-        <section class="join-us">
-            <h2>Únete a Nosotros</h2>
-            <p>En CourseMania, creemos en el poder de la educación continua. Únete a nuestra comunidad y accede a recursos exclusivos, tutoriales avanzados y el apoyo de expertos en el campo del desarrollo web. ¡No pierdas la oportunidad de mejorar tus habilidades y llevar tu carrera al siguiente nivel con nosotros!</p>
-            <a href="register.html" class="join-button">Regístrate Ahora</a>
-        </section>        
+        <section class="lessons">
+            <h2>Lecciones</h2>
+            <div class="lessons-list" id="lessons-list">
+                <!-- Las lecciones se cargarán dinámicamente aquí -->
+            </div>
+        </section>
+
         <footer class="footer">
             <div class="footer-content">
                 <h2>Tu educación ya está aquí, no esperes más y únete</h2>
                 <p>¡Una mejor vida estudiando lo que más te gusta!</p>
                 <a href="#" class="join-button">ÚNETE A NUESTRA COMUNIDAD</a>
             </div>
-        </footer>   
+        </footer>
     </main>
 </body>
 </html>

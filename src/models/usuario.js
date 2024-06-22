@@ -46,6 +46,17 @@ const deleteUsuario = async (id) => {
     return { message: 'Usuario eliminado' };
 };
 
+const getCursosByUsuarioId = async (usuarioId) => {
+    const res = await pool.query(
+        `SELECT Curso.id, Curso.nombreCurso, Curso.descripcion, Curso.imagenCurso 
+         FROM Inscripcion
+         JOIN Curso ON Inscripcion.curso_id = Curso.id
+         WHERE Inscripcion.idEstudiante = $1`,
+        [usuarioId]
+    );
+    return res.rows;
+};
+
 module.exports = {
     getAllUsuarios,
     getUsuarioById,
@@ -53,4 +64,5 @@ module.exports = {
     createUsuario,
     updateUsuario,
     deleteUsuario,
+    getCursosByUsuarioId
 };

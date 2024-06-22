@@ -75,18 +75,14 @@ const deleteUsuario = async (req, res) => {
 const loginUsuario = async (req, res) => {
     const { correo, contrasena } = req.body;
 
-    console.log('Datos recibidos para inicio de sesión:', { correo, contrasena });
-
     try {
         const usuario = await usuarioModel.getUsuarioByCorreo(correo);
         if (!usuario) {
-            console.log('Usuario no encontrado con el correo:', correo);
             return res.status(400).json({ message: 'Correo o contraseña incorrectos.' });
         }
 
         const isMatch = await bcrypt.compare(contrasena, usuario.contrasena);
         if (!isMatch) {
-            console.log('Contraseña incorrecta para el usuario:', correo);
             return res.status(400).json({ message: 'Correo o contraseña incorrectos.' });
         }
 
@@ -110,9 +106,16 @@ const logoutUsuario = async (req, res) => {
     }
 };
 
-
-
-
+const getCursosByUsuario = async (req, res) => {
+    try {
+        const usuarioId = req.params.id;
+        const cursos = await usuarioModel.getCursosByUsuarioId(usuarioId);
+        res.json(cursos);
+    } catch (error) {
+        console.error('Error al obtener cursos por usuario:', error);
+        res.status(500).json({ error: error.message });
+    }
+};
 
 module.exports = {
     getUsuarios,
@@ -121,5 +124,6 @@ module.exports = {
     updateUsuario,
     deleteUsuario,
     loginUsuario,
-    logoutUsuario
+    logoutUsuario,
+    getCursosByUsuario
 };
