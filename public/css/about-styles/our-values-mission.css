@@ -1,0 +1,22 @@
+.our-values-mission{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+@media(min-width: 992px){
+    .our-values-mission{
+        display: block;
+        text-align: center;
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+    .values-mission-container{
+        display: flex;
+        align-items: flex-start;
+        justify-content:flex-start;
+        text-align: left;
+        gap: 30px;
+    }
+    .values, .mission{
+        flex: 1;
+    }
+}

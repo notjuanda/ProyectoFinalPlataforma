@@ -1,0 +1,68 @@
+@font-face {
+  font-family: 'RobotoSlab-Thin';
+  src: url('../fonts/RobotoSlab-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RobotoSlab-ExtraLight';
+  src: url('../fonts/RobotoSlab-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RobotoSlab-Light';
+  src: url('../fonts/RobotoSlab-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RobotoSlab-Regular';
+  src: url('../fonts/RobotoSlab-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RobotoSlab-Medium';
+  src: url('../fonts/RobotoSlab-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RobotoSlab-SemiBold';
+  src: url('../fonts/RobotoSlab-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RobotoSlab-Bold';
+  src: url('../fonts/RobotoSlab-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RobotoSlab-ExtraBold';
+  src: url('../fonts/RobotoSlab-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'RobotoSlab-Black';
+  src: url('../fonts/RobotoSlab-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+/* Nunito */
+@font-face {
+  font-family: 'NunitoSans-Medium';
+  src: url('../fonts/NunitoSans_10pt-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'NunitoSans-MediumItalic';
+  src: url('../fonts/NunitoSans_10pt-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}

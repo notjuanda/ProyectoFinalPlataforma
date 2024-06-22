@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+
+    <link rel="stylesheet" href="css/global-styles/normalize.css">
+    <link rel="stylesheet" href="css/global-styles/fonts.css">
+    <link rel="stylesheet" href="css/global-styles/style.css">
+    <link rel="stylesheet" href="css/login/login.css">
+    <link rel="stylesheet" href="css/global-styles/header.css">
+    <link rel="stylesheet" href="css/global-styles/footer.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script defer src="js/login.js"></script>
+</head>
+<body>
+    <main>
+        <header>
+            <div class="header-container">
+                <div class="header-inner">
+                    <a href="index.html" class="logo-header">
+                        <img src="image/logo.png" alt="Logo-header" class="logo-image">
+                        CourseMania
+                    </a>
+                    <input type="checkbox" id="menu-toggle">
+                    <label for="menu-toggle" class="menu-toggle">
+                        <img src="image/icons/menu_icon.png" class="menu-icon" alt="Menu Icon">
+                    </label>
+                    <nav class="navbar">
+                        <ul class="navbar-list">
+                            <li class="navbar-item">
+                                <a href="index.html" class="navbar-link" id="init">INICIO</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="about.html" class="navbar-link">¿QUIENES SOMOS?</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="login.html" class="navbar-link">INICIAR SESION</a>
+                            </li>
+                            <li class="navbar-item" id="button_join">
+                                <a class="navbar-link" href="register.html">ÚNETE</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <section class="login-section">
+            <div class="logo-section">
+                <img src="image/logo.png" alt="Logo de CourseMania" class="login-logo">
+                <h1>Iniciar Sesión</h1>
+            </div>
+            <form id="loginForm" method="POST" class="login-form">
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico:</label>
+                    <input type="email" id="correo" name="correo" required>
+                </div>
+                <div class="form-group">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="login-button">Iniciar Sesión</button>
+                </div>
+                <p id="error-message"></p>
+                <p id="success-message"></p> <!-- Nuevo -->
+            </form>
+            <div class="register">
+                <p>¿No tienes una cuenta? <a href="register.html">Regístrate aquí</a></p>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="footer-content">
+                <h2>Tu educación ya está aquí, no esperes más y únete</h2>
+                <p>¡Una mejor vida estudiando lo que más te gusta!</p>
+                <a href="#" class="join-button">ÚNETE A NUESTRA COMUNIDAD</a>
+            </div>
+        </footer>  
+    </main>
+</body>
+</html>

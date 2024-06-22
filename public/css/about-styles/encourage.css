@@ -1,0 +1,40 @@
+.encourage-section{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.button_action{
+    display: flex;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    justify-content: center;
+}
+.button{
+    background-color: #FE5B2C;
+    padding: 5px;
+    border-radius: 10px;
+}
+.button_action a{
+    text-decoration: none;
+    color: white;
+}
+.button_action a:hover{
+    background-color: #1A237E;
+}
+
+@media(min-width: 992px){
+    .encourage-section{
+        display: block;
+        text-align: center;
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+    .encourage-container{
+        display: flex;
+        align-items: flex-start;
+        justify-content:flex-start;
+        text-align: left;
+        gap: 40px;
+    }
+
+}

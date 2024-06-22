@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coursemania</title>
+    <link rel="stylesheet" href="css/global-styles/normalize.css">
+    <link rel="stylesheet" href="css/global-styles/fonts.css">
+    <link rel="stylesheet" href="css/global-styles/style.css">
+    <link rel="stylesheet" href="css/global-styles/join-us.css">
+    <link rel="stylesheet" href="css/global-styles/categories.css">
+    <link rel="stylesheet" href="css/global-styles/header.css">
+    <link rel="stylesheet" href="css/global-styles/footer.css">
+    <link rel="stylesheet" href="css/home-styles/first-section.css">
+    <link rel="stylesheet" href="css/home-styles/benefits.css">
+    <link rel="stylesheet" href="css/home-styles/study-plans.css">
+    <link rel="stylesheet" href="css/home-styles/why-chose-us.css">
+
+    <script type="module" src="js/checkUserStatus.js"></script>
+    <script defer src="js/carrousel.js"></script>
+    <script type="module" src="js/loadCategories.js"></script>
+    <script defer src="js/registered.js"></script>
+    <script defer src="js/login.js"></script>
+    
+</head>
+<body>
+    <main>
+        <header>
+            <div class="header-container">
+                <div class="header-inner">
+                    <a href="index.html" class="logo">
+                        <img src="image/logo.png" alt="Logo" class="logo-image">
+                        CourseMania
+                    </a>
+                    <input type="checkbox" id="menu-toggle">
+                    <label for="menu-toggle" class="menu-toggle">
+                        <img src="image/icons/menu_icon.png" class="menu-icon" alt="Menu Icon">
+                    </label>
+                    <nav class="navbar">
+                        <ul class="navbar-list">
+                            <li class="navbar-item">
+                                <a href="index.html" class="navbar-link" id="init">INICIO</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="about.html" class="navbar-link">¿QUIENES SOMOS?</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="login.html" class="navbar-link">INICIAR SESION</a>
+                            </li>
+                            <li class="navbar-item" id="button_join">
+                                <a class="navbar-link" href="register.html">ÚNETE</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <section class="first-section">
+            <h1>Aprende programación <span><br>desde casa</span></h1>
+            <div class="first-section-content">
+                <p>
+                    Aprende con Coursemania, la plataforma de cursos online que
+                    te ofrece los recursos necesarios.
+                </p>
+            </div>
+        </section>
+        <section class="categories">
+            <h2 class="categories-title">Nuestras categorías</h2>
+            <div class="carousel-container">
+                <div class="categories-grid" id="categories-grid">
+                    <!-- Categorías se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+            <div class="view-more">
+                <a href="#" class="view-more-item">Ver todas las categorías</a>
+            </div>
+        </section>
+        <section class="benefits">
+            <h1>Que tu aprendizaje <span>funcione</span></h1>
+            <p>
+                Coursemania es una plataforma de cursos online con los recursos necesarios para darte una excelente enseñanza sobre lo que tu elijas.
+            </p>
+            <div class="benefits-container">
+                <div class="benefit">
+                    <img src="image/icons/teacher.png" alt="profesor enseñando">
+                    <h2>Aprende desde casa</h2>
+                    <p>
+                        ¡Trabaja y estudia al mismo tiempo! En Coursemania puedes estudiar y trabajar al mismo tiempo y desde cualquier lugar del mundo. Tómate unas vacaciones y estudia al mismo tiempo.
+                    </p>
+                </div>
+                <div class="benefit">
+                    <img src="image/icons/persons.png" alt="grupo de personas">
+                    <h2>Comunidad</h2>
+                    <p>Encuentra personas a las que les gusta lo mismo que tú. Haz amigos con tus mismos gustos, socializa con personas de otros lugares del mundo y, sobre todo, ¡haz contactos!</p>
+                </div>
+            </div>
+        </section>
+        <section class="why-choose-us">
+            <h2>¿Por Qué Elegirnos?</h2>
+            <div class="why-choose-us-container">
+                <div class="why-choose-us-item">
+                    <img src="image/quality.png" alt="Calidad">
+                    <h3>Alta Calidad Educativa</h3>
+                    <p>Nuestros cursos son desarrollados por expertos en el campo, asegurando contenido de alta calidad.</p>
+                </div>
+                <div class="why-choose-us-item">
+                    <img src="image/flexibility.png" alt="Flexibilidad">
+                    <h3>Flexibilidad</h3>
+                    <p>Aprende a tu propio ritmo, en cualquier momento y desde cualquier lugar.</p>
+                </div>
+                <div class="why-choose-us-item">
+                    <img src="image/support.png" alt="Soporte">
+                    <h3>Soporte 24/7</h3>
+                    <p>Ofrecemos soporte constante para resolver cualquier duda o problema que puedas tener.</p>
+                </div>
+            </div>
+        </section>
+        <section class="join-us">
+            <h2>Únete a Nosotros</h2>
+            <p>En CourseMania, creemos en el poder de la educación continua. Únete a nuestra comunidad y accede a recursos exclusivos, tutoriales avanzados y el apoyo de expertos en el campo del desarrollo web. ¡No pierdas la oportunidad de mejorar tus habilidades y llevar tu carrera al siguiente nivel con nosotros!</p>
+            <a href="register.html" class="join-button">Regístrate Ahora</a>
+        </section>
+        <footer class="footer">
+            <div class="footer-content">
+                <h2>Tu educación ya está aquí, no esperes más y únete</h2>
+                <p>¡Una mejor vida estudiando lo que más te gusta!</p>
+                <a href="#" class="join-button">ÚNETE A NUESTRA COMUNIDAD</a>
+            </div>
+        </footer>
+    </main>
+    <script src="js/carrousel.js"></script>
+</body>
+</html>

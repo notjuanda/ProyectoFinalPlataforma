@@ -1,0 +1,137 @@
+.course-detail {
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.course-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.course-image {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.course-info {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.course-info h1 {
+    font-size: 32px;
+    color: #1A237E;
+    margin-bottom: 15px;
+}
+
+.course-info p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.enroll-button {
+    padding: 10px 20px;
+    background-color: #1A237E;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.enroll-button:hover {
+    background-color: #FE5B2C;
+}
+
+.course-content {
+    padding: 20px;
+}
+
+.course-content h2 {
+    font-size: 28px;
+    color: #1A237E;
+    margin-bottom: 15px;
+}
+
+.course-content p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.course-content .course-list {
+    padding-left: 20px;
+}
+
+.course-content .course-list li {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.course-content .course-list li::marker {
+    color: #FE5B2C;
+}
+
+@media (min-width: 768px) {
+    .course-header {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .course-image {
+        margin-right: 20px;
+        margin-bottom: 0;
+        width: 300px;
+    }
+
+    .course-info {
+        max-width: none;
+    }
+}
+
+@media (min-width: 992px) {
+    .course-detail {
+        padding: 40px;
+    }
+
+    .course-header {
+        padding: 40px;
+    }
+
+    .course-content {
+        padding: 40px;
+    }
+
+    .course-info h1 {
+        font-size: 36px;
+    }
+
+    .course-info p {
+        font-size: 20px;
+    }
+
+    .course-content h2 {
+        font-size: 32px;
+    }
+
+    .course-content p, .course-content .course-list li {
+        font-size: 18px;
+    }
+}
+.no-lessons-message {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    margin-top: 20px;
+}

@@ -1,0 +1,51 @@
+.categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.categories h2 {
+    margin-bottom: 70px;
+}
+.view-more {
+    margin-top: 30px;
+}
+.view-more a {
+    font-size: 25px;
+    font-weight: bold;
+}
+.carousel-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.categories-grid {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 30px;
+    will-change: transform;
+}
+.category {
+    flex: 0 0 auto;
+    width: auto;
+    box-sizing: border-box;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+}
+.category img {
+    height: auto;
+    width: 100%;
+    max-height: 100px; /* Limitar altura máxima para mantener la proporción */
+    object-fit: contain; /* Asegurar que la imagen se escala correctamente */
+}
+.no-categories-message {
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+    width: 100%;
+}

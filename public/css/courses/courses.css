@@ -1,0 +1,79 @@
+.courses {
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+    display: block;
+}
+
+.recommended, .all-classes {
+    display: grid;
+    gap: 20px;
+    justify-items: start; /* Alinea los cursos a la izquierda */
+}
+
+.courses a{
+    text-decoration: none;
+}
+.course {
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 260px; /* Ancho fijo */
+    height: 260px; /* Altura fija para hacerlos cuadrados */
+}
+
+.course:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.courses h2 {
+    font-size: 32px;
+    color: #FE5B2C;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.course h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #1A237E;
+}
+
+.course p {
+    font-size: 16px;
+    color: #666;
+}
+
+.course p::before {
+    content: '• ';
+    color: #FE5B2C;
+}
+
+@media (min-width: 768px) {
+    .recommended, .all-classes {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
+    }
+}
+
+@media (min-width: 992px) {
+    .recommended, .all-classes {
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+    }
+}
+.no-courses-message{
+    text-align: center;
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Ajusta la altura según sea necesario */
+}

@@ -1,0 +1,51 @@
+.progress {
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.progress h2 {
+    font-size: 24px;
+    color: #1A237E;
+    margin-bottom: 15px;
+}
+
+.progress-grid {
+    display: grid;
+    gap: 20px;
+    justify-items: start; /* Alinea los items de progreso a la izquierda */
+}
+
+.progress-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%; /* Ajusta el ancho completo del contenedor */
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.progress-completed {
+    height: 20px;
+    background-color: #1A237E;
+}
+
+@media (min-width: 768px) {
+    .progress-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas de igual tamaño */
+    }
+}
+
+@media (min-width: 992px) {
+    .progress-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
+    }
+}

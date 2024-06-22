@@ -1,0 +1,93 @@
+.register-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}
+.logo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.register-logo {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.logo h1 {
+    margin: 10px 0 20px 0;
+    font-size: 24px;
+}
+
+.register-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.register-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.register-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.register-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1A237E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: #0f1769;
+}
+
+.login {
+    margin-top: 20px;
+}
+
+.login p {
+    font-size: 14px;
+}
+
+.login a {
+    color: #1A237E;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+.form-group input{
+    font-size: 18px;
+}
+
+.login a:hover {
+    text-decoration: underline;
+}
+.register-section #error-message{
+    color: red;
+    display: none;
+    font-size: 18px;
+}
+.register-section #success-message{
+    color: green;
+    display: none;
+    font-size: 18px;
+}

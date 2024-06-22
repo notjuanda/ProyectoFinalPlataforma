@@ -1,0 +1,93 @@
+.login-section {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.logo-section {
+    margin-bottom: 20px;
+}
+
+.logo-section img {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.logo-section h1 {
+    margin: 10px 0 20px 0;
+    font-size: 24px;
+}
+
+.login-form .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1A237E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.login-button:hover {
+    background-color: #0f1769;
+}
+
+.register {
+    margin-top: 20px;
+}
+
+.register p {
+    font-size: 14px;
+}
+
+.register a {
+    color: #1A237E;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.register a:hover {
+    text-decoration: underline;
+}
+.login-form #error-message{
+    color: red;
+    display: none;
+    font-size: 18px;
+}
+
+.login-form #success-message{
+    color: green;
+    display: none;
+    font-size: 18px;
+}
+.login-form input{
+    font-size: 18px;
+}

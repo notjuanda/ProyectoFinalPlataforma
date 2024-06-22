@@ -1,0 +1,17 @@
+.footer{
+    padding: 20px;
+    background-color: #1A237E;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.footer-content p, .footer-content h2, .footer-content a{
+    color: white;
+    font-size: 15px;
+    font-weight:normal;
+    text-decoration: none;
+}
+@media(min-width: 768px){
+    .footer-content p, .footer-content h2, .footer-content a{
+        font-size: 20px;
+    }
+}
