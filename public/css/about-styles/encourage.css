@@ -1,40 +1,81 @@
-.encourage-section{
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.button_action{
-    display: flex;
-    color: white;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    justify-content: center;
-}
-.button{
-    background-color: #FE5B2C;
-    padding: 5px;
+.encourage-section {
+    padding: 40px 20px;
+    background-color: #f4f4f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    margin: 40px 0;
+    text-align: center;
 }
-.button_action a{
-    text-decoration: none;
+
+.encourage-section h2 {
+    font-size: 32px;
+    color: #1A237E;
+    margin-bottom: 30px;
+}
+
+.encourage-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.encourage-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1;
+    text-align: left;
+}
+
+.encourage-card h3 {
+    font-size: 24px;
+    color: #1A237E;
+    margin-bottom: 10px;
+}
+
+.button_action {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.button {
+    background-color: #FE5B2C;
     color: white;
-}
-.button_action a:hover{
-    background-color: #1A237E;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
 }
 
-@media(min-width: 992px){
-    .encourage-section{
-        display: block;
-        text-align: center;
-        padding-left: 60px;
-        padding-right: 60px;
-    }
-    .encourage-container{
-        display: flex;
-        align-items: flex-start;
-        justify-content:flex-start;
+.button:hover {
+    background-color: #D84315;
+}
+
+@media(min-width: 992px) {
+    .encourage-container {
+        flex-direction: row;
         text-align: left;
-        gap: 40px;
     }
 
+    .button_action {
+        justify-content: center;
+    }
+}
+
+.join-button {
+    background-color: #FE5B2C;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+.join-button:hover {
+    background-color: #D84315;
 }
