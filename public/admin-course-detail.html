@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Curso - Coursemania</title>
+
+    <link rel="stylesheet" href="css/global-styles/normalize.css">
+    <link rel="stylesheet" href="css/global-styles/fonts.css">
+    <link rel="stylesheet" href="css/global-styles/style.css">
+    <link rel="stylesheet" href="css/global-styles/header.css">
+    <link rel="stylesheet" href="css/global-styles/footer.css">
+    <link rel="stylesheet" href="css/admin-styles/course-detail/course-detail.css">
+    <link rel="stylesheet" href="css/admin-styles/course-detail/loadLesson.css">
+
+    <script type="module" src="js/checkUserStatus.js"></script>
+    <script type="module" src="js/logout.js"></script>
+    <script type="module" src="js/admin-scripts/loadCourse.js"></script>
+    <script type="module" src="js/admin-scripts/editCourse.js"></script>
+    <script type="module" src="js/admin-scripts/addLeccion.js"></script> <!-- Nuevo script para añadir lecciones -->
+</head>
+<body>
+    <main>
+        <header>
+            <div class="header-container">
+                <div class="header-inner">
+                    <a href="admin-menu.html" class="logo">
+                        <img src="image/logo.png" alt="Logo" class="logo-image">
+                        CourseMania Admin
+                    </a>
+                    <input type="checkbox" id="menu-toggle">
+                    <label for="menu-toggle" class="menu-toggle">
+                        <img src="image/icons/menu_icon.png" class="menu-icon" alt="Menu Icon">
+                    </label>
+                    <nav class="navbar">
+                        <ul class="navbar-list">
+                            <li class="navbar-item">
+                                <a href="manage-courses.html" class="navbar-link">GESTIONAR CURSOS</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="manage-categories.html" class="navbar-link">GESTIONAR CATEGORÍAS</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="manage-lessons.html" class="navbar-link">GESTIONAR LECCIONES</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="manage-enrollments.html" class="navbar-link">INSCRIPCIONES</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="manage-progressions.html" class="navbar-link">PROGRESIONES</a>
+                            </li>
+                            <li class="navbar-item profile-item">
+                                <a href="admin-profile.html" class="navbar-link profile-link">
+                                    <img src="image/icons/person-white.png" class="profile-icon" alt="Profile Icon">
+                                    <span class="profile-text">PERFIL</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><button id="logoutButton">Cerrar Sesión</button></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <section class="course-detail">
+            <div class="course-header">
+                <h2 id="course-title">Título del Curso</h2>
+                <input type="text" id="edit-course-title" class="edit-input" style="display:none;">
+                <div class="course-actions">
+                    <button class="edit-button" id="edit-title-button">Editar</button>
+                    <button class="save-button" id="save-title-button" style="display:none;">Guardar</button>
+                    <button class="delete-button">Eliminar</button>
+                </div>
+            </div>
+            <div class="course-content">
+                <div class="course-image-container">
+                    <img id="course-image" src="" alt="Imagen del Curso">
+                    <input type="file" id="edit-course-image" style="display:none;">
+                    <button class="edit-button" id="edit-image-button">Editar Imagen</button>
+                    <button class="save-button" id="save-image-button" style="display:none;">Guardar Imagen</button>
+                </div>
+                <div class="course-info">
+                    <div class="course-description">
+                        <h3>Descripción</h3>
+                        <p id="course-description">Aquí va la descripción del curso.</p>
+                        <textarea id="edit-course-description" class="edit-input" style="display:none;"></textarea>
+                        <button class="edit-button" id="edit-description-button">Editar</button>
+                        <button class="save-button" id="save-description-button" style="display:none;">Guardar</button>
+                    </div>
+                    <div class="course-category">
+                        <h3>Categoría</h3>
+                        <p id="course-category">Nombre de la Categoría</p>
+                        <select id="edit-course-category" class="edit-input" style="display:none;">
+                            <!-- Opciones de categoría -->
+                        </select>
+                        <button class="edit-button" id="edit-category-button">Editar</button>
+                        <button class="save-button" id="save-category-button" style="display:none;">Guardar</button>
+                    </div>
+                    <div class="course-lessons">
+                        <h3>Lecciones</h3>
+                        <ul id="course-lessons-list">
+                            <!-- Lista de lecciones -->
+                        </ul>
+                        <button class="add-button" id="add-lesson-button">Añadir Lección</button> <!-- Añadir ID para manejar el botón -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección del formulario para añadir lecciones -->
+        <section class="add-lesson-form" id="add-lesson-form" style="display:none;">
+            <h3>Añadir Lección</h3>
+            <form id="form-add-lesson">
+                <label for="lesson-name">Nombre de la Lección:</label>
+                <input type="text" id="lesson-name" name="lesson-name" required>
+                <label for="lesson-description">Descripción:</label>
+                <textarea id="lesson-description" name="lesson-description" required></textarea>
+                <label for="lesson-type">Tipo de Contenido:</label>
+                <input type="text" id="lesson-type" name="lesson-type" required>
+                <label for="lesson-content">Contenido:</label>
+                <textarea id="lesson-content" name="lesson-content" required></textarea>
+                <button type="submit">Guardar</button>
+                <button type="button" id="cancel-add-lesson">Cancelar</button>
+            </form>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <h2>No olvides guardar tus cambios</h2>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

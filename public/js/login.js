@@ -23,15 +23,20 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             // Establecer la cookie para indicar que el usuario está registrado
             Cookies.set('userRegistered', 'true');
             Cookies.set('userId', result.usuario.id); // Almacenar el ID del usuario
+            Cookies.set('userType', result.usuario.tipoUsuario); // Almacenar el tipo de usuario
 
             // Mostrar mensaje de éxito
             errorMessage.style.display = "none";
             successMessage.textContent = 'Inicio de sesión exitoso. Redirigiendo...';
             successMessage.style.display = 'block';
 
-            // Redirigir a la página principal de usuario registrado después de 4 segundos
+            // Redirigir según el tipo de usuario después de 4 segundos
             setTimeout(() => {
-                window.location.href = 'registered.html';
+                if (result.usuario.tipoUsuario === 'Instructor') {
+                    window.location.href = 'admin-menu.html';
+                } else {
+                    window.location.href = 'registered.html';
+                }
             }, 4000);
         } else {
             const errorData = await response.json();

@@ -3,6 +3,7 @@ const cursoController = require('../controllers/cursoController');
 
 const router = Router();
 
+router.get('/search', cursoController.searchCursos);
 router.get('/:id/lecciones', cursoController.getCursoConLecciones);
 router.get('/', cursoController.getCursos);
 router.get('/:id', cursoController.getCurso);

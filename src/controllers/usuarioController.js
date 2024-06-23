@@ -87,9 +87,8 @@ const loginUsuario = async (req, res) => {
         }
 
         console.log('Inicio de sesión exitoso para el usuario:', correo);
-
         res.cookie('userRegistered', 'true', { maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'None', secure: true });
-        res.status(200).json({ message: 'Inicio de sesión exitoso.', usuario: { id: usuario.id, nombre: usuario.nombre, tipoUsuario: usuario.tipoUsuario } });
+        res.status(200).json({ message: 'Inicio de sesión exitoso.', usuario: { id: usuario.id, nombre: usuario.nombre, tipoUsuario: usuario.tipousuario} });
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
         res.status(500).json({ error: error.message });

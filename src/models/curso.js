@@ -20,10 +20,10 @@ const createCurso = async (curso) => {
 };
 
 const updateCurso = async (id, curso) => {
-    const { nombreCurso, descripcion, imagenCurso, bannerCurso, categoria_id, usuario_id } = curso;
+    const { nombreCurso, descripcion, categoria_id, imagenCurso } = curso;
     const res = await pool.query(
-        'UPDATE Curso SET nombreCurso = $1, descripcion = $2, imagenCurso = $3, bannerCurso = $4, categoria_id = $5, usuario_id = $6 WHERE id = $7 RETURNING *',
-        [nombreCurso, descripcion, imagenCurso, bannerCurso, categoria_id, usuario_id, id]
+        'UPDATE Curso SET nombreCurso = $1, descripcion = $2, categoria_id = $3, imagenCurso = $4 WHERE id = $5 RETURNING *',
+        [nombreCurso, descripcion, categoria_id, imagenCurso, id]
     );
     return res.rows[0];
 };
@@ -42,9 +42,15 @@ const getCursoConLecciones = async (id) => {
     const curso = cursoRes.rows[0];
     const leccionesRes = await pool.query('SELECT * FROM Leccion WHERE curso_id = $1', [id]);
     curso.lecciones = leccionesRes.rows;
-    
+
     return curso;
 };
+
+const searchCursosByName = async (nombre) => {
+    const res = await pool.query('SELECT * FROM Curso WHERE LOWER(nombreCurso) LIKE LOWER($1)', [`%${nombre}%`]);
+    return res.rows;
+};
+
 
 module.exports = {
     getAllCursos,
@@ -52,5 +58,6 @@ module.exports = {
     createCurso,
     updateCurso,
     deleteCurso,
-    getCursoConLecciones
+    getCursoConLecciones, 
+    searchCursosByName
 };

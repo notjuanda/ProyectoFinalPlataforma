@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const morgan = require('morgan');
 const cors = require('cors');
@@ -8,6 +9,9 @@ const path = require('path');
 // Configuraciones
 app.set('port', process.env.PORT || 3001);
 app.set('json spaces', 2);
+
+app.use(bodyParser.json({ limit: '50mb' })); // Aumentar el tamaño de carga
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 // Middlewares
 app.use(morgan('dev'));

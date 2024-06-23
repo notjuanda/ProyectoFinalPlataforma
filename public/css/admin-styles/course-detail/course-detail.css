@@ -1,0 +1,130 @@
+.course-detail {
+    padding: 40px 20px;
+    background-color: #f4f4f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 40px 0;
+}
+
+.course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.course-header h2 {
+    font-size: 32px;
+    color: #1A237E;
+}
+
+.course-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.edit-button, .delete-button, .add-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-button {
+    background-color: #1A237E;
+    color: #fff;
+}
+
+.edit-button:hover {
+    background-color: #FE5B2C;
+}
+
+.delete-button {
+    background-color: #D32F2F;
+    color: #fff;
+}
+
+.delete-button:hover {
+    background-color: #B71C1C;
+}
+
+.add-button {
+    background-color: #388E3C;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.add-button:hover {
+    background-color: #2E7D32;
+}
+
+.course-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.course-image-container {
+    flex: 1 1 300px;
+    max-width: 300px;
+}
+
+.course-image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.course-info {
+    flex: 2 1 500px;
+}
+
+.course-info h3 {
+    font-size: 24px;
+    color: #1A237E;
+    margin-bottom: 10px;
+}
+
+.course-description, .course-category, .course-instructor, .course-lessons {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.course-lessons ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.course-lessons ul li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.course-lessons ul li:last-child {
+    border-bottom: none;
+}
+
+.course-lessons ul li .lesson-title {
+    font-size: 18px;
+    color: #333;
+}
+
+.course-lessons ul li .lesson-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.course-lessons ul li .edit-button,
+.course-lessons ul li .delete-button {
+    padding: 5px 10px;
+    font-size: 14px;
+}

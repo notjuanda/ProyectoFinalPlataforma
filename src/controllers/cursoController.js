@@ -3,7 +3,6 @@ const cursoModel = require('../models/curso');
 const getCursos = async (req, res) => {
     try {
         const cursos = await cursoModel.getAllCursos();
-        // Codificar imagenCurso y bannerCurso a Base64
         cursos.forEach(curso => {
             if (curso.imagencurso) {
                 curso.imagencurso = curso.imagencurso.toString('base64');
@@ -22,7 +21,6 @@ const getCurso = async (req, res) => {
     try {
         const curso = await cursoModel.getCursoById(req.params.id);
         if (curso) {
-            // Codificar imagenCurso y bannerCurso a Base64
             if (curso.imagencurso) {
                 curso.imagencurso = curso.imagencurso.toString('base64');
             }
@@ -42,7 +40,6 @@ const getCursoConLecciones = async (req, res) => {
     try {
         const curso = await cursoModel.getCursoConLecciones(req.params.id);
         if (curso) {
-            // Codificar imagenCurso y bannerCurso a Base64
             if (curso.imagencurso) {
                 curso.imagencurso = curso.imagencurso.toString('base64');
             }
@@ -61,7 +58,6 @@ const getCursoConLecciones = async (req, res) => {
 const createCurso = async (req, res) => {
     try {
         let { nombreCurso, descripcion, imagenCurso, bannerCurso, categoria_id, usuario_id } = req.body;
-        // Decodificar imagenCurso y bannerCurso de Base64
         if (imagenCurso) {
             imagenCurso = Buffer.from(imagenCurso, 'base64');
         }
@@ -78,7 +74,6 @@ const createCurso = async (req, res) => {
 const updateCurso = async (req, res) => {
     try {
         let { nombreCurso, descripcion, imagenCurso, bannerCurso, categoria_id, usuario_id } = req.body;
-        // Decodificar imagenCurso y bannerCurso de Base64
         if (imagenCurso) {
             imagenCurso = Buffer.from(imagenCurso, 'base64');
         }
@@ -87,7 +82,6 @@ const updateCurso = async (req, res) => {
         }
         const updatedCurso = await cursoModel.updateCurso(req.params.id, { nombreCurso, descripcion, imagenCurso, bannerCurso, categoria_id, usuario_id });
         if (updatedCurso) {
-            // Codificar imagenCurso y bannerCurso a Base64
             if (updatedCurso.imagencurso) {
                 updatedCurso.imagencurso = updatedCurso.imagencurso.toString('base64');
             }
@@ -112,6 +106,24 @@ const deleteCurso = async (req, res) => {
     }
 };
 
+const searchCursos = async (req, res) => {
+    try {
+        const { nombre } = req.query;
+        const cursos = await cursoModel.searchCursosByName(nombre);
+        cursos.forEach(curso => {
+            if (curso.imagencurso) {
+                curso.imagencurso = curso.imagencurso.toString('base64');
+            }
+            if (curso.bannercurso) {
+                curso.bannercurso = curso.bannercurso.toString('base64');
+            }
+        });
+        res.json(cursos);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 module.exports = {
     getCursos,
     getCurso,
@@ -119,5 +131,5 @@ module.exports = {
     createCurso,
     updateCurso,
     deleteCurso,
+    searchCursos
 };
-
