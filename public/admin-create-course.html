@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Curso - Coursemania</title>
+
+    <link rel="stylesheet" href="css/global-styles/normalize.css">
+    <link rel="stylesheet" href="css/global-styles/fonts.css">
+    <link rel="stylesheet" href="css/global-styles/style.css">
+    <link rel="stylesheet" href="css/global-styles/header.css">
+    <link rel="stylesheet" href="css/global-styles/footer.css">
+    <link rel="stylesheet" href="css/admin-styles/createCourse/createCourse.css">
+
+    <script type="module" src="js/admin-scripts/createCourse.js"></script>
+    <script type="module" src="js/checkUserStatus.js"></script>
+    <script type="module" src="js/logout.js"></script>
+</head>
+<body>
+    <main>
+        <header>
+            <div class="header-container">
+                <div class="header-inner">
+                    <a href="admin-menu.html" class="logo">
+                        <img src="image/logo.png" alt="Logo" class="logo-image">
+                    </a>
+                    <input type="checkbox" id="menu-toggle">
+                    <label for="menu-toggle" class="menu-toggle">
+                        <img src="image/icons/menu_icon.png" class="menu-icon" alt="Menu Icon">
+                    </label>
+                    <nav class="navbar">
+                        <ul class="navbar-list">
+                            <li class="navbar-item">
+                                <a href="admin-load-all-courses.html" class="navbar-link">GESTIONAR CURSOS</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="manage-categories.html" class="navbar-link">GESTIONAR CATEGORÍAS</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="manage-lessons.html" class="navbar-link">GESTIONAR LECCIONES</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="manage-enrollments.html" class="navbar-link">INSCRIPCIONES</a>
+                            </li>
+                            <li class="navbar-item">
+                                <a href="manage-progressions.html" class="navbar-link">PROGRESIONES</a>
+                            </li>
+                            <li class="navbar-item profile-item">
+                                <a href="admin-profile.html" class="navbar-link profile-link">
+                                    <img src="image/icons/person-white.png" class="profile-icon" alt="Profile Icon">
+                                    <span class="profile-text">PERFIL</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><button id="logoutButton">Cerrar Sesión</button></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <section class="create-course">
+            <h2>Crear Nuevo Curso</h2>
+            <form id="create-course-form">
+                <label for="course-name">Nombre del Curso</label>
+                <input type="text" id="course-name" name="nombreCurso" required>
+
+                <label for="course-description">Descripción</label>
+                <textarea id="course-description" name="descripcion" required></textarea>
+
+                <label for="course-image">Imagen del Curso</label>
+                <input type="file" id="course-image" name="imagenCurso" accept="image/*" required>
+
+                <label for="course-category">Categoría</label>
+                <select id="course-category" name="categoria_id" required>
+                    <!-- Las opciones de categorías se cargarán dinámicamente -->
+                </select>                
+
+                <!-- Campos ocultos -->
+                <input type="hidden" id="course-banner" name="bannerCurso" value="">
+                <input type="hidden" id="course-user" name="usuario_id" value="">
+
+                <button type="submit">Crear Curso</button>
+            </form>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <h2>No olvides guardar tus cambios</h2>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

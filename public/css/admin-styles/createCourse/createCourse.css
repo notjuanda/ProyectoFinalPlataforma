@@ -1,0 +1,113 @@
+.create-course {
+    padding: 40px 20px;
+    background-color: #f4f4f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 40px 0;
+}
+
+.create-course h2 {
+    font-size: 32px;
+    color: #1A237E;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#create-course-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#create-course-form label {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+#create-course-form input[type="text"],
+#create-course-form textarea,
+#create-course-form select,
+#create-course-form input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #333; /* Asegura que el texto sea visible */
+    background-color: #fff; /* Fondo blanco para contraste */
+}
+
+#create-course-form textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+#create-course-form button {
+    padding: 10px 20px;
+    background-color: #1A237E;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+#create-course-form button:hover {
+    background-color: #FE5B2C;
+}
+
+/* Mobile first approach */
+@media (min-width: 768px) {
+    .create-course {
+        padding: 60px 40px;
+    }
+
+    #create-course-form {
+        max-width: 800px;
+    }
+
+    #create-course-form label {
+        font-size: 20px;
+    }
+
+    #create-course-form input[type="text"],
+    #create-course-form textarea,
+    #create-course-form select,
+    #create-course-form input[type="file"] {
+        font-size: 18px;
+    }
+
+    #create-course-form button {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .create-course {
+        padding: 80px 60px;
+    }
+
+    #create-course-form {
+        max-width: 1000px;
+    }
+
+    #create-course-form label {
+        font-size: 22px;
+    }
+
+    #create-course-form input[type="text"],
+    #create-course-form textarea,
+    #create-course-form select,
+    #create-course-form input[type="file"] {
+        font-size: 20px;
+    }
+
+    #create-course-form button {
+        font-size: 22px;
+    }
+}
