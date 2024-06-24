@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const lesson = await fetchLessonDetails(lessonId);
         if (lesson) {
             updateLessonInfo(lesson);
-            const nextLessons = await fetchNextLessons(lesson.curso_id, lessonId);
+            const nextLessons = await fetchNextLessons(lesson.curso_id, lesson.orden);
             updateNextLessonsList(nextLessons);
             await markLessonAsViewed(userId, lessonId);
         } else {
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
     }
 
-    async function fetchNextLessons(courseId, currentLessonId) {
+    async function fetchNextLessons(courseId, currentLessonOrder) {
         const response = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
@@ -66,12 +66,15 @@ document.addEventListener('DOMContentLoaded', async function() {
             throw new Error('Expected allLessons.lecciones to be an array');
         }
 
-        const currentIndex = allLessons.lecciones.findIndex(lesson => lesson.id === parseInt(currentLessonId));
+        // Ordenar las lecciones por la columna 'orden'
+        const sortedLessons = allLessons.lecciones.sort((a, b) => a.orden - b.orden);
+        const currentIndex = sortedLessons.findIndex(lesson => lesson.orden === parseInt(currentLessonOrder));
+
         if (currentIndex === -1) {
             throw new Error('Current lesson not found in all lessons');
         }
 
-        return allLessons.lecciones.slice(currentIndex + 1);
+        return sortedLessons.slice(currentIndex + 1);
     }
 
     function updateNextLessonsList(nextLessons) {
