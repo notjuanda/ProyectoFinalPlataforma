@@ -14,10 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
             <textarea id="lesson-description" name="lesson-description" required></textarea>
 
             <label for="lesson-type">Tipo de Contenido</label>
-            <input type="text" id="lesson-type" name="lesson-type" required>
+            <select id="lesson-type" name="lesson-type" required>
+                <option value="video">Video</option>
+                <option value="texto">Texto</option>
+            </select>
 
             <label for="lesson-content">Contenido</label>
             <textarea id="lesson-content" name="lesson-content"></textarea>
+
+            <label for="lesson-order">Orden</label>
+            <input type="number" id="lesson-order" name="lesson-order" required>
 
             <button type="submit">Guardar Lección</button>
             <button type="button" id="cancel-add-lesson">Cancelar</button>
@@ -44,13 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const lessonDescription = document.getElementById('lesson-description').value;
         const lessonType = document.getElementById('lesson-type').value;
         const lessonContent = document.getElementById('lesson-content').value;
+        const lessonOrder = document.getElementById('lesson-order').value;
 
         const lessonData = {
             nombre: lessonName,
             descripcion: lessonDescription,
             tipoContenido: lessonType,
             contenido: lessonContent,
-            curso_id: courseId
+            curso_id: courseId,
+            orden: lessonOrder
         };
 
         try {
@@ -78,4 +86,55 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error:', error);
         }
     });
+
+    // Obtener las lecciones y ordenarlas por el campo de orden
+    async function fetchAndDisplayLessons() {
+        const courseId = new URLSearchParams(window.location.search).get('id');
+        if (!courseId) {
+            console.error('ID del curso no encontrado en la URL');
+            return;
+        }
+
+        try {
+            const response = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
+            if (!response.ok) {
+                throw new Error('Error al obtener los detalles del curso.');
+            }
+
+            const course = await response.json();
+            const lessons = course.lecciones;
+
+            // Ordenar lecciones por el campo de orden
+            lessons.sort((a, b) => a.orden - b.orden);
+
+            const courseLessonsList = document.getElementById('course-lessons-list');
+            courseLessonsList.innerHTML = '';
+            lessons.forEach(lesson => {
+                const lessonItem = document.createElement('li');
+                const lessonTitle = document.createElement('span');
+                lessonTitle.classList.add('lesson-title');
+                lessonTitle.textContent = lesson.nombre;
+
+                const lessonActions = document.createElement('div');
+                lessonActions.classList.add('lesson-actions');
+                const editButton = document.createElement('button');
+                editButton.classList.add('edit-button');
+                editButton.textContent = 'Editar';
+
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-button');
+                deleteButton.textContent = 'Eliminar';
+
+                lessonActions.appendChild(editButton);
+                lessonActions.appendChild(deleteButton);
+                lessonItem.appendChild(lessonTitle);
+                lessonItem.appendChild(lessonActions);
+                courseLessonsList.appendChild(lessonItem);
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    fetchAndDisplayLessons();
 });

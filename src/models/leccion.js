@@ -20,10 +20,10 @@ const createLeccion = async (leccion) => {
 };
 
 const updateLeccion = async (id, leccion) => {
-    const { nombre, descripcion, tipoContenido, contenido, curso_id, orden } = leccion;
+    const { nombre, descripcion, tipocontenido, contenido, curso_id, orden } = leccion;
     const res = await pool.query(
         'UPDATE Leccion SET nombre = $1, descripcion = $2, tipoContenido = $3, contenido = $4, curso_id = $5, orden = $6 WHERE id = $7 RETURNING *',
-        [nombre, descripcion, tipoContenido, contenido, curso_id, orden, id]
+        [nombre, descripcion, tipocontenido, contenido, curso_id, orden, id]
     );
     return res.rows[0];
 };

@@ -39,6 +39,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const lessons = course.lecciones;
         console.log('Lecciones del curso:', lessons);
+
+        // Ordenar lecciones por el campo de orden
+        lessons.sort((a, b) => a.orden - b.orden);
+
         courseLessonsList.innerHTML = '';
         lessons.forEach(lesson => {
             const lessonItem = document.createElement('li');

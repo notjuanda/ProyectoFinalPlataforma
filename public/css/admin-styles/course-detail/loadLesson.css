@@ -29,7 +29,9 @@
 }
 
 .add-lesson-form input[type="text"],
-.add-lesson-form textarea {
+.add-lesson-form textarea,
+.add-lesson-form select,
+.add-lesson-form input[type="number"] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -87,7 +89,9 @@
     }
 
     .add-lesson-form input[type="text"],
-    .add-lesson-form textarea {
+    .add-lesson-form textarea,
+    .add-lesson-form select,
+    .add-lesson-form input[type="number"] {
         font-size: 18px;
     }
 

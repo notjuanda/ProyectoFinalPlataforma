@@ -105,6 +105,9 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     function updateLessonsList(lecciones) {
         if (lecciones && lecciones.length > 0) {
+            // Ordenar las lecciones por la columna `orden`
+            lecciones.sort((a, b) => a.orden - b.orden);
+
             lecciones.forEach(leccion => {
                 const lessonElement = createLessonElement(leccion);
                 lessonsList.appendChild(lessonElement);
