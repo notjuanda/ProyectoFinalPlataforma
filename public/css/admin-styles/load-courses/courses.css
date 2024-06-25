@@ -39,6 +39,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 }
 
 .course-item:hover {
@@ -64,6 +65,12 @@
     font-size: 16px;
     color: #666;
     flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Limitar a 3 líneas */
+    -webkit-box-orient: vertical;
+    margin-bottom: 10px;
 }
 
 .course-item button {

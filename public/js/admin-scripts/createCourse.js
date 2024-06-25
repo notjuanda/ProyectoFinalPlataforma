@@ -22,6 +22,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const formData = new FormData(createCourseForm);
 
+        const description = formData.get('descripcion');
+        if (description.length > 78) {
+            alert('La descripción no puede exceder los 78 caracteres.');
+            return;
+        }
+
         // Convertir la imagen del curso a base64
         const imageFile = formData.get('imagenCurso');
         const imageBase64 = await toBase64(imageFile);
@@ -30,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Crear un objeto con los datos del formulario
         const courseData = {
             nombreCurso: formData.get('nombreCurso'),
-            descripcion: formData.get('descripcion'),
+            descripcion: description,
             imagenCurso: imageBase64,
             bannerCurso: null,  // Campo oculto siempre nulo
             categoria_id: formData.get('categoria_id'),

@@ -36,6 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         saveButton.addEventListener('click', async () => {
+            if (editElement.id === 'edit-course-description' && editElement.value.length > 78) {
+                alert('La descripción no puede exceder los 78 caracteres.');
+                return;
+            }
             displayElement.textContent = editElement.value || originalValue;
             displayElement.style.display = 'block';
             editElement.style.display = 'none';
