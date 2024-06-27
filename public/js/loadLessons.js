@@ -108,7 +108,12 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     async function markLessonAsViewed(userId, lessonId) {
         try {
-            const response = await fetch(`http://localhost:3001/api/progresos/${lessonId}`, {
+            const progreso = await getProgresoByUserAndLesson(userId, lessonId);
+            if (!progreso) {
+                throw new Error('Progreso no encontrado');
+            }
+
+            const response = await fetch(`http://localhost:3001/api/progresos/${progreso.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -122,5 +127,13 @@ document.addEventListener('DOMContentLoaded', async function() {
         } catch (error) {
             console.error('Error marking lesson as viewed:', error);
         }
+    }
+
+    async function getProgresoByUserAndLesson(userId, lessonId) {
+        const response = await fetch(`http://localhost:3001/api/progresos/user/${userId}/lesson/${lessonId}`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
     }
 });
