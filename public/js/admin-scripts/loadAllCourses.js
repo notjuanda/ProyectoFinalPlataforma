@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const coursesGrid = document.getElementById('courses-grid');
     const searchInput = document.getElementById('search-input');
     const searchButton = document.getElementById('search-button');
+    const createButton = document.getElementById('create-button');
 
     // Función para cargar todos los cursos
     const loadCourses = async () => {
@@ -51,9 +52,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         const courseDescription = document.createElement('p');
         courseDescription.textContent = course.descripcion;
 
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Eliminar';
+        deleteButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            deleteCourse(course.id);
+        });
+
         courseItem.appendChild(courseImage);
         courseItem.appendChild(courseTitle);
         courseItem.appendChild(courseDescription);
+        courseItem.appendChild(deleteButton);
 
         courseLink.appendChild(courseItem);
         return courseLink;
@@ -74,6 +83,27 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
+    // Función para eliminar un curso
+    const deleteCourse = async (id) => {
+        if (confirm('¿Estás seguro de que deseas eliminar este curso?')) {
+            try {
+                const response = await fetch(`http://localhost:3001/api/cursos/${id}`, {
+                    method: 'DELETE'
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error al eliminar el curso.');
+                }
+
+                alert('Curso eliminado exitosamente');
+                loadCourses();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Hubo un problema al eliminar el curso. Por favor, inténtalo de nuevo.');
+            }
+        }
+    };
+
     // Evento para el botón de búsqueda
     searchButton.addEventListener('click', () => {
         const query = searchInput.value.trim();
@@ -82,6 +112,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         } else {
             loadCourses();
         }
+    });
+
+    // Evento para el botón de crear curso
+    createButton.addEventListener('click', () => {
+        window.location.href = 'admin-create-course.html';
     });
 
     // Cargar todos los cursos al cargar la página

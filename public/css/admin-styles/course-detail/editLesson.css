@@ -1,6 +1,7 @@
-/* addLeccion.css */
+/* editLesson.css */
 
-.add-lesson-form {
+.edit-lesson-form {
+    display: none;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 20px;
@@ -9,29 +10,29 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.add-lesson-form h3 {
+.edit-lesson-form h3 {
     font-size: 24px;
     color: #1A237E;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.add-lesson-form form {
+.edit-lesson-form form {
     display: flex;
     flex-direction: column;
 }
 
-.add-lesson-form label {
+.edit-lesson-form label {
     margin: 10px 0 5px;
     font-weight: bold;
     color: #555;
     font-size: 16px;
 }
 
-.add-lesson-form input[type="text"],
-.add-lesson-form textarea,
-.add-lesson-form select,
-.add-lesson-form input[type="number"] {
+.edit-lesson-form input[type="text"],
+.edit-lesson-form textarea,
+.edit-lesson-form select,
+.edit-lesson-form input[type="number"] {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -41,12 +42,12 @@
     margin-bottom: 10px;
 }
 
-.add-lesson-form textarea {
+.edit-lesson-form textarea {
     resize: vertical;
     height: 100px;
 }
 
-.add-lesson-form button {
+.edit-lesson-form button {
     padding: 10px 15px;
     margin-top: 10px;
     border: none;
@@ -56,53 +57,53 @@
     transition: background-color 0.2s, opacity 0.2s;
 }
 
-.add-lesson-form button[type="submit"] {
+.edit-lesson-form button[type="submit"] {
     background-color: #28a745;
     color: white;
 }
 
-.add-lesson-form button[type="button"] {
+.edit-lesson-form button[type="button"] {
     background-color: #dc3545;
     color: white;
 }
 
-.add-lesson-form button:hover {
+.edit-lesson-form button:hover {
     opacity: 0.9;
 }
 
-#cancel-add-lesson {
+#cancel-edit-lesson {
     margin-left: 10px;
 }
 
 /* Tablets and up */
 @media (min-width: 768px) {
-    .add-lesson-form {
+    .edit-lesson-form {
         padding: 30px;
     }
 
-    .add-lesson-form h3 {
+    .edit-lesson-form h3 {
         font-size: 28px;
     }
 
-    .add-lesson-form label {
+    .edit-lesson-form label {
         font-size: 18px;
     }
 
-    .add-lesson-form input[type="text"],
-    .add-lesson-form textarea,
-    .add-lesson-form select,
-    .add-lesson-form input[type="number"] {
+    .edit-lesson-form input[type="text"],
+    .edit-lesson-form textarea,
+    .edit-lesson-form select,
+    .edit-lesson-form input[type="number"] {
         font-size: 18px;
     }
 
-    .add-lesson-form button {
+    .edit-lesson-form button {
         font-size: 18px;
     }
 }
 
 /* Desktops and up */
 @media (min-width: 992px) {
-    .add-lesson-form {
+    .edit-lesson-form {
         max-width: 800px;
         margin: 0 auto;
     }

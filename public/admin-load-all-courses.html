@@ -24,7 +24,6 @@
                 <div class="header-inner">
                     <a href="admin-menu.html" class="logo">
                         <img src="image/logo.png" alt="Logo" class="logo-image">
-                        CourseMania Admin
                     </a>
                     <input type="checkbox" id="menu-toggle">
                     <label for="menu-toggle" class="menu-toggle">
@@ -64,9 +63,14 @@
 
         <section class="courses">
             <h2>Todos los Cursos</h2>
-            <div class="search-container">
-                <input type="text" id="search-input" placeholder="Buscar cursos...">
-                <button id="search-button">Buscar</button>
+            <div class="container-buttons">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Buscar cursos...">
+                    <button id="search-button">Buscar</button>
+                </div>
+                <div class="create-container">
+                    <button id="create-button">Crear</button>
+                </div>
             </div>
             <div class="courses-grid" id="courses-grid">
                 <!-- Los cursos se cargarán aquí dinámicamente -->

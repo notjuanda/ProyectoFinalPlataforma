@@ -27,28 +27,38 @@ const getInscripcion = async (req, res) => {
 const createInscripcion = async (req, res) => {
     const { idEstudiante, curso_id } = req.body;
     try {
+        const existingInscripcion = await inscripcionModel.getInscripcionByEstudianteAndCurso(idEstudiante, curso_id);
+        if (existingInscripcion) {
+            return res.status(409).json({ message: 'El usuario ya está inscrito en este curso' });
+        }
+
         const newInscripcion = await inscripcionModel.createInscripcion({ idEstudiante, curso_id });
 
-        // Obtener todas las lecciones del curso
         const lecciones = await leccionModel.getLeccionesByCursoId(curso_id);
 
-        // Crear progresión para cada lección en el curso
         for (const leccion of lecciones) {
             const existingProgreso = await progresoModel.getProgresoByUserAndLeccion(idEstudiante, leccion.id);
+            console.log(`Verificando progreso existente para usuario ${idEstudiante} y lección ${leccion.id}:`, existingProgreso);
+
             if (!existingProgreso) {
-                await progresoModel.createProgreso({
+                const newProgreso = await progresoModel.createProgreso({
                     usuario_id: idEstudiante,
                     leccion_id: leccion.id,
-                    estado: 'Marcado_Visto' // Estado inicial de no visto
+                    estado: 'Marcado_Visto'
                 });
+                console.log(`Progreso creado para usuario ${idEstudiante} y lección ${leccion.id}:`, newProgreso);
+            } else {
+                console.log(`Progreso ya existente para usuario ${idEstudiante} y lección ${leccion.id}`);
             }
         }
 
+        console.log('Inscripción creada:', newInscripcion);
         res.status(201).json(newInscripcion);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
+
 
 const updateInscripcion = async (req, res) => {
     try {
@@ -86,10 +96,8 @@ const checkEnrollment = async (req, res) => {
         const { userId, courseId } = req.params;
         console.log(`Checking enrollment for user ${userId} and course ${courseId}`);
         
-        const inscripciones = await inscripcionModel.getCursosByEstudianteId(userId);
-        console.log('Inscripciones obtenidas:', inscripciones);
-        
-        const isEnrolled = inscripciones.some(inscripcion => inscripcion.id == courseId);
+        const existingInscripcion = await inscripcionModel.getInscripcionByEstudianteAndCurso(userId, courseId);
+        const isEnrolled = !!existingInscripcion;
         console.log('¿Está inscrito?', isEnrolled);
         
         res.json({ isEnrolled });

@@ -72,6 +72,19 @@ const getProgressByCourse = async (req, res) => {
     }
 };
 
+const getProgresoByUserAndLesson = async (req, res) => {
+    try {
+        const { userId, lessonId } = req.params;
+        const progreso = await progresoModel.getProgresoByUserAndLeccion(userId, lessonId);
+        if (progreso) {
+            res.json(progreso);
+        } else {
+            res.status(404).json({ message: 'Progreso no encontrado' });
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 module.exports = {
     getProgresos,
@@ -81,4 +94,5 @@ module.exports = {
     deleteProgreso,
     getProgressByUser,
     getProgressByCourse, 
+    getProgresoByUserAndLesson
 };

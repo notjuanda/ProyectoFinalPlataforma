@@ -10,5 +10,6 @@ router.put('/:id', progresoController.updateProgreso);
 router.delete('/:id', progresoController.deleteProgreso);
 router.get('/usuario/:id/progreso', progresoController.getProgressByUser);
 router.get('/usuario/:usuarioId/curso/:cursoId/progreso', progresoController.getProgressByCourse);
+router.get('/user/:userId/lesson/:lessonId', progresoController.getProgresoByUserAndLesson);
 
 module.exports = router;
