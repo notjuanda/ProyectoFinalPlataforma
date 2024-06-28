@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const lessonTitleElement = document.getElementById('lesson-title');
     const lessonDescriptionElement = document.getElementById('lesson-description');
     const lessonContentElement = document.getElementById('lesson-content');
+    const lessonTextContentElement = document.getElementById('lesson-text-content');
     const nextLessonsListElement = document.getElementById('next-lessons');
 
     if (!lessonId) {
@@ -32,6 +33,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (lessonTitleElement) lessonTitleElement.textContent = 'Lección no encontrada';
         if (lessonDescriptionElement) lessonDescriptionElement.textContent = '';
         if (lessonContentElement) lessonContentElement.innerHTML = '';
+        if (lessonTextContentElement) lessonTextContentElement.innerHTML = '';
         if (nextLessonsListElement) {
             const noLessonMessage = document.createElement('p');
             noLessonMessage.textContent = 'La lección solicitada no existe o no se pudo cargar.';
@@ -50,8 +52,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     function updateLessonInfo(lesson) {
         if (lessonTitleElement) lessonTitleElement.textContent = lesson.nombre;
         if (lessonDescriptionElement) lessonDescriptionElement.textContent = lesson.descripcion;
-        if (lessonContentElement) {
-            lessonContentElement.src = lesson.contenido; // Asegúrate de que 'contenido' sea la URL del video embebido de YouTube
+        if (lesson.tipocontenido === 'video') {
+            lessonContentElement.style.display = 'block';
+            lessonContentElement.src = lesson.contenido;
+            lessonTextContentElement.style.display = 'none';
+        } else if (lesson.tipocontenido === 'texto') {
+            lessonContentElement.style.display = 'none';
+            lessonTextContentElement.style.display = 'block';
+            lessonTextContentElement.textContent = lesson.contenido;
         }
     }
 

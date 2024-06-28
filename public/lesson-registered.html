@@ -17,9 +17,8 @@
     <header>
         <div class="header-container">
             <div class="header-inner">
-                <a href="index.html" class="logo">
+                <a href="registered.html" class="logo">
                     <img src="image/logo.png" alt="Logo" class="logo-image">
-                    CourseMania
                 </a>
                 <input type="checkbox" id="menu-toggle">
                 <label for="menu-toggle" class="menu-toggle">
@@ -28,7 +27,7 @@
                 <nav class="navbar">
                     <ul class="navbar-list">
                         <li class="navbar-item">
-                            <a href="index.html" class="navbar-link" id="init">INICIO</a>
+                            <a href="registered.html" class="navbar-link" id="init">INICIO</a>
                         </li>
                         <li class="navbar-item">
                             <a href="my-courses.html" class="navbar-link">MIS CURSOS</a>
@@ -58,13 +57,16 @@
             <div class="lesson-header">
                 <h1 id="lesson-title">Nombre de la Lección</h1>
                 <p id="lesson-description">Descripción de la lección.</p>
-                <iframe src="" id="lesson-content" width="560" height="315" frameborder="0" allowfullscreen></iframe>
+                <div class="lesson-content">
+                    <iframe id="lesson-content" frameborder="0" allowfullscreen></iframe>
+                    <div id="lesson-text-content" class="text-content"></div>
+                </div>
             </div>
         </section>
 
         <section class="next-lessons">
             <h2>Próximas Lecciones</h2>
-            <div id="next-lessons">
+            <div id="next-lessons" class="next-lessons-list">
                 <!-- Las lecciones siguientes se cargarán dinámicamente aquí -->
             </div>
         </section>
@@ -77,3 +79,4 @@
     </footer>
 </body>
 </html>
+    
