@@ -12,10 +12,20 @@ const getProgresoById = async (id) => {
 
 const createProgreso = async (progreso) => {
     const { usuario_id, leccion_id, estado } = progreso;
+
+    // Verificar si ya existe un progreso para este usuario y lección
+    const existingProgreso = await getProgresoByUserAndLeccion(usuario_id, leccion_id);
+    if (existingProgreso) {
+        console.log(`Progreso ya existente para usuario_id: ${usuario_id}, leccion_id: ${leccion_id}`);
+        return existingProgreso;
+    }
+
+    console.log(`Intentando crear progreso para usuario_id: ${usuario_id}, leccion_id: ${leccion_id}`);
     const res = await pool.query(
         'INSERT INTO Progresion (usuario_id, leccion_id, estado) VALUES ($1, $2, $3) RETURNING *',
         [usuario_id, leccion_id, estado]
     );
+    console.log(`Progreso creado:`, res.rows[0]);
     return res.rows[0];
 };
 
@@ -89,7 +99,11 @@ const getProgressByCourse = async (usuarioId, cursoId) => {
 };
 
 const getProgresoByUserAndLeccion = async (usuario_id, leccion_id) => {
-    const res = await pool.query('SELECT * FROM Progresion WHERE usuario_id = $1 AND leccion_id = $2', [usuario_id, leccion_id]);
+    const res = await pool.query(
+        'SELECT * FROM Progresion WHERE usuario_id = $1 AND leccion_id = $2',
+        [usuario_id, leccion_id]
+    );
+    console.log(`Resultado de la consulta para progreso usuario_id: ${usuario_id}, leccion_id: ${leccion_id}`, res.rows[0]);
     return res.rows[0];
 };
 

@@ -27,21 +27,27 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
 
         if (userRegistered && userId) {
-            const isEnrolled = await checkUserEnrollment(userId, courseId);
+            let isEnrolled = await checkUserEnrollment(userId, courseId);
             if (isEnrolled) {
                 enrollButton.style.display = 'none';
             } else {
                 enrollButton.addEventListener('click', async () => {
                     await enrollUserInCourse(userId, courseId);
-                    enrollButton.style.display = 'none';
-                    alert('Te has inscrito exitosamente en el curso.');
+                    isEnrolled = await checkUserEnrollment(userId, courseId); // Verifica nuevamente después de inscribirse
+                    if (isEnrolled) {
+                        enrollButton.style.display = 'none';
+                        alert('Te has inscrito exitosamente en el curso.');
+                    }
                 });
             }
         } else {
             enrollButton.addEventListener('click', async () => {
                 await enrollUserInCourse(userId, courseId);
-                enrollButton.style.display = 'none';
-                alert('Te has inscrito exitosamente en el curso.');
+                const isEnrolled = await checkUserEnrollment(userId, courseId); // Verifica después de inscribirse
+                if (isEnrolled) {
+                    enrollButton.style.display = 'none';
+                    alert('Te has inscrito exitosamente en el curso.');
+                }
             });
         }
     } catch (error) {
@@ -129,6 +135,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     async function enrollUserInCourse(userId, courseId) {
+        // Primero, verifica si el usuario ya está inscrito en el curso
+        const isEnrolled = await checkUserEnrollment(userId, courseId);
+        if (isEnrolled) {
+            console.log('Usuario ya inscrito en el curso.');
+            return;
+        }
+
         const response = await fetch('http://localhost:3001/api/inscripciones', {
             method: 'POST',
             headers: {
@@ -139,22 +152,22 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
-    
+
         // Crear progresos para todas las lecciones del curso
         const leccionesResponse = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
         if (!leccionesResponse.ok) {
             throw new Error('Network response was not ok');
         }
-    
+
         const leccionesData = await leccionesResponse.json();
         console.log('Lecciones Data:', leccionesData);
-    
+
         if (!Array.isArray(leccionesData.lecciones)) {
             throw new Error('Lecciones no es un array');
         }
-    
+
         const lecciones = leccionesData.lecciones;
-    
+
         for (const leccion of lecciones) {
             await fetch('http://localhost:3001/api/progresos', {
                 method: 'POST',
@@ -164,8 +177,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 body: JSON.stringify({ usuario_id: userId, leccion_id: leccion.id, estado: 'Marcado_Visto' })
             });
         }
-    
+
         return response.json();
-    }    
-    
+    }
 });
