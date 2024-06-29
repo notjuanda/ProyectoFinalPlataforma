@@ -1,13 +1,11 @@
-/* editLesson.css */
-
 .edit-lesson-form {
-    display: none;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 20px;
-    margin-top: 20px;
+    margin: 40px auto 20px auto; /* Añadir margen superior */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Ancho máximo para centrar */
 }
 
 .edit-lesson-form h3 {
@@ -105,6 +103,6 @@
 @media (min-width: 992px) {
     .edit-lesson-form {
         max-width: 800px;
-        margin: 0 auto;
+        margin: 40px auto 20px auto; /* Añadir margen superior */
     }
 }

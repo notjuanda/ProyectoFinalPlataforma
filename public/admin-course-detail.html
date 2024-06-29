@@ -11,13 +11,16 @@
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
     <link rel="stylesheet" href="css/admin-styles/course-detail/course-detail.css">
-    <link rel="stylesheet" href="css/admin-styles/course-detail/loadLesson.css">
+    <link rel="stylesheet" href="css/admin-styles/course-detail/addLesson.css">
+    <link rel="stylesheet" href="css/admin-styles/course-detail/editLesson.css">
 
     <script type="module" src="js/checkUserStatus.js"></script>
     <script type="module" src="js/logout.js"></script>
     <script type="module" src="js/admin-scripts/loadCourse.js"></script>
     <script type="module" src="js/admin-scripts/editCourse.js"></script>
-    <script type="module" src="js/admin-scripts/addLeccion.js"></script> <!-- Nuevo script para añadir lecciones -->
+    <script type="module" src="js/admin-scripts/addLesson.js"></script>
+    <script type="module" src="js/admin-scripts/editLesson.js"></script>
+    <script type="module" src="js/admin-scripts/deleteLesson.js"></script>
 </head>
 <body>
     <main>
@@ -102,7 +105,7 @@
                         <ul id="course-lessons-list">
                             <!-- Lista de lecciones -->
                         </ul>
-                        <button class="add-button" id="add-lesson-button">Añadir Lección</button> <!-- Añadir ID para manejar el botón -->
+                        <button class="add-button" id="add-lesson-button">Añadir Lección</button> 
                     </div>
                 </div>
             </div>
@@ -110,20 +113,12 @@
 
         <!-- Sección del formulario para añadir lecciones -->
         <section class="add-lesson-form" id="add-lesson-form" style="display:none;">
-            <h3>Añadir Lección</h3>
-            <form id="form-add-lesson">
-                <label for="lesson-name">Nombre de la Lección:</label>
-                <input type="text" id="lesson-name" name="lesson-name" required>
-                <label for="lesson-description">Descripción:</label>
-                <textarea id="lesson-description" name="lesson-description" required></textarea>
-                <label for="lesson-type">Tipo de Contenido:</label>
-                <input type="text" id="lesson-type" name="lesson-type" required>
-                <label for="lesson-content">Contenido:</label>
-                <textarea id="lesson-content" name="lesson-content" required></textarea>
-                <button type="submit">Guardar</button>
-                <button type="button" id="cancel-add-lesson">Cancelar</button>
-            </form>
         </section>
+
+        <!-- Sección del formulario para editar lecciones -->
+        <section class="edit-lesson-form" id="edit-lesson-form-container" style="display: none;">
+        </section>
+        
 
         <footer class="footer">
             <div class="footer-content">
@@ -133,3 +128,4 @@
     </main>
 </body>
 </html>
+

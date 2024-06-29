@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         courseLessonsList.innerHTML = '';
         lessons.forEach(lesson => {
             const lessonItem = document.createElement('li');
+            lessonItem.dataset.lessonId = lesson.id; // Añadir el ID de la lección como data attribute
             const lessonTitle = document.createElement('span');
             lessonTitle.classList.add('lesson-title');
             lessonTitle.textContent = lesson.nombre;
@@ -55,10 +56,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             const editButton = document.createElement('button');
             editButton.classList.add('edit-button');
             editButton.textContent = 'Editar';
+            editButton.addEventListener('click', () => window.editLesson(lesson.id, courseId)); // Añadir evento de clic con courseId
 
             const deleteButton = document.createElement('button');
             deleteButton.classList.add('delete-button');
             deleteButton.textContent = 'Eliminar';
+            deleteButton.addEventListener('click', () => window.deleteLesson(lesson.id)); // Añadir evento de clic
 
             lessonActions.appendChild(editButton);
             lessonActions.appendChild(deleteButton);
