@@ -67,9 +67,6 @@
     flex-grow: 1;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* Limitar a 3 líneas */
-    -webkit-box-orient: vertical;
     margin-bottom: 10px;
 }
 

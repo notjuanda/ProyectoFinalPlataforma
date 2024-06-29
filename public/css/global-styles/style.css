@@ -6,29 +6,25 @@
     width: 100%;
     margin: 0px auto;
 }
- h1, h2{
+h1, h2{
+    font-family: 'RobotoSlab-Medium', sans-serif;
+    color: #1A237E;
+}
+h3, h3, h5, h6{
     font-family: 'RobotoSlab-Medium', sans-serif;
     color: #1A237E;
  }
- h3, h3, h5, h6{
-    font-family: 'RobotoSlab-Medium', sans-serif;
-    color: #1A237E;
- }
- h1{
+h1{
    font-size: 50px;
  }
- h2{
+h2{
    font-size: 30px;
  }
 h3{
     font-size: 25px;
 }
- body, p, a, span, div, li, input, button {
+body, p, a, span, div, li, input, button {
     font-family: 'NunitoSans-Medium', sans-serif;
     color: #1A237E;
     font-size: 25px;
-}
-main {
-   background-color: white;
-   border-radius: 10px; 
 }

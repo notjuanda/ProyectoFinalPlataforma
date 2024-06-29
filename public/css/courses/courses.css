@@ -2,18 +2,15 @@
     padding: 20px;
     margin: 0 auto;
     max-width: 1200px;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.recommended, .all-classes {
-    display: grid;
-    gap: 20px;
-    justify-items: start; /* Alinea los cursos a la izquierda */
-}
-
-.courses a{
+.courses a {
     text-decoration: none;
 }
+
 .course {
     padding: 20px;
     border: 1px solid #ddd;
@@ -25,8 +22,8 @@
     align-items: flex-start;
     text-align: left;
     transition: transform 0.2s, box-shadow 0.2s;
-    width: 260px; /* Ancho fijo */
-    height: 260px; /* Altura fija para hacerlos cuadrados */
+    width: 260px;
+    height: 260px;
 }
 
 .course:hover {
@@ -58,22 +55,31 @@
 }
 
 @media (min-width: 768px) {
-    .recommended, .all-classes {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
+    .courses {
+        display: block;
+        justify-content: start;
+    }
+    .all-classes {
+        grid-template-columns: repeat(3, 1fr); 
     }
 }
 
 @media (min-width: 992px) {
-    .recommended, .all-classes {
-        grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+    .courses {
+        display: block;
+        justify-content: start;
+    }
+    .all-classes {
+        grid-template-columns: repeat(4, 1fr);
     }
 }
-.no-courses-message{
+
+.no-courses-message {
     text-align: center;
     margin: 20px 0;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200px; /* Ajusta la altura según sea necesario */
+    height: 200px;
 }

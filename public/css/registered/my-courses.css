@@ -19,7 +19,7 @@
 .courses-grid {
     display: grid;
     gap: 20px;
-    justify-items: center; /* Alinea los cursos a la izquierda */
+    justify-items: center; 
 }
 
 .course {
@@ -33,8 +33,8 @@
     align-items: flex-start;
     text-align: left;
     transition: transform 0.2s, box-shadow 0.2s;
-    width: 260px; /* Ancho fijo */
-    height: 260px; /* Altura fija para hacerlos cuadrados */
+    width: 260px; 
+    height: 260px; 
 }
 
 .course:hover {
@@ -75,12 +75,12 @@
 @media (min-width: 768px) {
     .courses-grid {
         justify-items: start;
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
+        grid-template-columns: repeat(3, 1fr); 
     }
 }
 
 @media (min-width: 992px) {
     .courses-grid {
-        grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual tamaño */
+        grid-template-columns: repeat(4, 1fr); 
     }
 }

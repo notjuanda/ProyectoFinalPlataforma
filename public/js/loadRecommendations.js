@@ -3,6 +3,11 @@ import Cookies from 'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie
 document.addEventListener('DOMContentLoaded', async function() {
     const recommendationsContainer = document.querySelector('.recommended-courses');
 
+    if (!recommendationsContainer) {
+        console.warn('No se encontró el contenedor de recomendaciones en esta página.');
+        return;
+    }
+
     try {
         const response = await fetch('http://localhost:3001/api/cursos');
         if (!response.ok) {
@@ -12,7 +17,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         console.log('Cursos disponibles:', cursos);
 
         if (cursos.length > 0) {
-            const uniqueCursos = getRandomUniqueElements(cursos, 3);
+            const uniqueCursos = getRandomUniqueElements(cursos, 5);
             uniqueCursos.forEach(curso => {
                 const cursoElement = createCursoElement(curso);
                 recommendationsContainer.appendChild(cursoElement);
@@ -34,9 +39,6 @@ document.addEventListener('DOMContentLoaded', async function() {
                 usedIndices.add(randomIndex);
                 result.push(arr[randomIndex]);
             }
-        }
-        while (result.length < count) {
-            result.push({ nombreCurso: 'Curso no disponible', descripcion: 'No hay más cursos disponibles', id: null });
         }
         return result;
     }

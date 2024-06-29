@@ -15,14 +15,14 @@
 .progress-grid {
     display: grid;
     gap: 20px;
-    justify-items: start; /* Alinea los items de progreso a la izquierda */
+    justify-items: start; 
 }
 
 .progress-item {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%; /* Ajusta el ancho completo del contenedor */
+    width: 100%; 
 }
 
 .progress-bar {
@@ -40,12 +40,12 @@
 
 @media (min-width: 768px) {
     .progress-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas de igual tamaño */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 992px) {
     .progress-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columnas de igual tamaño */
+        grid-template-columns: repeat(3, 1fr);
     }
 }
