@@ -54,13 +54,24 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (lessonDescriptionElement) lessonDescriptionElement.textContent = lesson.descripcion;
         if (lesson.tipocontenido === 'video') {
             lessonContentElement.style.display = 'block';
-            lessonContentElement.src = lesson.contenido;
             lessonTextContentElement.style.display = 'none';
+            const videoId = getVideoId(lesson.contenido);
+            if (videoId) {
+                lessonContentElement.src = `https://www.youtube.com/embed/${videoId}`;
+            } else {
+                lessonContentElement.style.display = 'none';
+                displayLessonNotFoundMessage();
+            }
         } else if (lesson.tipocontenido === 'texto') {
             lessonContentElement.style.display = 'none';
             lessonTextContentElement.style.display = 'block';
             lessonTextContentElement.textContent = lesson.contenido;
         }
+    }
+
+    function getVideoId(url) {
+        const videoIdMatch = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)\/(?:watch\?v=|embed\/|v\/|.+\?v=)?([^&\n?/]+)/);
+        return videoIdMatch ? videoIdMatch[1] : null;
     }
 
     async function fetchNextLessons(courseId, currentLessonOrder) {

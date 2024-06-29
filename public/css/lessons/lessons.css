@@ -6,6 +6,9 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .lesson-header {
@@ -29,16 +32,16 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    height: 100%;
 }
 
-.lesson-content iframe,
-.lesson-content .text-content {
+.lesson-content iframe {
     width: 100%;
     max-width: 800px;
-    height: auto;
+    height: 450px;
     border-radius: 10px;
     margin-bottom: 20px;
-    display: none; /* Por defecto, oculta ambos elementos */
+    display: none; /* Por defecto, oculta el iframe */
 }
 
 .lesson-content .text-content {
@@ -52,6 +55,9 @@
     line-height: 1.6;
     color: #333;
     width: 100%;
+    display: none; /* Por defecto, oculta el contenido de texto */
+    white-space: pre-wrap; /* Para respetar los saltos de línea y espacios en blanco */
+    flex: 1; /* Para ocupar toda la altura disponible */
 }
 
 .lesson-content .text-content h2,
@@ -148,7 +154,7 @@
 
     .lesson-content iframe,
     .lesson-content .text-content {
-        height: auto;
+        height: 500px;
     }
 
     .next-lessons h2 {
