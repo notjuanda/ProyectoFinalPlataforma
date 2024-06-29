@@ -68,13 +68,18 @@ document.addEventListener('DOMContentLoaded', async function() {
         const lessonContent = document.createElement('a');
         lessonContent.href = 'javascript:void(0)'; // Prevent default link behavior
         lessonContent.textContent = 'Ver contenido';
-        lessonContent.addEventListener('click', function(event) {
+        lessonContent.addEventListener('click', async function(event) {
             event.preventDefault();
-            if (Cookies.get('userRegistered')) {
-                window.location.href = `lesson-registered.html?lesson=${leccion.id}`;
-            } else {
+            if (!Cookies.get('userRegistered')) {
                 alert('Debes registrarte para acceder a las lecciones del curso.');
                 window.location.href = `register.html`;
+                return;
+            }
+            const isEnrolled = await checkUserEnrollment(userId, courseId);
+            if (isEnrolled) {
+                window.location.href = `lesson-registered.html?lesson=${leccion.id}`;
+            } else {
+                alert('Debes inscribirte a este curso para ingresar a la lección.');
             }
         });
 

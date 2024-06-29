@@ -52,7 +52,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         cursoDescription.textContent = curso.descripcion;
 
         const cursoLink = document.createElement('a');
-        cursoLink.href = curso.id ? `course-detail.html?course=${curso.id}` : '#';
+        if(Cookies.get('userRegistered')){
+            cursoLink.href = curso.id ? `course-detail-registered.html?course=${curso.id}` : '#';
+        }
+        else{
+            cursoLink.href = curso.id ? `course-detail.html?course=${curso.id}` : '#';
+        }
         cursoLink.classList.add('course-link');
         cursoLink.textContent = 'Ver más';
 
