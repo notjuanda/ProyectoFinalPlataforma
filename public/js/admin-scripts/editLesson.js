@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    async function editLesson(lessonId, courseId) {
+    async function editLesson(lessonId) {
         const editLessonFormContainer = document.createElement('div');
         editLessonFormContainer.classList.add('edit-lesson-form');
         editLessonFormContainer.style.display = 'none';
@@ -8,25 +8,19 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3>Editar Lección</h3>
             <form id="edit-lesson-form">
                 <input type="hidden" id="edit-lesson-id">
-                <input type="hidden" id="edit-lesson-course-id">
-                <label for="edit-lesson-name">Nombre de la Lección</label>
+                <label for="edit-lesson-name">Nombre de la Lección:</label>
                 <input type="text" id="edit-lesson-name" name="lesson-name" required>
-
-                <label for="edit-lesson-description">Descripción</label>
+                <label for="edit-lesson-description">Descripción:</label>
                 <textarea id="edit-lesson-description" name="lesson-description" required></textarea>
-
-                <label for="edit-lesson-type">Tipo de Contenido</label>
+                <label for="edit-lesson-type">Tipo de Contenido:</label>
                 <select id="edit-lesson-type" name="lesson-type" required>
                     <option value="video">Video</option>
                     <option value="texto">Texto</option>
                 </select>
-
-                <label for="edit-lesson-content">Contenido</label>
+                <label for="edit-lesson-content">Contenido:</label>
                 <textarea id="edit-lesson-content" name="lesson-content"></textarea>
-
-                <label for="edit-lesson-order">Orden</label>
+                <label for="edit-lesson-order">Orden:</label>
                 <input type="number" id="edit-lesson-order" name="lesson-order" required>
-
                 <button type="submit">Guardar Cambios</button>
                 <button type="button" id="cancel-edit-lesson">Cancelar</button>
             </form>
@@ -37,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const lesson = await fetchLessonDetails(lessonId);
             if (lesson) {
-                populateEditLessonForm(lesson, courseId);
+                populateEditLessonForm(lesson);
                 editLessonFormContainer.style.display = 'block';
             }
         } catch (error) {
@@ -51,8 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('edit-lesson-form').addEventListener('submit', async (event) => {
             event.preventDefault();
 
-            const lessonId = document.getElementById('edit-lesson-id').value;
-            const courseId = document.getElementById('edit-lesson-course-id').value;
             const lessonName = document.getElementById('edit-lesson-name').value;
             const lessonDescription = document.getElementById('edit-lesson-description').value;
             const lessonType = document.getElementById('edit-lesson-type').value;
@@ -64,7 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 descripcion: lessonDescription,
                 tipocontenido: lessonType,
                 contenido: lessonContent,
-                curso_id: courseId,
                 orden: lessonOrder
             };
 
@@ -105,9 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        function populateEditLessonForm(lesson, courseId) {
+        function populateEditLessonForm(lesson) {
             document.getElementById('edit-lesson-id').value = lesson.id;
-            document.getElementById('edit-lesson-course-id').value = courseId;
             document.getElementById('edit-lesson-name').value = lesson.nombre;
             document.getElementById('edit-lesson-description').value = lesson.descripcion;
             document.getElementById('edit-lesson-type').value = lesson.tipocontenido;

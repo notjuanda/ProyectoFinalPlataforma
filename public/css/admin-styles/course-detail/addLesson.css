@@ -1,5 +1,4 @@
-/* addLeccion.css */
-
+/* Estilos generales para el formulario de añadir lección */
 .add-lesson-form {
     background-color: #f9f9f9;
     border: 1px solid #ddd;
@@ -74,7 +73,6 @@
     margin-left: 10px;
 }
 
-/* Tablets and up */
 @media (min-width: 768px) {
     .add-lesson-form {
         padding: 30px;
@@ -100,10 +98,45 @@
     }
 }
 
-/* Desktops and up */
 @media (min-width: 992px) {
     .add-lesson-form {
         max-width: 800px;
         margin: 0 auto;
     }
+}
+
+/* Estilos específicos para el EditorJS */
+.editor-container {
+    display: none;
+    margin-top: 10px;
+}
+
+.editor-container.show {
+    display: block;
+}
+
+#editorjs {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    min-height: 300px;
+}
+
+.ce-toolbar__content {
+    background-color: #fff !important; /* Fondo blanco */
+}
+
+.ce-block__content {
+    background-color: #fff !important; /* Fondo blanco */
+}
+
+/* Estilos específicos para el campo de URL de video */
+#video-url-container {
+    display: none;
+    margin-top: 10px;
+}
+
+#video-url-container.show {
+    display: block;
 }

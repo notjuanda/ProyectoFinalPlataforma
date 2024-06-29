@@ -19,8 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 <option value="texto">Texto</option>
             </select>
 
-            <label for="lesson-content">Contenido</label>
-            <textarea id="lesson-content" name="lesson-content"></textarea>
+            <div id="editor-container" class="editor-container">
+                <label for="lesson-content">Contenido</label>
+                <div id="editorjs"></div>
+            </div>
+
+            <div id="video-url-container">
+                <label for="video-url">URL del Video</label>
+                <input type="text" id="video-url" name="video-url">
+            </div>
 
             <label for="lesson-order">Orden</label>
             <input type="number" id="lesson-order" name="lesson-order" required>
@@ -32,9 +39,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.course-lessons').appendChild(addLessonFormContainer);
 
+    let editorInstance;
+
     addLessonButton.addEventListener('click', () => {
         addLessonFormContainer.style.display = 'block';
         addLessonButton.style.display = 'none';
+
+        const lessonTypeSelect = document.getElementById('lesson-type');
+        const editorContainer = document.getElementById('editor-container');
+        const videoUrlContainer = document.getElementById('video-url-container');
+
+        lessonTypeSelect.addEventListener('change', (event) => {
+            if (event.target.value === 'texto') {
+                editorContainer.classList.add('show');
+                videoUrlContainer.classList.remove('show');
+
+                // Inicializar EditorJS cuando se selecciona "texto"
+                if (!editorInstance) {
+                    editorInstance = new EditorJS({
+                        holder: 'editorjs',
+                        tools: {
+                            header: Header,
+                            list: List,
+                            quote: Quote,
+                            marker: Marker,
+                            code: CodeTool,
+                            delimiter: Delimiter,
+                            inlineCode: InlineCode,
+                            linkTool: LinkTool,
+                            embed: Embed
+                        }
+                    });
+                }
+            } else if (event.target.value === 'video') {
+                editorContainer.classList.remove('show');
+                videoUrlContainer.classList.add('show');
+            } else {
+                editorContainer.classList.remove('show');
+                videoUrlContainer.classList.remove('show');
+            }
+        });
+
+        // Verificar el valor inicial al abrir el formulario
+        if (lessonTypeSelect.value === 'texto') {
+            editorContainer.classList.add('show');
+            videoUrlContainer.classList.remove('show');
+
+            if (!editorInstance) {
+                editorInstance = new EditorJS({
+                    holder: 'editorjs',
+                    tools: {
+                        header: Header,
+                        list: List,
+                        quote: Quote,
+                        marker: Marker,
+                        code: CodeTool,
+                        delimiter: Delimiter,
+                        inlineCode: InlineCode,
+                        linkTool: LinkTool,
+                        embed: Embed
+                    }
+                });
+            }
+        } else if (lessonTypeSelect.value === 'video') {
+            editorContainer.classList.remove('show');
+            videoUrlContainer.classList.add('show');
+        } else {
+            editorContainer.classList.remove('show');
+            videoUrlContainer.classList.remove('show');
+        }
     });
 
     document.getElementById('cancel-add-lesson').addEventListener('click', () => {
@@ -49,8 +122,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const lessonName = document.getElementById('lesson-name').value;
         const lessonDescription = document.getElementById('lesson-description').value;
         const lessonType = document.getElementById('lesson-type').value;
-        const lessonContent = document.getElementById('lesson-content').value;
         const lessonOrder = document.getElementById('lesson-order').value;
+
+        let lessonContent = '';
+
+        if (lessonType === 'texto') {
+            lessonContent = await editorInstance.save().then((outputData) => {
+                const edjsParser = edjsHTML();
+                const htmlData = edjsParser.parse(outputData);
+                return htmlData.join(""); // Combina los datos HTML en una sola cadena
+            }).catch((error) => {
+                console.log('Saving failed: ', error);
+                return '';
+            });
+        } else if (lessonType === 'video') {
+            lessonContent = document.getElementById('video-url').value;
+        }
 
         const lessonData = {
             nombre: lessonName,
@@ -87,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Obtener las lecciones y ordenarlas por el campo de orden
     async function fetchAndDisplayLessons() {
         const courseId = new URLSearchParams(window.location.search).get('id');
         if (!courseId) {
@@ -104,13 +190,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const course = await response.json();
             const lessons = course.lecciones;
 
-            // Ordenar lecciones por el campo de orden
             lessons.sort((a, b) => a.orden - b.orden);
 
             const courseLessonsList = document.getElementById('course-lessons-list');
             courseLessonsList.innerHTML = '';
             lessons.forEach(lesson => {
                 const lessonItem = document.createElement('li');
+                lessonItem.dataset.lessonId = lesson.id;
                 const lessonTitle = document.createElement('span');
                 lessonTitle.classList.add('lesson-title');
                 lessonTitle.textContent = lesson.nombre;
@@ -120,10 +206,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const editButton = document.createElement('button');
                 editButton.classList.add('edit-button');
                 editButton.textContent = 'Editar';
+                editButton.addEventListener('click', () => editLesson(lesson.id));
 
                 const deleteButton = document.createElement('button');
                 deleteButton.classList.add('delete-button');
                 deleteButton.textContent = 'Eliminar';
+                deleteButton.addEventListener('click', () => deleteLesson(lesson.id));
 
                 lessonActions.appendChild(editButton);
                 lessonActions.appendChild(deleteButton);
