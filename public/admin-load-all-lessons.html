@@ -3,20 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Menu - Coursemania</title>
+    <title>Administrar Lecciones - Coursemania</title>
 
     <link rel="stylesheet" href="css/global-styles/normalize.css">
     <link rel="stylesheet" href="css/global-styles/fonts.css">
     <link rel="stylesheet" href="css/global-styles/style.css">
-
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
-    <link rel="stylesheet" href="css/admin-styles/menu-admin/header.css">
-    <link rel="stylesheet" href="css/admin-styles/menu-admin/dashboard.css">
-    <link rel="stylesheet" href="css/admin-styles/menu-admin/footer.css">
+    <link rel="stylesheet" href="css/admin-styles/load-lessons/lessons.css">
+    <link rel="stylesheet" href="css/admin-styles/load-lessons/search.css">
 
     <script type="module" src="js/checkUserStatus.js"></script>
     <script type="module" src="js/logout.js"></script>
+    <script type="module" src="js/admin-scripts/loadAllLessons.js"></script>
 </head>
 <body>
     <main>
@@ -53,21 +52,19 @@
             </div>
         </header>
 
-        <section class="dashboard">
-            <h2>Panel de Administración</h2>
-            <div class="dashboard-grid">
-                <div class="dashboard-item">
-                    <a href="admin-load-all-courses.html">
-                        <h3>Gestionar Cursos.</h3>
-                        <p>Crear, editar o eliminar cursos.</p>
-                    </a>
+        <section class="lessons">
+            <h2>Todas las Lecciones</h2>
+            <div class="container-buttons">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Buscar lecciones...">
+                    <button id="search-button">Buscar</button>
                 </div>
-                <div class="dashboard-item">
-                    <a href="admin-load-all-lessons.html">
-                        <h3>Gestionar Lecciones.</h3>
-                        <p>Crear, editar o eliminar lecciones.</p>
-                    </a>
+                <div class="create-container">
+                    <button id="create-button">Crear</button>
                 </div>
+            </div>
+            <div class="lessons-grid" id="lessons-grid">
+                <!-- Las lecciones se cargarán aquí dinámicamente -->
             </div>
         </section>
 

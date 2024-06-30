@@ -1,0 +1,90 @@
+.lessons {
+    padding: 40px 20px;
+    background-color: #f4f4f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 40px 0;
+}
+
+.lessons h2 {
+    font-size: 32px;
+    color: #1A237E;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.lessons-grid {
+    display: grid;
+    gap: 20px;
+    justify-items: center;
+}
+
+.lesson-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.lesson-item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 300px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.lesson-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.lesson-item h3 {
+    font-size: 24px;
+    color: #1A237E;
+    margin-bottom: 10px;
+}
+
+.lesson-item p {
+    font-size: 16px;
+    color: #666;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+}
+
+.lesson-item button {
+    padding: 10px 20px;
+    background-color: #e53935;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.lesson-item button:hover {
+    background-color: #d32f2f;
+}
+
+@media (min-width: 768px) {
+    .lessons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 992px) {
+    .lessons-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
