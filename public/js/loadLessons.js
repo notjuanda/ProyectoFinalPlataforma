@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         } else if (lesson.tipocontenido === 'texto') {
             lessonContentElement.style.display = 'none';
             lessonTextContentElement.style.display = 'block';
-            lessonTextContentElement.textContent = lesson.contenido;
+            renderEditorContent(lesson.contenido);
         }
     }
 
@@ -154,5 +154,17 @@ document.addEventListener('DOMContentLoaded', async function() {
             throw new Error('Network response was not ok');
         }
         return response.json();
+    }
+
+    function renderEditorContent(data) {
+        try {
+            const parsedData = JSON.parse(data);
+            const edjsParser = edjsHTML();
+            const html = edjsParser.parse(parsedData);
+            lessonTextContentElement.innerHTML = html.join("");
+        } catch (error) {
+            console.error('Error parsing editor content:', error);
+            lessonTextContentElement.innerHTML = data; // fallback to plain HTML
+        }
     }
 });

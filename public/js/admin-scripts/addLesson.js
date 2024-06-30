@@ -128,9 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (lessonType === 'texto') {
             lessonContent = await editorInstance.save().then((outputData) => {
-                const edjsParser = edjsHTML();
-                const htmlData = edjsParser.parse(outputData);
-                return htmlData.join(""); // Combina los datos HTML en una sola cadena
+                return JSON.stringify(outputData); // Guardar como JSON
             }).catch((error) => {
                 console.log('Saving failed: ', error);
                 return '';

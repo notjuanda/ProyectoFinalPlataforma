@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <h3>Editar Lección</h3>
             <form id="edit-lesson-form">
                 <input type="hidden" id="edit-lesson-id">
+                <input type="hidden" id="edit-lesson-course-id">
                 <label for="edit-lesson-name">Nombre de la Lección:</label>
                 <input type="text" id="edit-lesson-name" name="lesson-name" required>
                 <label for="edit-lesson-description">Descripción:</label>
@@ -45,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('edit-lesson-form').addEventListener('submit', async (event) => {
             event.preventDefault();
 
+            const lessonId = document.getElementById('edit-lesson-id').value;
+            const courseId = document.getElementById('edit-lesson-course-id').value; // Obtén el valor del curso_id aquí
             const lessonName = document.getElementById('edit-lesson-name').value;
             const lessonDescription = document.getElementById('edit-lesson-description').value;
             const lessonType = document.getElementById('edit-lesson-type').value;
@@ -56,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 descripcion: lessonDescription,
                 tipocontenido: lessonType,
                 contenido: lessonContent,
+                curso_id: courseId, // Incluye curso_id aquí
                 orden: lessonOrder
             };
 
@@ -98,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function populateEditLessonForm(lesson) {
             document.getElementById('edit-lesson-id').value = lesson.id;
+            document.getElementById('edit-lesson-course-id').value = lesson.curso_id; // Asigna el curso_id aquí
             document.getElementById('edit-lesson-name').value = lesson.nombre;
             document.getElementById('edit-lesson-description').value = lesson.descripcion;
             document.getElementById('edit-lesson-type').value = lesson.tipocontenido;
@@ -109,3 +114,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Exponer la función editLesson globalmente para que pueda ser llamada desde loadCourse.js
     window.editLesson = editLesson;
 });
+
