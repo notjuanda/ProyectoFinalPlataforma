@@ -18,8 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     <option value="video">Video</option>
                     <option value="texto">Texto</option>
                 </select>
-                <label for="edit-lesson-content">Contenido:</label>
-                <textarea id="edit-lesson-content" name="lesson-content"></textarea>
+                <div id="editor-container" class="editor-container">
+                    <label for="edit-lesson-content">Contenido:</label>
+                    <div id="editorjs"></div>
+                </div>
+                <div id="video-url-container">
+                    <label for="video-url">URL del Video:</label>
+                    <input type="text" id="video-url" name="video-url">
+                </div>
                 <label for="edit-lesson-order">Orden:</label>
                 <input type="number" id="edit-lesson-order" name="lesson-order" required>
                 <button type="submit">Guardar Cambios</button>
@@ -28,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         document.querySelector('.course-lessons').appendChild(editLessonFormContainer);
+
+        let editorInstance;
 
         try {
             const lesson = await fetchLessonDetails(lessonId);
@@ -47,19 +55,31 @@ document.addEventListener('DOMContentLoaded', () => {
             event.preventDefault();
 
             const lessonId = document.getElementById('edit-lesson-id').value;
-            const courseId = document.getElementById('edit-lesson-course-id').value; // Obtén el valor del curso_id aquí
+            const courseId = document.getElementById('edit-lesson-course-id').value;
             const lessonName = document.getElementById('edit-lesson-name').value;
             const lessonDescription = document.getElementById('edit-lesson-description').value;
             const lessonType = document.getElementById('edit-lesson-type').value;
-            const lessonContent = document.getElementById('edit-lesson-content').value;
             const lessonOrder = document.getElementById('edit-lesson-order').value;
+
+            let lessonContent = '';
+
+            if (lessonType === 'texto') {
+                lessonContent = await editorInstance.save().then((outputData) => {
+                    return JSON.stringify(outputData);
+                }).catch((error) => {
+                    console.log('Saving failed: ', error);
+                    return '';
+                });
+            } else if (lessonType === 'video') {
+                lessonContent = document.getElementById('video-url').value;
+            }
 
             const lessonData = {
                 nombre: lessonName,
                 descripcion: lessonDescription,
                 tipocontenido: lessonType,
                 contenido: lessonContent,
-                curso_id: courseId, // Incluye curso_id aquí
+                curso_id: courseId,
                 orden: lessonOrder
             };
 
@@ -102,16 +122,75 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function populateEditLessonForm(lesson) {
             document.getElementById('edit-lesson-id').value = lesson.id;
-            document.getElementById('edit-lesson-course-id').value = lesson.curso_id; // Asigna el curso_id aquí
+            document.getElementById('edit-lesson-course-id').value = lesson.curso_id;
             document.getElementById('edit-lesson-name').value = lesson.nombre;
             document.getElementById('edit-lesson-description').value = lesson.descripcion;
             document.getElementById('edit-lesson-type').value = lesson.tipocontenido;
-            document.getElementById('edit-lesson-content').value = lesson.contenido;
             document.getElementById('edit-lesson-order').value = lesson.orden;
+
+            const lessonTypeSelect = document.getElementById('edit-lesson-type');
+            const editorContainer = document.getElementById('editor-container');
+            const videoUrlContainer = document.getElementById('video-url-container');
+            const editorContentTextarea = document.getElementById('edit-lesson-content');
+
+            lessonTypeSelect.addEventListener('change', (event) => {
+                if (event.target.value === 'texto') {
+                    editorContainer.classList.add('show');
+                    videoUrlContainer.classList.remove('show');
+                    if (!editorInstance) {
+                        editorInstance = new EditorJS({
+                            holder: 'editorjs',
+                            tools: {
+                                header: Header,
+                                list: List,
+                                quote: Quote,
+                                marker: Marker,
+                                code: CodeTool,
+                                delimiter: Delimiter,
+                                inlineCode: InlineCode,
+                                linkTool: LinkTool,
+                                embed: Embed
+                            }
+                        });
+                    }
+                } else if (event.target.value === 'video') {
+                    editorContainer.classList.remove('show');
+                    videoUrlContainer.classList.add('show');
+                } else {
+                    editorContainer.classList.remove('show');
+                    videoUrlContainer.classList.remove('show');
+                }
+            });
+
+            if (lesson.tipocontenido === 'texto') {
+                editorContainer.classList.add('show');
+                videoUrlContainer.classList.remove('show');
+                editorInstance = new EditorJS({
+                    holder: 'editorjs',
+                    tools: {
+                        header: Header,
+                        list: List,
+                        quote: Quote,
+                        marker: Marker,
+                        code: CodeTool,
+                        delimiter: Delimiter,
+                        inlineCode: InlineCode,
+                        linkTool: LinkTool,
+                        embed: Embed
+                    },
+                    data: JSON.parse(editorContentTextarea.value) // Cargar el contenido existente en el editor
+                });
+            } else if (lesson.tipocontenido === 'video') {
+                editorContainer.classList.remove('show');
+                videoUrlContainer.classList.add('show');
+                document.getElementById('video-url').value = lesson.contenido;
+            } else {
+                editorContainer.classList.remove('show');
+                videoUrlContainer.classList.remove('show');
+            }
         }
     }
 
     // Exponer la función editLesson globalmente para que pueda ser llamada desde loadCourse.js
     window.editLesson = editLesson;
 });
-
