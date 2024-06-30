@@ -1,49 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const addLessonButton = document.querySelector('.add-button');
-    const addLessonFormContainer = document.createElement('div');
-    addLessonFormContainer.classList.add('add-lesson-form');
-    addLessonFormContainer.style.display = 'none';
-
-    addLessonFormContainer.innerHTML = `
-        <h3>Añadir Lección</h3>
-        <form id="add-lesson-form">
-            <label for="lesson-name">Nombre de la Lección</label>
-            <input type="text" id="lesson-name" name="lesson-name" required>
-
-            <label for="lesson-description">Descripción</label>
-            <textarea id="lesson-description" name="lesson-description" required></textarea>
-
-            <label for="lesson-type">Tipo de Contenido</label>
-            <select id="lesson-type" name="lesson-type" required>
-                <option value="video">Video</option>
-                <option value="texto">Texto</option>
-            </select>
-
-            <div id="editor-container" class="editor-container">
-                <label for="lesson-content">Contenido</label>
-                <div id="editorjs"></div>
-            </div>
-
-            <div id="video-url-container">
-                <label for="video-url">URL del Video</label>
-                <input type="text" id="video-url" name="video-url">
-            </div>
-
-            <label for="lesson-order">Orden</label>
-            <input type="number" id="lesson-order" name="lesson-order" required>
-
-            <button type="submit">Guardar Lección</button>
-            <button type="button" id="cancel-add-lesson">Cancelar</button>
-        </form>
-    `;
-
-    document.querySelector('.course-lessons').appendChild(addLessonFormContainer);
+    const addLessonButton = document.getElementById('add-lesson-button');
+    const addLessonFormContainer = document.getElementById('add-lesson-form-container');
 
     let editorInstance;
+    let nextOrder = 1;  // Variable para almacenar el siguiente valor de orden
 
     addLessonButton.addEventListener('click', () => {
         addLessonFormContainer.style.display = 'block';
         addLessonButton.style.display = 'none';
+
+        // Asignar el valor por defecto al campo de orden
+        document.getElementById('lesson-order').value = nextOrder;
 
         const lessonTypeSelect = document.getElementById('lesson-type');
         const editorContainer = document.getElementById('editor-container');
@@ -51,8 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         lessonTypeSelect.addEventListener('change', (event) => {
             if (event.target.value === 'texto') {
-                editorContainer.classList.add('show');
-                videoUrlContainer.classList.remove('show');
+                editorContainer.style.display = 'block';
+                videoUrlContainer.style.display = 'none';
 
                 // Inicializar EditorJS cuando se selecciona "texto"
                 if (!editorInstance) {
@@ -72,18 +39,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
             } else if (event.target.value === 'video') {
-                editorContainer.classList.remove('show');
-                videoUrlContainer.classList.add('show');
+                editorContainer.style.display = 'none';
+                videoUrlContainer.style.display = 'block';
             } else {
-                editorContainer.classList.remove('show');
-                videoUrlContainer.classList.remove('show');
+                editorContainer.style.display = 'none';
+                videoUrlContainer.style.display = 'none';
             }
         });
 
         // Verificar el valor inicial al abrir el formulario
         if (lessonTypeSelect.value === 'texto') {
-            editorContainer.classList.add('show');
-            videoUrlContainer.classList.remove('show');
+            editorContainer.style.display = 'block';
+            videoUrlContainer.style.display = 'none';
 
             if (!editorInstance) {
                 editorInstance = new EditorJS({
@@ -102,11 +69,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         } else if (lessonTypeSelect.value === 'video') {
-            editorContainer.classList.remove('show');
-            videoUrlContainer.classList.add('show');
+            editorContainer.style.display = 'none';
+            videoUrlContainer.style.display = 'block';
         } else {
-            editorContainer.classList.remove('show');
-            videoUrlContainer.classList.remove('show');
+            editorContainer.style.display = 'none';
+            videoUrlContainer.style.display = 'none';
         }
     });
 
@@ -217,6 +184,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 lessonItem.appendChild(lessonActions);
                 courseLessonsList.appendChild(lessonItem);
             });
+
+            // Obtener el último orden y calcular el siguiente
+            if (lessons.length > 0) {
+                const lastOrder = lessons[lessons.length - 1].orden;
+                nextOrder = lastOrder + 1;
+            } else {
+                nextOrder = 1;
+            }
         } catch (error) {
             console.error('Error:', error);
         }

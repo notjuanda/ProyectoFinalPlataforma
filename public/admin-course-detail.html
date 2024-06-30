@@ -118,13 +118,68 @@
         </section>
 
         <!-- Sección del formulario para añadir lecciones -->
-        <section class="add-lesson-form" id="add-lesson-form" style="display:none;">
-        </section>
+        <section class="add-lesson-form" id="add-lesson-form-container" style="display:none;">
+            <h3>Añadir Lección</h3>
+            <form id="add-lesson-form">
+                <label for="lesson-name">Nombre de la Lección</label>
+                <input type="text" id="lesson-name" name="lesson-name" required>
 
-        <!-- Sección del formulario para editar lecciones -->
-        <section class="edit-lesson-form" id="edit-lesson-form-container" style="display: none;">
+                <label for="lesson-description">Descripción</label>
+                <textarea id="lesson-description" name="lesson-description" required></textarea>
+
+                <label for="lesson-type">Tipo de Contenido</label>
+                <select id="lesson-type" name="lesson-type" required>
+                    <option value="video">Video</option>
+                    <option value="texto">Texto</option>
+                </select>
+
+                <div id="editor-container" class="editor-container">
+                    <label for="editorjs">Contenido</label>
+                    <div id="editorjs"></div>
+                </div>
+
+                <div id="video-url-container">
+                    <label for="video-url">URL del Video</label>
+                    <input type="text" id="video-url" name="video-url">
+                </div>
+
+                <label for="lesson-order">Orden</label>
+                <input type="number" id="lesson-order" name="lesson-order" required>
+
+                <button type="submit">Guardar Lección</button>
+                <button type="button" id="cancel-add-lesson">Cancelar</button>
+            </form>
         </section>
         
+        <!-- Sección del formulario para editar lecciones -->
+        <section class="edit-lesson-form" id="edit-lesson-form-container" style="display: none;">
+            <h3>Editar Lección</h3>
+            <form id="edit-lesson-form-unique">
+                <input type="hidden" id="edit-lesson-id-unique">
+                <input type="hidden" id="edit-lesson-course-id-unique">
+                <label for="edit-lesson-name-unique">Nombre de la Lección:</label>
+                <input type="text" id="edit-lesson-name-unique" name="lesson-name" required>
+                <label for="edit-lesson-description-unique">Descripción:</label>
+                <textarea id="edit-lesson-description-unique" name="lesson-description" required></textarea>
+                <label for="edit-lesson-type-unique">Tipo de Contenido:</label>
+                <select id="edit-lesson-type-unique" name="lesson-type" required>
+                    <option value="video">Video</option>
+                    <option value="texto">Texto</option>
+                </select>
+                <div id="editor-container-unique" class="editor-container-unique" style="display: none;">
+                    <label for="editorjs-unique">Contenido:</label>
+                    <div id="editorjs-unique"></div>
+                </div>
+                <div id="video-url-container-unique" style="display: none;">
+                    <label for="video-url-unique">URL del Video:</label>
+                    <input type="text" id="video-url-unique" name="video-url">
+                </div>
+                <label for="edit-lesson-order-unique">Orden:</label>
+                <input type="number" id="edit-lesson-order-unique" name="lesson-order" required>
+                <button type="submit">Guardar Cambios</button>
+                <button type="button" id="cancel-edit-lesson-unique">Cancelar</button>
+            </form>
+        </section>
 
         <footer class="footer">
             <div class="footer-content">
@@ -134,4 +189,3 @@
     </main>
 </body>
 </html>
-
