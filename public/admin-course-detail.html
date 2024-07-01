@@ -10,32 +10,12 @@
     <link rel="stylesheet" href="css/global-styles/style.css">
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
+
     <link rel="stylesheet" href="css/admin-styles/course-detail/course-detail.css">
     <link rel="stylesheet" href="css/admin-styles/course-detail/addLesson.css">
     <link rel="stylesheet" href="css/admin-styles/course-detail/editLesson.css">
 
-    <script type="module" src="js/checkUserStatus.js"></script>
-    <script type="module" src="js/logout.js"></script>
-    <script type="module" src="js/admin-scripts/loadCourse.js"></script>
-    <script type="module" src="js/admin-scripts/editCourse.js"></script>
-    <script type="module" src="js/admin-scripts/addLesson.js"></script>
-    <script type="module" src="js/admin-scripts/editLesson.js"></script>
-    <script type="module" src="js/admin-scripts/deleteLesson.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/editorjs-html@3.4.0/build/edjsHTML.js"></script>
-
+    
 </head>
 <body>
     <main>
@@ -71,7 +51,7 @@
                 </div>
             </div>
         </header>
-
+        
         <section class="course-detail">
             <div class="course-header">
                 <h2 id="course-title">Título del Curso</h2>
@@ -116,7 +96,7 @@
                 </div>
             </div>
         </section>
-
+        
         <!-- Sección del formulario para añadir lecciones -->
         <section class="add-lesson-form" id="add-lesson-form-container" style="display:none;">
             <h3>Añadir Lección</h3>
@@ -126,7 +106,7 @@
 
                 <label for="lesson-description">Descripción</label>
                 <textarea id="lesson-description" name="lesson-description" required></textarea>
-
+                
                 <label for="lesson-type">Tipo de Contenido</label>
                 <select id="lesson-type" name="lesson-type" required>
                     <option value="video">Video</option>
@@ -187,5 +167,28 @@
             </div>
         </footer>
     </main>
+
+    <script type="module" src="js/checkUserStatus.js"></script>
+    <script type="module" src="js/logout.js"></script>
+    <script type="module" src="js/admin-scripts/loadCourse.js"></script>
+    <script type="module" src="js/admin-scripts/editCourse.js"></script>
+    <script type="module" src="js/admin-scripts/addLesson.js"></script>
+    <script type="module" src="js/admin-scripts/editLesson.js"></script>
+    <script type="module" src="js/admin-scripts/deleteLesson.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/editorjs-html@3.4.0/build/edjsHTML.js"></script>
+    
 </body>
 </html>
