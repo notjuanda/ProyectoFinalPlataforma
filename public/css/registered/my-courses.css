@@ -17,6 +17,7 @@
 }
 
 .courses-grid {
+    padding-bottom: 30px;
     display: grid;
     gap: 20px;
     justify-items: center; 
