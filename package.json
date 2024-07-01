@@ -6,9 +6,9 @@
     "test": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Juan David Viveros Chavez",
   "license": "ISC",
-  "description": "",
+  "description": "Este es un proyecto para la materia de Ing. Web I",
   "dependencies": {
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
