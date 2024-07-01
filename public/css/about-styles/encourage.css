@@ -1,40 +1,46 @@
-.encourage-section{
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.button_action{
+.encourage-section {
     display: flex;
-    color: white;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    flex-direction: column;
+    padding: 60px 30px;
+    background-color: #f4f4f9;
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.encourage-section h2{
+    padding-bottom: 40px;
+}
+
+.button_action {
+    display: flex;
     justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
 }
-.button{
+
+.button {
     background-color: #FE5B2C;
-    padding: 5px;
-    border-radius: 10px;
-}
-.button_action a{
-    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 18px;
     color: white;
+    text-decoration: none;
 }
-.button_action a:hover{
+
+.button:hover {
     background-color: #1A237E;
 }
 
-@media(min-width: 992px){
-    .encourage-section{
-        display: block;
-        text-align: center;
-        padding-left: 60px;
-        padding-right: 60px;
-    }
-    .encourage-container{
-        display: flex;
-        align-items: flex-start;
-        justify-content:flex-start;
-        text-align: left;
-        gap: 40px;
+@media (min-width: 992px) {
+    .encourage-section {
+        padding: 80px;
     }
 
+    .encourage-container {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 50px;
+    }
 }

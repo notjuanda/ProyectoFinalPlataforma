@@ -1,7 +1,21 @@
 .our-values-mission{
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 30px;
 }
+
+.our-values-mission ul{
+    list-style:none;
+}
+
+.our-values-mission li{
+    padding-bottom: 20px;
+}
+
+.our-values-mission h2{
+    padding-bottom: 40px;
+}
+
 @media(min-width: 992px){
     .our-values-mission{
         display: block;
