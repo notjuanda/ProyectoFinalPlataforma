@@ -10,10 +10,7 @@
     <link rel="stylesheet" href="css/global-styles/style.css">
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
-    
     <link rel="stylesheet" href="css/register/register.css">
-    
-    
 </head>
 <body>
     <main>
@@ -55,19 +52,23 @@
             <form id="registerForm" method="POST" class="register-form">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <input type="text" id="nombre" name="nombre">
+                    <span class="error-message" id="error-nombre"></span>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" required>
+                    <input type="text" id="apellido" name="apellido">
+                    <span class="error-message" id="error-apellido"></span>
                 </div>
                 <div class="form-group">
                     <label for="correo">Correo Electrónico:</label>
                     <input type="email" id="correo" name="correo" required>
+                    <span class="error-message" id="error-correo"></span>
                 </div>
                 <div class="form-group">
                     <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena" name="contrasena" required>
+                    <input type="password" id="contrasena" name="contrasena">
+                    <span class="error-message" id="error-contrasena"></span>
                 </div>
                 <input type="hidden" id="tipoUsuario" name="tipoUsuario" value="Estudiante">
                 <div class="form-group">

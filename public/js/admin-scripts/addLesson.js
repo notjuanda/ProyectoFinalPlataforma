@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('cancel-add-lesson').addEventListener('click', () => {
+        window.location.reload();
         addLessonFormContainer.style.display = 'none';
         addLessonButton.style.display = 'block';
     });
