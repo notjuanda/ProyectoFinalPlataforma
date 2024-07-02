@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true })); // Analizar s
  */
 app.use(morgan('dev')); // Middleware para registro de solicitudes HTTP en consola con formato 'dev'
 app.use(cors({
-    origin: 'http://127.0.0.1:5501', // Permitir solicitudes CORS desde este origen específico
+    origin: '*', // Permitir solicitudes CORS desde este origen específico
     credentials: true // Habilitar el envío de cookies en solicitudes cross-origin
 }));
 app.use(express.urlencoded({ extended: false })); // Analizar cuerpos URL-encoded con la opción extended en false

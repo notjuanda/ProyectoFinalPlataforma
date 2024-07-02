@@ -8,7 +8,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     console.log('Datos de inicio de sesión:', { correo, contrasena });
 
     try {
-        const response = await fetch('http://localhost:3001/api/usuarios/login', {
+        const response = await fetch('/api/usuarios/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     editCategoryButton.addEventListener('click', async () => {
         originalCategory = courseCategory.textContent;
         try {
-            const response = await fetch('http://localhost:3001/api/categorias');
+            const response = await fetch('/api/categorias');
             if (!response.ok) {
                 throw new Error('Error al obtener las categorías.');
             }
@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3001/api/cursos/${courseId}`, {
+            const response = await fetch(`/api/cursos/${courseId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

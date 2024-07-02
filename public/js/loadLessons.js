@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     async function fetchLessonDetails(lessonId) {
-        const response = await fetch(`http://localhost:3001/api/lecciones/${lessonId}`);
+        const response = await fetch(`/api/lecciones/${lessonId}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     async function fetchNextLessons(courseId, currentLessonOrder) {
-        const response = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
+        const response = await fetch(`/api/cursos/${courseId}/lecciones`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 throw new Error('Progreso no encontrado');
             }
 
-            const response = await fetch(`http://localhost:3001/api/progresos/${progreso.id}`, {
+            const response = await fetch(`/api/progresos/${progreso.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     async function getProgresoByUserAndLesson(userId, lessonId) {
-        const response = await fetch(`http://localhost:3001/api/progresos/user/${userId}/lesson/${lessonId}`);
+        const response = await fetch(`/api/progresos/user/${userId}/lesson/${lessonId}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

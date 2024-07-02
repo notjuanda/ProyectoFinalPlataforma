@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                const response = await fetch(`http://localhost:3001/api/lecciones/${lessonId}`, {
+                const response = await fetch(`/api/lecciones/${lessonId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         async function fetchLessonDetails(lessonId) {
             try {
-                const response = await fetch(`http://localhost:3001/api/lecciones/${lessonId}`);
+                const response = await fetch(`/api/lecciones/${lessonId}`);
                 if (!response.ok) {
                     throw new Error('Error al obtener los detalles de la lección.');
                 }

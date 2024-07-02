@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     try {
-        const response = await fetch('http://localhost:3001/api/cursos');
+        const response = await fetch('/api/cursos');
         if (!response.ok) {
             throw new Error('Error al obtener los cursos');
         }

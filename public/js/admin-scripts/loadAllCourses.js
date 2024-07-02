@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Función para cargar todos los cursos
     const loadCourses = async () => {
         try {
-            const response = await fetch('http://localhost:3001/api/cursos');
+            const response = await fetch('/api/cursos');
             if (!response.ok) {
                 throw new Error('Error al obtener los cursos.');
             }
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Función para buscar cursos por nombre
     const searchCourses = async (nombre) => {
         try {
-            const response = await fetch(`http://localhost:3001/api/cursos/search?nombre=${nombre}`);
+            const response = await fetch(`/api/cursos/search?nombre=${nombre}`);
             if (!response.ok) {
                 throw new Error('Error al buscar los cursos.');
             }
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const deleteCourse = async (id) => {
         if (confirm('¿Estás seguro de que deseas eliminar este curso?')) {
             try {
-                const response = await fetch(`http://localhost:3001/api/cursos/${id}`, {
+                const response = await fetch(`/api/cursos/${id}`, {
                     method: 'DELETE'
                 });
 

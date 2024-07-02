@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    fetch(`http://localhost:3001/api/categorias/${categoriaId}/cursos`)
+    fetch(`/api/categorias/${categoriaId}/cursos`)
         .then(response => response.json())
         .then(categoria => {
             console.log('Cursos:', categoria.cursos); // Para verificar la carga en consola

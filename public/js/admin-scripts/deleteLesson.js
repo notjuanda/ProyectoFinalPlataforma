@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function deleteLesson(lessonId) {
         if (confirm('¿Estás seguro de que quieres eliminar esta lección?')) {
             try {
-                const response = await fetch(`http://localhost:3001/api/lecciones/${lessonId}`, {
+                const response = await fetch(`/api/lecciones/${lessonId}`, {
                     method: 'DELETE'
                 });
 

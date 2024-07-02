@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch('http://localhost:3001/api/cursos', {
+            const response = await fetch('/api/cursos', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadCategories = async () => {
         try {
             console.log('Cargando categorías...');
-            const response = await fetch('http://localhost:3001/api/categorias');
+            const response = await fetch('/api/categorias');
             if (!response.ok) {
                 throw new Error('Error al obtener las categorías.');
             }

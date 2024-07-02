@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     const progressGrid = document.querySelector('.progress .progress-grid');
 
     try {
-        const response = await fetch(`http://localhost:3001/api/usuarios/${userId}/cursos`);
+        const response = await fetch(`/api/usuarios/${userId}/cursos`);
         if (!response.ok) {
             throw new Error('Error al obtener los cursos del usuario');
         }
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         if (cursos.length > 0) {
             for (const curso of cursos) {
-                const progressResponse = await fetch(`http://localhost:3001/api/progresos/usuario/${userId}/curso/${curso.id}/progreso`);
+                const progressResponse = await fetch(`/api/progresos/usuario/${userId}/curso/${curso.id}/progreso`);
                 if (!progressResponse.ok) {
                     throw new Error(`Error al obtener el progreso del curso ${curso.id}`);
                 }

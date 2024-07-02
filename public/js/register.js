@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-            const response = await fetch('http://localhost:3001/api/usuarios', {
+            const response = await fetch('/api/usuarios', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

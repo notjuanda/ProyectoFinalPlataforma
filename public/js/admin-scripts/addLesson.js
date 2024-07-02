@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch('http://localhost:3001/api/lecciones', {
+            const response = await fetch('/api/lecciones', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
+            const response = await fetch(`/api/cursos/${courseId}/lecciones`);
             if (!response.ok) {
                 throw new Error('Error al obtener los detalles del curso.');
             }

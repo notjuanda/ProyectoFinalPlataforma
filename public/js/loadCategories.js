@@ -3,7 +3,7 @@ import Cookies from 'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie
 document.addEventListener('DOMContentLoaded', function() {
     const categoriesGrid = document.getElementById('categories-grid');
 
-    fetch('http://localhost:3001/api/categorias')
+    fetch('/api/categorias')
     .then(response => response.json())
     .then(categorias => {
         if (categorias.length > 0) {
