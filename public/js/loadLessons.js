@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (lesson) {
             updateLessonInfo(lesson);
             const nextLessons = await fetchNextLessons(lesson.curso_id, lesson.orden);
-            updateNextLessonsList(nextLessons);
+            updateNextLessonsList(nextLessons, lesson.orden);
             await markLessonAsViewed(userId, lessonId);
         } else {
             displayLessonNotFoundMessage();
@@ -96,25 +96,27 @@ document.addEventListener('DOMContentLoaded', async function() {
         return sortedLessons.slice(currentIndex + 1);
     }
 
-    function updateNextLessonsList(nextLessons) {
+    function updateNextLessonsList(nextLessons, currentLessonOrder) {
         if (nextLessons.length > 0) {
             nextLessons.forEach(lesson => {
-                const lessonElement = document.createElement('div');
-                lessonElement.classList.add('next-lesson');
+                if (lesson.orden !== currentLessonOrder) { // Excluir la lección actual
+                    const lessonElement = document.createElement('div');
+                    lessonElement.classList.add('next-lesson');
 
-                const lessonLink = document.createElement('a');
-                lessonLink.href = `lesson-registered.html?lesson=${lesson.id}`;
+                    const lessonLink = document.createElement('a');
+                    lessonLink.href = `lesson-registered.html?lesson=${lesson.id}`;
 
-                const lessonTitle = document.createElement('h3');
-                lessonTitle.textContent = lesson.nombre;
+                    const lessonTitle = document.createElement('h3');
+                    lessonTitle.textContent = lesson.nombre;
 
-                const lessonDescription = document.createElement('p');
-                lessonDescription.textContent = lesson.descripcion;
+                    const lessonDescription = document.createElement('p');
+                    lessonDescription.textContent = lesson.descripcion;
 
-                lessonLink.appendChild(lessonTitle);
-                lessonLink.appendChild(lessonDescription);
-                lessonElement.appendChild(lessonLink);
-                if (nextLessonsListElement) nextLessonsListElement.appendChild(lessonElement);
+                    lessonLink.appendChild(lessonTitle);
+                    lessonLink.appendChild(lessonDescription);
+                    lessonElement.appendChild(lessonLink);
+                    if (nextLessonsListElement) nextLessonsListElement.appendChild(lessonElement);
+                }
             });
         } else {
             if (nextLessonsListElement) {

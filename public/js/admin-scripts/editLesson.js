@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const lessonData = {
                 nombre: lessonName,
                 descripcion: lessonDescription,
-                tipocontenido: lessonType,
+                tipoContenido: lessonType, // Usamos tipoContenido para enviar
                 contenido: lessonContent,
                 curso_id: courseId,
                 orden: lessonOrder
@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 editLessonFormContainer.style.display = 'none';
                 clearEditorInstance();
-                // Opcional: recargar la página para ver los cambios
                 window.location.reload();
             } catch (error) {
                 console.error('Error:', error);
@@ -86,7 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!response.ok) {
                     throw new Error('Error al obtener los detalles de la lección.');
                 }
-                return response.json();
+                const lesson = await response.json();
+                // Convertimos el campo tipocontenido a tipoContenido para ser usado en el formulario
+                lesson.tipoContenido = lesson.tipocontenido;
+                return lesson;
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -97,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('edit-lesson-course-id-unique').value = lesson.curso_id;
             document.getElementById('edit-lesson-name-unique').value = lesson.nombre;
             document.getElementById('edit-lesson-description-unique').value = lesson.descripcion;
-            document.getElementById('edit-lesson-type-unique').value = lesson.tipocontenido;
+            document.getElementById('edit-lesson-type-unique').value = lesson.tipoContenido; // Usamos tipoContenido aquí
             document.getElementById('edit-lesson-order-unique').value = lesson.orden;
 
             const lessonTypeSelect = document.getElementById('edit-lesson-type-unique');
@@ -107,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lessonTypeSelect.removeEventListener('change', handleContentChange);
             lessonTypeSelect.addEventListener('change', handleContentChange);
 
-            handleContentChange({ target: { value: lesson.tipocontenido } }, lesson.contenido);
+            handleContentChange({ target: { value: lesson.tipoContenido } }, lesson.contenido);
         }
 
         function handleContentChange(event, content = '') {
