@@ -2,10 +2,10 @@
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     padding: 20px;
-    margin: 40px auto 20px auto; /* Añadir margen superior */
+    margin: 40px auto 20px auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 800px; /* Ancho máximo para centrar */
+    max-width: 800px;
 }
 
 .edit-lesson-form h3 {
@@ -33,7 +33,7 @@
 .edit-lesson-form input[type="number"] {
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 15px;
     font-size: 16px;
     width: 100%;
     box-sizing: border-box;
@@ -58,11 +58,13 @@
 .edit-lesson-form button[type="submit"] {
     background-color: #28a745;
     color: white;
+    border-radius: 15px;
 }
 
 .edit-lesson-form button[type="button"] {
     background-color: #dc3545;
     color: white;
+    border-radius: 15px;
 }
 
 .edit-lesson-form button:hover {
@@ -73,7 +75,6 @@
     margin-left: 10px;
 }
 
-/* Tablets and up */
 @media (min-width: 768px) {
     .edit-lesson-form {
         padding: 30px;
@@ -99,10 +100,9 @@
     }
 }
 
-/* Desktops and up */
 @media (min-width: 992px) {
     .edit-lesson-form {
         max-width: 800px;
-        margin: 40px auto 20px auto; /* Añadir margen superior */
+        margin: 40px auto 20px auto;
     }
 }

@@ -10,17 +10,12 @@
     <link rel="stylesheet" href="css/global-styles/style.css">
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
+
     <link rel="stylesheet" href="css/admin-styles/course-detail/course-detail.css">
     <link rel="stylesheet" href="css/admin-styles/course-detail/addLesson.css">
     <link rel="stylesheet" href="css/admin-styles/course-detail/editLesson.css">
 
-    <script type="module" src="js/checkUserStatus.js"></script>
-    <script type="module" src="js/logout.js"></script>
-    <script type="module" src="js/admin-scripts/loadCourse.js"></script>
-    <script type="module" src="js/admin-scripts/editCourse.js"></script>
-    <script type="module" src="js/admin-scripts/addLesson.js"></script>
-    <script type="module" src="js/admin-scripts/editLesson.js"></script>
-    <script type="module" src="js/admin-scripts/deleteLesson.js"></script>
+    
 </head>
 <body>
     <main>
@@ -37,22 +32,13 @@
                     <nav class="navbar">
                         <ul class="navbar-list">
                             <li class="navbar-item">
-                                <a href="manage-courses.html" class="navbar-link">GESTIONAR CURSOS</a>
+                                <a href="admin-menu.html" class="navbar-link">INICIO</a>
                             </li>
                             <li class="navbar-item">
-                                <a href="manage-categories.html" class="navbar-link">GESTIONAR CATEGORÍAS</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="manage-lessons.html" class="navbar-link">GESTIONAR LECCIONES</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="manage-enrollments.html" class="navbar-link">INSCRIPCIONES</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="manage-progressions.html" class="navbar-link">PROGRESIONES</a>
+                                <a href="admin-load-all-courses.html" class="navbar-link">GESTIONAR CURSOS</a>
                             </li>
                             <li class="navbar-item profile-item">
-                                <a href="admin-profile.html" class="navbar-link profile-link">
+                                <a href="admin-my-profile.html" class="navbar-link profile-link">
                                     <img src="image/icons/person-white.png" class="profile-icon" alt="Profile Icon">
                                     <span class="profile-text">PERFIL</span>
                                 </a>
@@ -65,7 +51,7 @@
                 </div>
             </div>
         </header>
-
+        
         <section class="course-detail">
             <div class="course-header">
                 <h2 id="course-title">Título del Curso</h2>
@@ -73,7 +59,6 @@
                 <div class="course-actions">
                     <button class="edit-button" id="edit-title-button">Editar</button>
                     <button class="save-button" id="save-title-button" style="display:none;">Guardar</button>
-                    <button class="delete-button">Eliminar</button>
                 </div>
             </div>
             <div class="course-content">
@@ -95,7 +80,7 @@
                         <h3>Categoría</h3>
                         <p id="course-category">Nombre de la Categoría</p>
                         <select id="edit-course-category" class="edit-input" style="display:none;">
-                            <!-- Opciones de categoría -->
+                            <!--para cargar las categorias como texto-->
                         </select>
                         <button class="edit-button" id="edit-category-button">Editar</button>
                         <button class="save-button" id="save-category-button" style="display:none;">Guardar</button>
@@ -103,29 +88,105 @@
                     <div class="course-lessons">
                         <h3>Lecciones</h3>
                         <ul id="course-lessons-list">
-                            <!-- Lista de lecciones -->
+                            <!--para lista de lecciones-->
                         </ul>
                         <button class="add-button" id="add-lesson-button">Añadir Lección</button> 
                     </div>
                 </div>
             </div>
         </section>
+        
+        <!--formulario para agregar lecciones-->
+        <section class="add-lesson-form" id="add-lesson-form-container" style="display:none;">
+            <h3>Añadir Lección</h3>
+            <form id="add-lesson-form">
+                <label for="lesson-name">Nombre de la Lección</label>
+                <input type="text" id="lesson-name" name="lesson-name" required>
 
-        <!-- Sección del formulario para añadir lecciones -->
-        <section class="add-lesson-form" id="add-lesson-form" style="display:none;">
-        </section>
+                <label for="lesson-description">Descripción</label>
+                <textarea id="lesson-description" name="lesson-description" required></textarea>
+                
+                <label for="lesson-type">Tipo de Contenido</label>
+                <select id="lesson-type" name="lesson-type" required>
+                    <option value="video">Video</option>
+                    <option value="texto">Texto</option>
+                </select>
 
-        <!-- Sección del formulario para editar lecciones -->
-        <section class="edit-lesson-form" id="edit-lesson-form-container" style="display: none;">
+                <div id="editor-container" class="editor-container">
+                    <label for="editorjs">Contenido</label>
+                    <div id="editorjs"></div>
+                </div>
+
+                <div id="video-url-container">
+                    <label for="video-url">URL del Video</label>
+                    <input type="text" id="video-url" name="video-url">
+                </div>
+
+                <label for="lesson-order">Orden</label>
+                <input type="number" id="lesson-order" name="lesson-order" required>
+
+                <button type="submit">Guardar Lección</button>
+                <button type="button" id="cancel-add-lesson">Cancelar</button>
+            </form>
         </section>
         
-
-        <footer class="footer">
-            <div class="footer-content">
-                <h2>No olvides guardar tus cambios</h2>
-            </div>
-        </footer>
+        <!--formulario de lecciones(aun no funciona)-->
+        <section class="edit-lesson-form" id="edit-lesson-form-container" style="display: none;">
+            <h3>Editar Lección</h3>
+            <form id="edit-lesson-form-unique">
+                <input type="hidden" id="edit-lesson-id-unique">
+                <input type="hidden" id="edit-lesson-course-id-unique">
+                <label for="edit-lesson-name-unique">Nombre de la Lección:</label>
+                <input type="text" id="edit-lesson-name-unique" name="lesson-name" required>
+                <label for="edit-lesson-description-unique">Descripción:</label>
+                <textarea id="edit-lesson-description-unique" name="lesson-description" required></textarea>
+                <label for="edit-lesson-type-unique">Tipo de Contenido:</label>
+                <select id="edit-lesson-type-unique" name="lesson-type" required>
+                    <option value="video">Video</option>
+                    <option value="texto">Texto</option>
+                </select>
+                <div id="editor-container-unique" class="editor-container-unique" style="display: none;">
+                    <label for="editorjs-unique">Contenido:</label>
+                    <div id="editorjs-unique"></div>
+                </div>
+                <div id="video-url-container-unique" style="display: none;">
+                    <label for="video-url-unique">URL del Video:</label>
+                    <input type="text" id="video-url-unique" name="video-url">
+                </div>
+                <label for="edit-lesson-order-unique">Orden:</label>
+                <input type="number" id="edit-lesson-order-unique" name="lesson-order" required>
+                <button type="submit">Guardar Cambios</button>
+                <button type="button" id="cancel-edit-lesson-unique">Cancelar</button>
+            </form>
+        </section>
     </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <h2>No olvides guardar tus cambios</h2>
+        </div>
+    </footer>
+
+    <script type="module" src="js/checkUserStatus.js"></script>
+    <script type="module" src="js/logout.js"></script>
+    <script type="module" src="js/admin-scripts/loadCourse.js"></script>
+    <script type="module" src="js/admin-scripts/editCourse.js"></script>
+    <script type="module" src="js/admin-scripts/addLesson.js"></script>
+    <script type="module" src="js/admin-scripts/editLesson.js"></script>
+    <script type="module" src="js/admin-scripts/deleteLesson.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/embed@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/link@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/marker@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/inline-code@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/editorjs-html@3.4.0/build/edjsHTML.js"></script>
+    
 </body>
 </html>
-

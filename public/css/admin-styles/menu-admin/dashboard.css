@@ -3,7 +3,7 @@
     background-color: #f4f4f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin: 40px 0;
+    margin: 40px 20px;
 }
 
 .dashboard h2 {
@@ -16,7 +16,7 @@
 .dashboard-grid {
     display: grid;
     gap: 20px;
-    justify-items: center;
+    grid-template-columns: 1fr; 
 }
 
 .dashboard-item {
@@ -27,7 +27,7 @@
     padding: 20px;
     text-align: center;
     transition: transform 0.2s, box-shadow 0.2s;
-    width: 300px;
+    width: 100%; 
     height: 180px;
     display: flex;
     flex-direction: column;
@@ -59,18 +59,28 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;    
+    justify-content: center;
     align-items: center;
 }
 
 @media (min-width: 768px) {
     .dashboard-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr); 
+    }
+
+    .dashboard-item {
+        width: 100%; 
+        max-width: none;
     }
 }
 
 @media (min-width: 992px) {
     .dashboard-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-item {
+        width: 100%; 
+        max-width: none; 
     }
 }

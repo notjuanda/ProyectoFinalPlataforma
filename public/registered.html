@@ -8,22 +8,15 @@
     <link rel="stylesheet" href="css/global-styles/normalize.css">
     <link rel="stylesheet" href="css/global-styles/fonts.css">
     <link rel="stylesheet" href="css/global-styles/style.css">
-
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
     <link rel="stylesheet" href="css/global-styles/categories.css">
+
     <link rel="stylesheet" href="css/registered/my-courses.css">
     <link rel="stylesheet" href="css/registered/progress.css">
     <link rel="stylesheet" href="css/registered/recommendations.css">
 
-    <script type="module" src="js/checkUserStatus.js"></script>
-    <script defer src="js/carrousel.js"></script>
-    <script type="module" src="js/logout.js"></script>
-    <script type="module" src="js/loadCategories.js"></script>
-    <script type="module" src="js/loadStudentCourses.js"></script>
-    <script type="module" src="js/loadRecommendations.js"></script>
-    <script type="module" src="js/loadStudentProgress.js"></script>
-
+    
 </head>
 <body>
     <main>
@@ -65,46 +58,55 @@
                 </div>
             </div>
         </header>
-
+        
         <section class="categories">
-            <h2 class="categories-ti    tle">Nuestras categorías</h2>
+            <h2 class="categories-title">Nuestras categorías</h2>
             <div class="carousel-container">
                 <div class="categories-grid" id="categories-grid">
-                    <!-- Categorías se cargarán aquí dinámicamente -->
+                    <!--para categorias-->
                 </div>
             </div>
             <div class="view-more">
                 <a href="categories-registered.html" class="view-more-item">Ver todas las categorías</a>
             </div>
         </section>
-
+        
         <section class="my-courses">
             <h2>Mis Cursos</h2>
             <div class="courses-grid">
-                <!-- Cursos dinámicos se cargarán aquí -->
+                <!--para cursos-->
             </div>
         </section>
-
+        
         <section class="progress">
             <h2>Progreso</h2>
             <div class="progress-grid">
                 <!-- Progreso dinámico se cargará aquí -->
             </div>
         </section>
-
+        
         <section class="recommendations">
             <h2>Recomendaciones</h2>
             <div class="recommended-courses">
                 <!-- Cursos recomendados se cargarán aquí -->
             </div>
         </section>
-
-        <footer class="footer">
-            <div class="footer-content">
-                <h2>Encuéntranos en nuestras redes</h2>
-                <p>¡Una mejor vida estudiando lo que más te gusta!</p>
-            </div>
-        </footer>
+        
     </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <h2>Encuéntranos en nuestras redes</h2>
+            <p>¡Una mejor vida estudiando lo que más te gusta!</p>
+        </div>
+    </footer>
+    
+    <script type="module" src="js/checkUserStatus.js"></script>
+    <script defer src="js/carrousel.js"></script>
+    <script type="module" src="js/logout.js"></script>
+    <script type="module" src="js/loadCategories.js"></script>
+    <script type="module" src="js/loadStudentCourses.js"></script>
+    <script type="module" src="js/loadRecommendations.js"></script>
+    <script type="module" src="js/loadStudentProgress.js"></script>
+
 </body>
 </html>

@@ -8,12 +8,11 @@
     <link rel="stylesheet" href="css/global-styles/normalize.css">
     <link rel="stylesheet" href="css/global-styles/fonts.css">
     <link rel="stylesheet" href="css/global-styles/style.css">
-    <link rel="stylesheet" href="css/login/login.css">
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-    <script defer src="js/login.js"></script>
+    
+    <link rel="stylesheet" href="css/login/login.css">
+    
 </head>
 <body>
     <main>
@@ -22,7 +21,6 @@
                 <div class="header-inner">
                     <a href="index.html" class="logo-header">
                         <img src="image/logo.png" alt="Logo-header" class="logo-image">
-                        CourseMania
                     </a>
                     <input type="checkbox" id="menu-toggle">
                     <label for="menu-toggle" class="menu-toggle">
@@ -65,19 +63,23 @@
                     <button type="submit" class="login-button">Iniciar Sesión</button>
                 </div>
                 <p id="error-message"></p>
-                <p id="success-message"></p> <!-- Nuevo -->
+                <p id="success-message"></p>
             </form>
             <div class="register">
                 <p>¿No tienes una cuenta? <a href="register.html">Regístrate aquí</a></p>
             </div>
         </section>
-        <footer class="footer">
-            <div class="footer-content">
-                <h2>Tu educación ya está aquí, no esperes más y únete</h2>
-                <p>¡Una mejor vida estudiando lo que más te gusta!</p>
-                <a href="#" class="join-button">ÚNETE A NUESTRA COMUNIDAD</a>
-            </div>
-        </footer>  
     </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <h2>Tu educación ya está aquí, no esperes más y únete</h2>
+            <p>¡Una mejor vida estudiando lo que más te gusta!</p>
+            <a href="#" class="join-button">ÚNETE A NUESTRA COMUNIDAD</a>
+        </div>
+    </footer>  
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script defer src="js/login.js"></script>
+
 </body>
 </html>

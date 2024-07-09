@@ -1,34 +1,36 @@
+/* Mobile-first styles */
 .course-detail {
-    padding: 40px 20px;
+    padding: 20px;
     background-color: #f4f4f9;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    margin: 40px 0;
+    margin: 20px 0;
 }
 
 .course-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     margin-bottom: 20px;
 }
 
 .course-header h2 {
-    font-size: 32px;
+    font-size: 24px;
     color: #1A237E;
 }
 
 .course-actions {
     display: flex;
     gap: 10px;
+    margin-top: 10px;
 }
 
 .edit-button, .delete-button, .add-button {
-    padding: 10px 20px;
+    padding: 10px 15px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     transition: background-color 0.3s ease;
 }
 
@@ -62,13 +64,12 @@
 
 .course-content {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 20px;
 }
 
 .course-image-container {
-    flex: 1 1 300px;
-    max-width: 300px;
+    max-width: 100%;
 }
 
 .course-image-container img {
@@ -78,19 +79,15 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.course-info {
-    flex: 2 1 500px;
-}
-
 .course-info h3 {
-    font-size: 24px;
+    font-size: 20px;
     color: #1A237E;
     margin-bottom: 10px;
 }
 
 .course-description, .course-category, .course-instructor, .course-lessons {
     background-color: #fff;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
@@ -114,7 +111,7 @@
 }
 
 .course-lessons ul li .lesson-title {
-    font-size: 18px;
+    font-size: 16px;
     color: #333;
 }
 
@@ -128,3 +125,140 @@
     padding: 5px 10px;
     font-size: 14px;
 }
+
+@media (min-width: 768px) {
+    .course-detail {
+        padding: 40px;
+        margin: 40px 0;
+    }
+
+    .course-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .course-header h2 {
+        font-size: 28px;
+    }
+
+    .course-actions {
+        margin-top: 0;
+    }
+
+    .edit-button, .delete-button, .add-button {
+        font-size: 16px;
+    }
+
+    .course-info h3 {
+        font-size: 24px;
+    }
+
+    .course-content {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .course-image-container {
+        flex: 1 1 300px;
+    }
+
+    .course-info {
+        flex: 2 1 500px;
+    }
+}
+
+/* Styles for desktops */
+@media (min-width: 992px) {
+    .course-detail {
+        padding: 40px;
+        margin: 40px auto;
+        max-width: 1200px;
+    }
+
+    .course-header h2 {
+        font-size: 32px;
+    }
+
+    .edit-button, .delete-button, .add-button {
+        font-size: 18px;
+    }
+
+    .course-info h3 {
+        font-size: 28px;
+    }
+
+    .course-description, .course-category, .course-instructor, .course-lessons {
+        padding: 20px;
+    }
+}
+
+/* EditorJS styles */
+.ce-toolbar__plus {
+    background-color: #27ae60; 
+    color: #ffffff;
+    border-radius: 50%; 
+}
+
+.ct__content div {
+    font-size: 15px;
+    color: black;
+}
+
+.ct.ct--bottom::before,
+.ct.ct--bottom::after,
+.ct.ct--top.ct--shown::before,
+.ct.ct--top.ct--shown::after {
+    background-color: white;
+}
+
+.ce-toolbar__plus-shortcut {
+    display: none;
+}
+
+/*lo mismo aqui
+.ct.ct--top.ct--shown{
+    z-index: 999;
+    opacity: 1 !important;
+    user-select: none;
+    pointer-events: auto !important; 
+    transition: opacity 50ms ease-in, transform 70ms cubic-bezier(.215,.61,.355,1);
+    will-change: opacity, top, left;
+    box-shadow: 0 8px 12px 0 rgba(29, 32, 43, .17), 0 4px 5px -3px rgba(5, 6, 12, .49);
+    border-radius: 9px;
+    background-color: #1A237E !important;
+    color: #ffffff !important; 
+    padding: 10px !important; 
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 14px !important; 
+}
+*/
+
+/* no se que hace pero es para verificar el componente del editor
+.ct, .ct.ct--bottom, .ct.ct--shown {
+    z-index: 999;
+    opacity: 1 !important;
+    user-select: none;
+    pointer-events: auto !important; 
+    transition: opacity 50ms ease-in, transform 70ms cubic-bezier(.215,.61,.355,1);
+    will-change: opacity, top, left;
+    box-shadow: 0 8px 12px 0 rgba(29, 32, 43, .17), 0 4px 5px -3px rgba(5, 6, 12, .49);
+    border-radius: 9px;
+    background-color: #1A237E !important;
+    color: #ffffff !important; 
+    padding: 10px !important; 
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 14px !important; 
+}
+*/
+/*
+div.ct.ct--bottom.ct--shown {
+    background-color: #1A237E !important;
+    color: #ffffff !important; 
+    padding: 10px !important; 
+    font-family: 'Poppins', sans-serif !important; 
+    font-size: 14px !important; 
+    border-radius: 9px !important;
+    box-shadow: 0 8px 12px 0 rgba(29, 32, 43, .17), 0 4px 5px -3px rgba(5, 6, 12, .49) !important;
+}
+*/

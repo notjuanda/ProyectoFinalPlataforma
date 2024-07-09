@@ -1,81 +1,46 @@
 .encourage-section {
-    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 60px 30px;
     background-color: #f4f4f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    margin: 40px 0;
+    border-radius: 20px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     text-align: center;
 }
 
-.encourage-section h2 {
-    font-size: 32px;
-    color: #1A237E;
-    margin-bottom: 30px;
-}
-
-.encourage-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.encourage-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    flex: 1;
-    text-align: left;
-}
-
-.encourage-card h3 {
-    font-size: 24px;
-    color: #1A237E;
-    margin-bottom: 10px;
+.encourage-section h2{
+    padding-bottom: 40px;
 }
 
 .button_action {
     display: flex;
     justify-content: center;
-    padding: 20px;
+    margin-top: 20px;
+    padding-bottom: 20px;
 }
 
 .button {
     background-color: #FE5B2C;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 30px;
     font-size: 18px;
-    transition: background-color 0.3s ease;
+    color: white;
+    text-decoration: none;
 }
 
 .button:hover {
-    background-color: #D84315;
+    background-color: #1A237E;
 }
 
-@media(min-width: 992px) {
+@media (min-width: 992px) {
+    .encourage-section {
+        padding: 80px;
+    }
+
     .encourage-container {
-        flex-direction: row;
-        text-align: left;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 50px;
     }
-
-    .button_action {
-        justify-content: center;
-    }
-}
-
-.join-button {
-    background-color: #FE5B2C;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 18px;
-    transition: background-color 0.3s ease;
-}
-
-.join-button:hover {
-    background-color: #D84315;
 }

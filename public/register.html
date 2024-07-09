@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
     <link rel="stylesheet" href="css/register/register.css">
-
-    <script defer src="js/loadCategories.js" type="module"></script>
-
 </head>
 <body>
     <main>
@@ -22,7 +19,6 @@
                 <div class="header-inner">
                     <a href="index.html" class="logo">
                         <img src="image/logo.png" alt="Logo" class="logo-image">
-                        CourseMania
                     </a>
                     <input type="checkbox" id="menu-toggle">
                     <label for="menu-toggle" class="menu-toggle">
@@ -56,40 +52,47 @@
             <form id="registerForm" method="POST" class="register-form">
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" id="nombre" name="nombre" required>
+                    <input type="text" id="nombre" name="nombre">
+                    <span class="error-message" id="error-nombre"></span>
                 </div>
                 <div class="form-group">
                     <label for="apellido">Apellido:</label>
-                    <input type="text" id="apellido" name="apellido" required>
+                    <input type="text" id="apellido" name="apellido">
+                    <span class="error-message" id="error-apellido"></span>
                 </div>
                 <div class="form-group">
                     <label for="correo">Correo Electrónico:</label>
                     <input type="email" id="correo" name="correo" required>
+                    <span class="error-message" id="error-correo"></span>
                 </div>
                 <div class="form-group">
                     <label for="contrasena">Contraseña:</label>
-                    <input type="password" id="contrasena" name="contrasena" required>
+                    <input type="password" id="contrasena" name="contrasena">
+                    <span class="error-message" id="error-contrasena"></span>
                 </div>
                 <input type="hidden" id="tipoUsuario" name="tipoUsuario" value="Estudiante">
                 <div class="form-group">
                     <button type="submit" class="register-button">Registrarse</button>
                 </div>
                 <p id="error-message"></p>
-                <p id="success-message"></p> <!-- Nuevo -->
+                <p id="success-message"></p>
             </form>
             <div class="login">
                 <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
             </div>
         </section>
-
-        <footer class="footer">
-            <div class="footer-content">
-                <h2>Únete a nuestra comunidad</h2>
-                <p>Forma parte de una comunidad que valora el aprendizaje y la educación.</p>
-                <a href="register.html" class="join-button">ÚNETE AHORA</a>
-            </div>
-        </footer>
+        
     </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <h2>Únete a nuestra comunidad</h2>
+            <p>Forma parte de una comunidad que valora el aprendizaje y la educación.</p>
+            <a href="register.html" class="join-button">ÚNETE AHORA</a>
+        </div>
+    </footer>
+    
     <script src="js/register.js"></script>
+    <script defer src="js/loadCategories.js" type="module"></script>
+
 </body>
 </html>

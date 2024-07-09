@@ -1,0 +1,203 @@
+/* Contenedor Principal */
+.lesson-detail {
+    padding: 40px;
+    background-color: #f4f4f9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Cabecera de la Lección */
+.lesson-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.lesson-header h2 {
+    font-size: 36px;
+    color: #1A237E;
+    font-weight: 700;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Acciones en la Cabecera */
+.lesson-actions {
+    display: flex;
+    gap: 20px;
+}
+
+.edit-button, .save-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.edit-button {
+    background-color: #1A237E;
+    color: #fff;
+}
+
+.edit-button:hover {
+    background-color: #FE5B2C;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.save-button {
+    background-color: #388E3C;
+    color: #fff;
+}
+
+.save-button:hover {
+    background-color: #2E7D32;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Contenido de la Lección */
+.lesson-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Información de la Lección */
+.lesson-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.lesson-info h3 {
+    font-size: 26px;
+    color: #1A237E;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.lesson-info p, .lesson-info select, .lesson-info textarea, .lesson-info input[type="text"], .lesson-info input[type="number"] {
+    font-size: 18px;
+    color: #666;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.lesson-info p:hover, .lesson-info select:hover, .lesson-info textarea:hover, .lesson-info input[type="text"]:hover, .lesson-info input[type="number"]:hover {
+    border-color: #1A237E;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-input {
+    display: none;
+}
+
+/* Contenedor del Editor */
+#editor-container {
+    display: none;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+#editor-container.show {
+    display: block;
+}
+
+/* Contenedor del Video */
+#video-container {
+    display: none;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+#video-container.show {
+    display: block;
+}
+
+/* Información del Video */
+.lesson-video h3 {
+    font-size: 26px;
+    color: #1A237E;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+.lesson-video p, .lesson-video input[type="text"] {
+    font-size: 18px;
+    color: #666;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.lesson-video p:hover, .lesson-video input[type="text"]:hover {
+    border-color: #1A237E;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo Responsivo */
+@media (max-width: 767px) {
+    .lesson-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 768px) {
+    .lesson-header h2 {
+        font-size: 40px;
+    }
+
+    .lesson-info h3, .lesson-video h3 {
+        font-size: 30px;
+    }
+
+    .lesson-actions button {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .lesson-header h2 {
+        font-size: 44px;
+    }
+
+    .lesson-info h3, .lesson-video h3 {
+        font-size: 34px;
+    }
+
+    .lesson-actions button {
+        font-size: 22px;
+    }
+}

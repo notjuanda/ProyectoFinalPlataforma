@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         if (lesson) {
             updateLessonInfo(lesson);
             const nextLessons = await fetchNextLessons(lesson.curso_id, lesson.orden);
-            updateNextLessonsList(nextLessons);
+            updateNextLessonsList(nextLessons, lesson.orden);
             await markLessonAsViewed(userId, lessonId);
         } else {
             displayLessonNotFoundMessage();
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     async function fetchLessonDetails(lessonId) {
-        const response = await fetch(`http://localhost:3001/api/lecciones/${lessonId}`);
+        const response = await fetch(`/api/lecciones/${lessonId}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         } else if (lesson.tipocontenido === 'texto') {
             lessonContentElement.style.display = 'none';
             lessonTextContentElement.style.display = 'block';
-            lessonTextContentElement.textContent = lesson.contenido;
+            renderEditorContent(lesson.contenido);
         }
     }
 
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     async function fetchNextLessons(courseId, currentLessonOrder) {
-        const response = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
+        const response = await fetch(`/api/cursos/${courseId}/lecciones`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -96,25 +96,27 @@ document.addEventListener('DOMContentLoaded', async function() {
         return sortedLessons.slice(currentIndex + 1);
     }
 
-    function updateNextLessonsList(nextLessons) {
+    function updateNextLessonsList(nextLessons, currentLessonOrder) {
         if (nextLessons.length > 0) {
             nextLessons.forEach(lesson => {
-                const lessonElement = document.createElement('div');
-                lessonElement.classList.add('next-lesson');
+                if (lesson.orden !== currentLessonOrder) { // Excluir la lección actual
+                    const lessonElement = document.createElement('div');
+                    lessonElement.classList.add('next-lesson');
 
-                const lessonLink = document.createElement('a');
-                lessonLink.href = `lesson-registered.html?lesson=${lesson.id}`;
+                    const lessonLink = document.createElement('a');
+                    lessonLink.href = `lesson-registered.html?lesson=${lesson.id}`;
 
-                const lessonTitle = document.createElement('h3');
-                lessonTitle.textContent = lesson.nombre;
+                    const lessonTitle = document.createElement('h3');
+                    lessonTitle.textContent = lesson.nombre;
 
-                const lessonDescription = document.createElement('p');
-                lessonDescription.textContent = lesson.descripcion;
+                    const lessonDescription = document.createElement('p');
+                    lessonDescription.textContent = lesson.descripcion;
 
-                lessonLink.appendChild(lessonTitle);
-                lessonLink.appendChild(lessonDescription);
-                lessonElement.appendChild(lessonLink);
-                if (nextLessonsListElement) nextLessonsListElement.appendChild(lessonElement);
+                    lessonLink.appendChild(lessonTitle);
+                    lessonLink.appendChild(lessonDescription);
+                    lessonElement.appendChild(lessonLink);
+                    if (nextLessonsListElement) nextLessonsListElement.appendChild(lessonElement);
+                }
             });
         } else {
             if (nextLessonsListElement) {
@@ -132,7 +134,7 @@ document.addEventListener('DOMContentLoaded', async function() {
                 throw new Error('Progreso no encontrado');
             }
 
-            const response = await fetch(`http://localhost:3001/api/progresos/${progreso.id}`, {
+            const response = await fetch(`/api/progresos/${progreso.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -149,10 +151,22 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     async function getProgresoByUserAndLesson(userId, lessonId) {
-        const response = await fetch(`http://localhost:3001/api/progresos/user/${userId}/lesson/${lessonId}`);
+        const response = await fetch(`/api/progresos/user/${userId}/lesson/${lessonId}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         return response.json();
+    }
+
+    function renderEditorContent(data) {
+        try {
+            const parsedData = JSON.parse(data);
+            const edjsParser = edjsHTML();
+            const html = edjsParser.parse(parsedData);
+            lessonTextContentElement.innerHTML = html.join("");
+        } catch (error) {
+            console.error('Error parsing editor content:', error);
+            lessonTextContentElement.innerHTML = data; // fallback to plain HTML
+        }
     }
 });

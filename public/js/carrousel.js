@@ -7,19 +7,19 @@ function initCarousel() {
         return;
     }
 
-    // Duplicar categorías para asegurar la envoltura continua
+    // Duplicar categorías para continua
     categories.forEach(category => {
         const clone = category.cloneNode(true);
         categoriesGrid.appendChild(clone);
     });
 
     let scrollAmount = 0;
-    const speed = 1; // Ajusta la velocidad según sea necesario
+    const speed = 1; // velocidad
     let isScrolling = true;
 
     function startScrolling() {
         const firstCategory = categoriesGrid.firstElementChild;
-        const firstCategoryWidth = firstCategory.offsetWidth + 30; // 30 es el gap entre elementos
+        const firstCategoryWidth = firstCategory.offsetWidth + 30; //gap entra una categoria y otra
 
         if (!firstCategory) {
             console.error('First category not found');
@@ -51,7 +51,7 @@ function initCarousel() {
     startScrolling();
 }
 
-// Llamar a initCarousel cuando el DOM esté completamente cargado
+// Llamar a initCarousel cuando el DOM cargue todo
 document.addEventListener('DOMContentLoaded', function() {
     initCarousel();
 });

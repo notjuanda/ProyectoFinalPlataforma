@@ -9,13 +9,11 @@
     <link rel="stylesheet" href="css/global-styles/fonts.css">
     <link rel="stylesheet" href="css/global-styles/style.css">
     <link rel="stylesheet" href="css/global-styles/join-us.css">
-    
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
+    
     <link rel="stylesheet" href="css/courses/courses.css">
 
-    <script type="module" src="js/checkUserStatus.js"></script>
-    <script type="module" src="js/loadCourses.js"></script>
 </head>
 <body>
     <main>
@@ -24,7 +22,6 @@
                 <div class="header-inner">
                     <a href="index.html" class="logo">
                         <img src="image/logo.png" alt="Logo" class="logo-image">
-                        CourseMania
                     </a>
                     <input type="checkbox" id="menu-toggle">
                     <label for="menu-toggle" class="menu-toggle">
@@ -52,12 +49,12 @@
         <section class="courses">
             <h2>Nuestros Recomendados</h2>
             <div class="recommended" id="recommended">
-                <!-- Cursos recomendados se cargarán aquí dinámicamente -->
+                <!--para recomendados-->
             </div>
-
+            
             <h2>Todos los Cursos</h2>
             <div class="all-classes" id="all-classes">
-                <!-- Todos los cursos se cargarán aquí dinámicamente -->
+                <!--para cursos-->
             </div>
         </section>
 
@@ -66,13 +63,17 @@
             <p>En CourseMania, creemos en el poder de la educación continua. Únete a nuestra comunidad y accede a recursos exclusivos, tutoriales avanzados y el apoyo de expertos en el campo del desarrollo web. ¡No pierdas la oportunidad de mejorar tus habilidades y llevar tu carrera al siguiente nivel con nosotros!</p>
             <a href="register.html" class="join-button">Regístrate Ahora</a>
         </section>        
-        <footer class="footer">
-            <div class="footer-content">
-                <h2>Tu educación ya está aquí, no esperes más y únete</h2>
-                <p>¡Una mejor vida estudiando lo que más te gusta!</p>
-                <a href="#" class="join-button">ÚNETE A NUESTRA COMUNIDAD</a>
-            </div>
-        </footer>   
     </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <h2>Tu educación ya está aquí, no esperes más y únete</h2>
+            <p>¡Una mejor vida estudiando lo que más te gusta!</p>
+            <a href="#" class="join-button">ÚNETE A NUESTRA COMUNIDAD</a>
+        </div>
+    </footer>   
+
+    <script type="module" src="js/checkUserStatus.js"></script>
+    <script type="module" src="js/loadCourses.js"></script>
+
 </body>
 </html>

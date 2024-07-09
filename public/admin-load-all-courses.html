@@ -10,12 +10,10 @@
     <link rel="stylesheet" href="css/global-styles/style.css">
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
+
     <link rel="stylesheet" href="css/admin-styles/load-courses/courses.css">
     <link rel="stylesheet" href="css/admin-styles/load-courses/search.css">
 
-    <script type="module" src="js/checkUserStatus.js"></script>
-    <script type="module" src="js/logout.js"></script>
-    <script type="module" src="js/admin-scripts/loadAllCourses.js"></script>
 </head>
 <body>
     <main>
@@ -32,22 +30,13 @@
                     <nav class="navbar">
                         <ul class="navbar-list">
                             <li class="navbar-item">
+                                <a href="admin-menu.html" class="navbar-link">INICIO</a>
+                            </li>
+                            <li class="navbar-item">
                                 <a href="admin-load-all-courses.html" class="navbar-link">GESTIONAR CURSOS</a>
                             </li>
-                            <li class="navbar-item">
-                                <a href="manage-categories.html" class="navbar-link">GESTIONAR CATEGORÍAS</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="manage-lessons.html" class="navbar-link">GESTIONAR LECCIONES</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="manage-enrollments.html" class="navbar-link">INSCRIPCIONES</a>
-                            </li>
-                            <li class="navbar-item">
-                                <a href="manage-progressions.html" class="navbar-link">PROGRESIONES</a>
-                            </li>
                             <li class="navbar-item profile-item">
-                                <a href="admin-profile.html" class="navbar-link profile-link">
+                                <a href="admin-my-profile.html" class="navbar-link profile-link">
                                     <img src="image/icons/person-white.png" class="profile-icon" alt="Profile Icon">
                                     <span class="profile-text">PERFIL</span>
                                 </a>
@@ -60,7 +49,7 @@
                 </div>
             </div>
         </header>
-
+        
         <section class="courses">
             <h2>Todos los Cursos</h2>
             <div class="container-buttons">
@@ -73,16 +62,20 @@
                 </div>
             </div>
             <div class="courses-grid" id="courses-grid">
-                <!-- Los cursos se cargarán aquí dinámicamente -->
+                <!--para cursos-->
             </div>
-        </section>
-
-        <footer class="footer">
-            <div class="footer-content">
-                <h2>No olvides guardar tus cambios</h2>
-            </div>
-        </footer>
+        </section>    
     </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <h2>No olvides guardar tus cambios</h2>
+        </div>
+    </footer>
+    
+    <script type="module" src="js/checkUserStatus.js"></script>
+    <script type="module" src="js/logout.js"></script>
+    <script type="module" src="js/admin-scripts/loadAllCourses.js"></script>
+    
 </body>
 </html>
 

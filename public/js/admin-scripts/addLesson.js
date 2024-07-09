@@ -1,43 +1,84 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const addLessonButton = document.querySelector('.add-button');
-    const addLessonFormContainer = document.createElement('div');
-    addLessonFormContainer.classList.add('add-lesson-form');
-    addLessonFormContainer.style.display = 'none';
+    const addLessonButton = document.getElementById('add-lesson-button');
+    const addLessonFormContainer = document.getElementById('add-lesson-form-container');
 
-    addLessonFormContainer.innerHTML = `
-        <h3>Añadir Lección</h3>
-        <form id="add-lesson-form">
-            <label for="lesson-name">Nombre de la Lección</label>
-            <input type="text" id="lesson-name" name="lesson-name" required>
-
-            <label for="lesson-description">Descripción</label>
-            <textarea id="lesson-description" name="lesson-description" required></textarea>
-
-            <label for="lesson-type">Tipo de Contenido</label>
-            <select id="lesson-type" name="lesson-type" required>
-                <option value="video">Video</option>
-                <option value="texto">Texto</option>
-            </select>
-
-            <label for="lesson-content">Contenido</label>
-            <textarea id="lesson-content" name="lesson-content"></textarea>
-
-            <label for="lesson-order">Orden</label>
-            <input type="number" id="lesson-order" name="lesson-order" required>
-
-            <button type="submit">Guardar Lección</button>
-            <button type="button" id="cancel-add-lesson">Cancelar</button>
-        </form>
-    `;
-
-    document.querySelector('.course-lessons').appendChild(addLessonFormContainer);
+    let editorInstance;
+    let nextOrder = 1;  // Variable para almacenar el siguiente valor de orden
 
     addLessonButton.addEventListener('click', () => {
         addLessonFormContainer.style.display = 'block';
         addLessonButton.style.display = 'none';
+
+        // Asignar el valor por defecto al campo de orden
+        document.getElementById('lesson-order').value = nextOrder;
+
+        const lessonTypeSelect = document.getElementById('lesson-type');
+        const editorContainer = document.getElementById('editor-container');
+        const videoUrlContainer = document.getElementById('video-url-container');
+
+        lessonTypeSelect.addEventListener('change', (event) => {
+            if (event.target.value === 'texto') {
+                editorContainer.style.display = 'block';
+                videoUrlContainer.style.display = 'none';
+
+                // Inicializar EditorJS cuando se selecciona "texto"
+                if (!editorInstance) {
+                    editorInstance = new EditorJS({
+                        holder: 'editorjs',
+                        tools: {
+                            header: Header,
+                            list: List,
+                            quote: Quote,
+                            marker: Marker,
+                            code: CodeTool,
+                            delimiter: Delimiter,
+                            inlineCode: InlineCode,
+                            linkTool: LinkTool,
+                            embed: Embed
+                        }
+                    });
+                }
+            } else if (event.target.value === 'video') {
+                editorContainer.style.display = 'none';
+                videoUrlContainer.style.display = 'block';
+            } else {
+                editorContainer.style.display = 'none';
+                videoUrlContainer.style.display = 'none';
+            }
+        });
+
+        // Verificar el valor inicial al abrir el formulario
+        if (lessonTypeSelect.value === 'texto') {
+            editorContainer.style.display = 'block';
+            videoUrlContainer.style.display = 'none';
+
+            if (!editorInstance) {
+                editorInstance = new EditorJS({
+                    holder: 'editorjs',
+                    tools: {
+                        header: Header,
+                        list: List,
+                        quote: Quote,
+                        marker: Marker,
+                        code: CodeTool,
+                        delimiter: Delimiter,
+                        inlineCode: InlineCode,
+                        linkTool: LinkTool,
+                        embed: Embed
+                    }
+                });
+            }
+        } else if (lessonTypeSelect.value === 'video') {
+            editorContainer.style.display = 'none';
+            videoUrlContainer.style.display = 'block';
+        } else {
+            editorContainer.style.display = 'none';
+            videoUrlContainer.style.display = 'none';
+        }
     });
 
     document.getElementById('cancel-add-lesson').addEventListener('click', () => {
+        window.location.reload();
         addLessonFormContainer.style.display = 'none';
         addLessonButton.style.display = 'block';
     });
@@ -49,8 +90,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const lessonName = document.getElementById('lesson-name').value;
         const lessonDescription = document.getElementById('lesson-description').value;
         const lessonType = document.getElementById('lesson-type').value;
-        const lessonContent = document.getElementById('lesson-content').value;
         const lessonOrder = document.getElementById('lesson-order').value;
+
+        let lessonContent = '';
+
+        if (lessonType === 'texto') {
+            lessonContent = await editorInstance.save().then((outputData) => {
+                return JSON.stringify(outputData); // Guardar como JSON
+            }).catch((error) => {
+                console.log('Saving failed: ', error);
+                return '';
+            });
+        } else if (lessonType === 'video') {
+            lessonContent = document.getElementById('video-url').value;
+        }
 
         const lessonData = {
             nombre: lessonName,
@@ -62,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            const response = await fetch('http://localhost:3001/api/lecciones', {
+            const response = await fetch('/api/lecciones', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -86,55 +139,4 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error:', error);
         }
     });
-
-    // Obtener las lecciones y ordenarlas por el campo de orden
-    async function fetchAndDisplayLessons() {
-        const courseId = new URLSearchParams(window.location.search).get('id');
-        if (!courseId) {
-            console.error('ID del curso no encontrado en la URL');
-            return;
-        }
-
-        try {
-            const response = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
-            if (!response.ok) {
-                throw new Error('Error al obtener los detalles del curso.');
-            }
-
-            const course = await response.json();
-            const lessons = course.lecciones;
-
-            // Ordenar lecciones por el campo de orden
-            lessons.sort((a, b) => a.orden - b.orden);
-
-            const courseLessonsList = document.getElementById('course-lessons-list');
-            courseLessonsList.innerHTML = '';
-            lessons.forEach(lesson => {
-                const lessonItem = document.createElement('li');
-                const lessonTitle = document.createElement('span');
-                lessonTitle.classList.add('lesson-title');
-                lessonTitle.textContent = lesson.nombre;
-
-                const lessonActions = document.createElement('div');
-                lessonActions.classList.add('lesson-actions');
-                const editButton = document.createElement('button');
-                editButton.classList.add('edit-button');
-                editButton.textContent = 'Editar';
-
-                const deleteButton = document.createElement('button');
-                deleteButton.classList.add('delete-button');
-                deleteButton.textContent = 'Eliminar';
-
-                lessonActions.appendChild(editButton);
-                lessonActions.appendChild(deleteButton);
-                lessonItem.appendChild(lessonTitle);
-                lessonItem.appendChild(lessonActions);
-                courseLessonsList.appendChild(lessonItem);
-            });
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    }
-
-    fetchAndDisplayLessons();
 });

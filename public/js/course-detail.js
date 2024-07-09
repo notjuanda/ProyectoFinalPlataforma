@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     async function fetchCourseDetails(courseId) {
-        const response = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
+        const response = await fetch(`/api/cursos/${courseId}/lecciones`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     async function checkUserEnrollment(userId, courseId) {
-        const response = await fetch(`http://localhost:3001/api/inscripciones/check-enrollment/${userId}/${courseId}`);
+        const response = await fetch(`/api/inscripciones/check-enrollment/${userId}/${courseId}`);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             return;
         }
 
-        const response = await fetch('http://localhost:3001/api/inscripciones', {
+        const response = await fetch('/api/inscripciones', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
 
         // Crear progresos para todas las lecciones del curso
-        const leccionesResponse = await fetch(`http://localhost:3001/api/cursos/${courseId}/lecciones`);
+        const leccionesResponse = await fetch(`/api/cursos/${courseId}/lecciones`);
         if (!leccionesResponse.ok) {
             throw new Error('Network response was not ok');
         }
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         const lecciones = leccionesData.lecciones;
 
         for (const leccion of lecciones) {
-            await fetch('http://localhost:3001/api/progresos', {
+            await fetch('/api/progresos', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

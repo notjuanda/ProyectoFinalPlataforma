@@ -1,18 +1,20 @@
-.container-buttons{
+/* Mobile First */
+.container-buttons {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
 }
 
 .search-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
-
 }
 
 #search-input {
-    width: 300px;
+    width: 90%; /* Ancho flexible para dispositivos móviles */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -20,8 +22,9 @@
 }
 
 #search-button, #create-button {
-    padding: 10px 20px;
-    margin-left: 10px;
+    width: 90%;
+    padding: 10px;
+    margin-top: 10px;
     background-color: #007BFF;
     border: none;
     border-radius: 4px;
@@ -30,7 +33,34 @@
     cursor: pointer;
 }
 
-
 #search-button:hover, #create-button:hover {
     background-color: #0056b3;
+}
+
+/* Tablets and up */
+@media (min-width: 768px) {
+    .container-buttons {
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #search-button, #create-button {
+        width: auto;
+        margin-top: 0;
+    }
+}
+
+/* Desktops and up */
+@media (min-width: 992px) {
+    .search-container {
+        justify-content: center;
+    }
+
+    #search-input {
+        width: 300px;
+    }
+
+    #search-button, #create-button {
+        margin-left: 10px;
+    }
 }

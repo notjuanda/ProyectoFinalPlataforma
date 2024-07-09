@@ -2,7 +2,7 @@ import Cookies from 'https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie
 
 document.getElementById('logoutButton').addEventListener('click', async function() {
     try {
-        const response = await fetch('http://localhost:3001/api/usuarios/logout', {
+        const response = await fetch('/api/usuarios/logout', {
             method: 'POST',
             credentials: 'include'
         });

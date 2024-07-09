@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 
     try {
-        const response = await fetch(`http://localhost:3001/api/usuarios/${userId}/cursos`);
+        const response = await fetch(`/api/usuarios/${userId}/cursos`);
         if (!response.ok) {
             throw new Error('Error al obtener los cursos del usuario');
         }
