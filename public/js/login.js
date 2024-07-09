@@ -30,14 +30,13 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             successMessage.textContent = 'Inicio de sesión exitoso. Redirigiendo...';
             successMessage.style.display = 'block';
 
-            // Redirigir según el tipo de usuario después de 4 segundos
             setTimeout(() => {
                 if (result.usuario.tipoUsuario === 'Instructor') {
                     window.location.href = 'admin-menu.html';
                 } else {
                     window.location.href = 'registered.html';
                 }
-            }, 4000);
+            }, 1000);
         } else {
             const errorData = await response.json();
             errorMessage.textContent = errorData.message || 'Error al iniciar sesión.';

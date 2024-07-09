@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="css/global-styles/join-us.css">
     <link rel="stylesheet" href="css/global-styles/header.css">
     <link rel="stylesheet" href="css/global-styles/footer.css">
-    
     <link rel="stylesheet" href="css/courses/courses.css">
-    
 </head>
 <body>
     <main>
@@ -56,9 +54,9 @@
             </div>
         </header>
         <section class="courses">
-            <h2>Nuestros Recomendados</h2>
-            <div class="recommended" id="recommended">
-                <!--para recomendados-->
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar cursos">
+                <button id="search-button">Buscar</button>
             </div>
 
             <h2>Todos los Cursos</h2>
@@ -66,7 +64,6 @@
                 <!--para cursos-->
             </div>
         </section>
-
     </main>
     <footer class="footer">
         <div class="footer-content">
@@ -78,6 +75,5 @@
     <script type="module" src="js/checkUserStatus.js"></script>
     <script type="module" src="js/loadCourses.js"></script>
     <script type="module" src="js/logout.js"></script>
-
 </body>
 </html>

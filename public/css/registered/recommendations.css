@@ -30,7 +30,7 @@
     text-align: left;
     transition: transform 0.2s, box-shadow 0.2s;
     width: 260px; 
-    height: 350px; 
+    height: 270px; 
 }
 
 .course:hover {
@@ -69,6 +69,11 @@
 }
 
 @media (min-width: 768px) {
+    .course {
+        width: 230px; 
+        height: 350px; 
+    }
+
     .recommended-courses {
         justify-items: start; 
         grid-template-columns: repeat(3, 1fr);
@@ -76,6 +81,10 @@
 }
 
 @media (min-width: 992px) {
+    .course {
+        width: 260px; 
+        height: 350px; 
+    }
     .recommended-courses {
         justify-items: start; 
         grid-template-columns: repeat(4, 1fr);

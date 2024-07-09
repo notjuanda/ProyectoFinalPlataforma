@@ -2,13 +2,23 @@
     padding: 20px;
     margin: 0 auto;
     max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
-.courses a {
-    text-decoration: none;
+.courses h2 {
+    font-size: 32px;
+    color: #FE5B2C;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.recommended, .all-classes {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    display: grid;
+    gap: 20px;
+    justify-items: center;
+    padding-left: 20px; 
+    padding-right: 20px;
 }
 
 .course {
@@ -22,20 +32,13 @@
     align-items: flex-start;
     text-align: left;
     transition: transform 0.2s, box-shadow 0.2s;
-    width: 260px;
-    height: 260px;
+    width: 260px; 
+    height: 260px; 
 }
 
 .course:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.courses h2 {
-    font-size: 32px;
-    color: #FE5B2C;
-    margin-bottom: 20px;
-    text-align: center;
 }
 
 .course h3 {
@@ -54,23 +57,34 @@
     color: #FE5B2C;
 }
 
+.course-link {
+    margin-top: auto;
+    padding: 10px 20px;
+    background-color: #1A237E;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.course-link:hover {
+    background-color: #FE5B2C;
+}
+
+.courses a {
+    text-decoration: none;
+}
+
 @media (min-width: 768px) {
-    .courses {
-        display: block;
-        justify-content: start;
-    }
-    .all-classes {
+    .recommended, .all-classes {
+        justify-items: start;
         grid-template-columns: repeat(3, 1fr); 
     }
 }
 
 @media (min-width: 992px) {
-    .courses {
-        display: block;
-        justify-content: start;
-    }
-    .all-classes {
-        grid-template-columns: repeat(4, 1fr);
+    .recommended, .all-classes {
+        grid-template-columns: repeat(4, 1fr); 
     }
 }
 
@@ -82,4 +96,33 @@
     justify-content: center;
     align-items: center;
     height: 200px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#search-input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
 }
